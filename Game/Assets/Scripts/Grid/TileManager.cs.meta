@@ -3,7 +3,9 @@ guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blockedTile: {fileID: 11400000, guid: 3c7168d7fab4f1d42b031c0656956181, type: 2}
+  - walkableTile: {fileID: 11400000, guid: 50fbc9525fb42d04e82507f2786e300c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

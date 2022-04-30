@@ -2,6 +2,6 @@
 {
     public enum TileState
     {
-        Walkable, Blocked, Water
+        Walkable, Blocked
     }
 }
