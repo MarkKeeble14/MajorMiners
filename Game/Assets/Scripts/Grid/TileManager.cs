@@ -13,6 +13,10 @@ namespace Grid
         [SerializeField] private Tile walkableTile;
         private Tilemap _tileMap;
         private Vector3 _stageDimensions;
+        public Vector3 StageDimensions
+        {
+            get { return _stageDimensions; }
+        }
         private TileState[,] _tileStates;
 
         public void SetWalkable(int row, int col)
@@ -26,8 +30,12 @@ namespace Grid
 
         public Tile GetTile(int row, int col)
         {
-            return null;
-            // return _tileStates[row, col].Tile();
+            return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 0));
+        }
+
+        public TileState GetTileState(int row, int col)
+        {
+            return _tileStates[row, col];
         }
 
         public void SetTileStates(Tilemap tileMap)

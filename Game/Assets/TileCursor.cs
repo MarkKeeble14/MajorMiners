@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class TileCursor : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
-    [SerializeField] private Tile currentTile;
+    [SerializeField] private TileState currentTileState;
     [SerializeField] public Vector2Int coordinates;
     private SpriteRenderer sr;
 
@@ -19,13 +19,20 @@ public class TileCursor : MonoBehaviour
 
     private void SetCurrentTile()
     {
-        currentTile = tileManager.GetTile(coordinates.x, coordinates.y);
-        transform.position = currentTile.gameObject.transform.position;
+        currentTileState = tileManager.GetTileState(coordinates.x, coordinates.y);
     }
 
     public void Move(int rowWise, int colWise)
     {
-        coordinates += new Vector2Int(rowWise, colWise);
+        if (coordinates.x + rowWise > tileManager.StageDimensions.x - 1
+            || coordinates.x + rowWise < 0)
+            return;
+        if (coordinates.y + colWise > tileManager.StageDimensions.y - 1
+            || coordinates.y + colWise < 0)
+            return;
+        Vector2Int moveBy = new Vector2Int(rowWise, colWise);
+        coordinates += moveBy;
+        transform.position += new Vector3(moveBy.x, moveBy.y, 0);
         SetCurrentTile();
     }
 
