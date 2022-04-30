@@ -5,9 +5,9 @@ public class BaseDefenderProjectile : MonoBehaviour
     [field: SerializeField] public float Speed { get; private set; }
     [field: SerializeField] public float BaseDamage { get; private set; } = 1.0f;
     [SerializeField] private float maxDistanceToTargetBeforeHit = 0.1f;
-
+    [SerializeField] private BaseProjectileEffect projectileEffect;
+    
     public GameObject CurrentTarget { get; set; }
-    private BaseProjectileEffect projectileEffect;
     private bool _hasHitTarget;
 
     private void Awake()
@@ -29,7 +29,7 @@ public class BaseDefenderProjectile : MonoBehaviour
         
         if (projectileEffect.IsDoneEffect)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

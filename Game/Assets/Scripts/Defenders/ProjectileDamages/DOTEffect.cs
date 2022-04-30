@@ -24,7 +24,9 @@ public class DOTEffect : BaseProjectileEffect
         if (!_dealDamageTimer.IsFinished()) return;
         _dealDamageTimer.Reset();
         
-        // Deal damage to enemy.
+        var hitAttacker = effectTarget.GetComponent<BaseAttacker>();
+        
+        hitAttacker.DealDamage(baseDamage);
 
         ++_currentNumberOfDamageEffects;
 
