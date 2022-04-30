@@ -18,7 +18,7 @@ public class MyGrid : MonoBehaviour
     int gridSizeX, gridSizeY;
 
     // Defines how many nodes we can fit into our grid world size
-    void Start()
+    void Update()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
