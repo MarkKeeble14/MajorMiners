@@ -20,13 +20,18 @@ namespace Grid
             _tileMap.SetTile(new Vector3Int(row, col, 1), walkableTile);
             Tile self = GetTile(row, col);
             AdjustCoordinates(ref row, ref col);
-            Debug.Log($"row: {row}, col: {col}");
             _tileStates[row, col] = new Walkable(self);
         }
 
         public Tile GetTile(int row, int col)
         {
             return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 1));
+        }
+
+        public Vector3 GetTileWorldPos(int row, int col)
+        {
+            var t = GetTile(row, col).transform;
+            return _tileMap.GetCellCenterWorld(new Vector3Int((int)t.m30, (int)t.m31, (int)t.m32));
         }
         
         public void SetTileStates(Tilemap tileMap)
