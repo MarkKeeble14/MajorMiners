@@ -25,9 +25,10 @@ namespace Grid
 
         public Tile GetTile(int row, int col)
         {
-            return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 1));
+            return null;
+            // return _tileStates[row, col].Tile();
         }
-        
+
         public void SetTileStates(Tilemap tileMap)
         {
             _tileMap = tileMap;
