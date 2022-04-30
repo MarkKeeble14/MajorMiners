@@ -6,6 +6,7 @@ using UnityEngine;
 public class Node
 {
     public bool walkable;
+    public bool breakable;
     public Vector3 worldPosition;
     // Position of node in the array of nodes
     public int gridX;
