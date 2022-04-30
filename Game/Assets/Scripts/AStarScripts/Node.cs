@@ -28,8 +28,13 @@ public class Node
         gridY = _gridY;
     }
 
-    public int fCost
+    public int fCost()
     {
-        get { return gCost + hCost; }
+        if (breakable) {
+            return gCost + hCost + 100;
+        } else
+        {
+            return gCost + hCost;
+        }
     }
 }
