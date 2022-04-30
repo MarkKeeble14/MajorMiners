@@ -12,12 +12,12 @@ public class Pathfinding : MonoBehaviour
     }
     // (FOR TESTING)
 
-    MyGrid grid;
+    public MyGrid grid;
 
     // Gets the grid from the MyGrid Script
     void Awake()
     {
-        grid = GetComponent<MyGrid>();
+        //grid = GetComponent<MyGrid>();
     }
 
     // Refer to the PSEUDO-CODE in A* algorithm notes
