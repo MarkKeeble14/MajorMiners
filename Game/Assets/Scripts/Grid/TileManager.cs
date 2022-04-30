@@ -23,6 +23,11 @@ namespace Grid
             _tileStates[row, col] = TileState.Walkable;
         }
 
+        public Tile GetTile(int row, int col)
+        {
+            return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 1));
+        }
+        
         public void SetTileStates(Tilemap tileMap)
         {
             _tileMap = tileMap;
