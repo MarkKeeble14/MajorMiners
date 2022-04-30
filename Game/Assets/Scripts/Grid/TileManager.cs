@@ -13,6 +13,10 @@ namespace Grid
         [SerializeField] private Tile walkableTile;
         private Tilemap _tileMap;
         private Vector3 _stageDimensions;
+        public Vector3 StageDimensions
+        {
+            get { return _stageDimensions; }
+        }
         private TileState[,] _tileStates;
 
         public void SetWalkable(int row, int col)
@@ -26,9 +30,14 @@ namespace Grid
 
         public Tile GetTile(int row, int col)
         {
-            return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 1));
+            return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 0));
         }
-        
+
+        public TileState GetTileState(int row, int col)
+        {
+            return _tileStates[row, col];
+        }
+
         public void SetTileStates(Tilemap tileMap)
         {
             _tileMap = tileMap;
@@ -43,7 +52,10 @@ namespace Grid
             {
                 for (var j = 0; j < _tileStates.GetLength(1); ++j)
                 {
-                    _tileStates[i, j] = new Blocked();
+                    int row = i;
+                    int col = j;
+                    DeadjustCoordinates(ref row, ref col);
+                    _tileStates[i, j] = new Blocked(GetTile(row, col));
                 }
             }
             Helper.PrintMatrix(_tileStates);
@@ -53,6 +65,12 @@ namespace Grid
         {
             row += (int)_stageDimensions.x / 2;
             col += (int)_stageDimensions.y / 2;
+        }
+
+        private void DeadjustCoordinates(ref int row, ref int col)
+        {
+            row -= (int)_stageDimensions.x / 2;
+            col -= (int)_stageDimensions.y / 2;
         }
     }
 }
