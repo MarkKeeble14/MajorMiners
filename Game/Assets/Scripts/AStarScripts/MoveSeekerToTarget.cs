@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveSeekerToTarget : MonoBehaviour
 {
+    //[SerializeField] private Grid.TileManager tileManager;
+
     public GameObject Astar;
     MyGrid grid;
     public List<Node> path;
@@ -26,7 +28,7 @@ public class MoveSeekerToTarget : MonoBehaviour
 
         for (int i = 0; i < path.Count; i++)
         {
-            yield return MoveTo(path[i].worldPosition);
+            yield return MoveTo(path[i].worldPosition);//tileManager.GetTileWorldPos(path[i].row, path[i].column));//path[i].worldPosition);
         }
     }
 

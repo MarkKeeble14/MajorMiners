@@ -45,6 +45,8 @@ public class MyGrid : MonoBehaviour
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, box, 90, unwalkableMask));
                 // Create a point on the grid using the Node class
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
+                grid[x, y].row = y;
+                grid[x, y].column = x;
             }
         }
     }

@@ -16,6 +16,9 @@ public class Node
     // Keeps track of parent node/last node (relative path it takes, parent node is the node before it in the path)
     public Node parent;
 
+    public int row;
+    public int column;
+
     public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY)
     {
         walkable = _walkable;

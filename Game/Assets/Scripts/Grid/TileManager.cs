@@ -28,6 +28,12 @@ namespace Grid
         {
             return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 1));
         }
+
+        public Vector3 GetTileWorldPos(int row, int column)
+        {
+            Tile tile = GetTile(row, column);
+            return new Vector3(tile.transform.m30, tile.transform.m31, tile.transform.m32);
+        }
         
         public void SetTileStates(Tilemap tileMap)
         {
