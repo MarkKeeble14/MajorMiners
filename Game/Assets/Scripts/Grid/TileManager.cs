@@ -18,9 +18,10 @@ namespace Grid
         public void SetWalkable(int row, int col)
         {
             _tileMap.SetTile(new Vector3Int(row, col, 1), walkableTile);
+            Tile self = GetTile(row, col);
             AdjustCoordinates(ref row, ref col);
             Debug.Log($"row: {row}, col: {col}");
-            _tileStates[row, col] = TileState.Walkable;
+            _tileStates[row, col] = new Walkable(self);
         }
 
         public Tile GetTile(int row, int col)
@@ -41,7 +42,9 @@ namespace Grid
             for (var i = 0; i < _tileStates.GetLength(0); ++i)
             {
                 for (var j = 0; j < _tileStates.GetLength(1); ++j)
-                    _tileStates[i, j] = TileState.Blocked;
+                {
+                    _tileStates[i, j] = new Blocked();
+                }
             }
             Helper.PrintMatrix(_tileStates);
         }
