@@ -9,10 +9,8 @@ public class GridTileManager : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
 
-    [SerializeField] private Tilemap tileMap;
-
     private void Awake()
     {
-        tileManager.SetTileStates(tileMap);
+        tileManager.SpawnGrid(transform);
     }
 }

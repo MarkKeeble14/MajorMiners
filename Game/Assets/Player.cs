@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(exitPlacementMode))
             ClosePlacementMode();
+        
+        if (Input.GetKeyDown(KeyCode.F))
+            tileCursor.SetWalkable();
 
         if (!placing)
             return;
@@ -52,12 +55,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(moveCursorUp))
         {
             StopAllCoroutines();
-            StartCoroutine(StartMove(moveCursorUp, 0, 1, 0.5f, 0.05f));
+            StartCoroutine(StartMove(moveCursorUp, 0, -1, 0.5f, 0.05f));
         }
         if (Input.GetKeyDown(moveCursorDown))
         {
             StopAllCoroutines();
-            StartCoroutine(StartMove(moveCursorDown, 0, -1, 0.5f, 0.05f));
+            StartCoroutine(StartMove(moveCursorDown, 0, 1, 0.5f, 0.05f));
         }
     }
 
