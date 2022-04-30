@@ -791,7 +791,10 @@ GameObject:
   - component: {fileID: 1917414580}
   - component: {fileID: 1917414579}
   - component: {fileID: 1917414577}
+<<<<<<< HEAD
   - component: {fileID: 1917414578}
+=======
+>>>>>>> astar
   m_Layer: 0
   m_Name: Seeker
   m_TagString: Untagged
@@ -814,6 +817,7 @@ MonoBehaviour:
   seeker: {fileID: 1917414581}
   target: {fileID: 1648111208}
   grid: {fileID: 1599761489}
+<<<<<<< HEAD
 --- !u!114 &1917414578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,6 +831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Astar: {fileID: 1599761488}
+=======
+>>>>>>> astar
 --- !u!58 &1917414579
 CircleCollider2D:
   m_ObjectHideFlags: 0
