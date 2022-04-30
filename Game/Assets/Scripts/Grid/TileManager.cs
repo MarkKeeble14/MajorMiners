@@ -44,7 +44,10 @@ namespace Grid
             {
                 for (var j = 0; j < _tileStates.GetLength(1); ++j)
                 {
-                    _tileStates[i, j] = new Blocked();
+                    int row = i;
+                    int col = j;
+                    DeadjustCoordinates(ref row, ref col);
+                    _tileStates[i, j] = new Blocked(GetTile(row, col));
                 }
             }
             Helper.PrintMatrix(_tileStates);
@@ -54,6 +57,12 @@ namespace Grid
         {
             row += (int)_stageDimensions.x / 2;
             col += (int)_stageDimensions.y / 2;
+        }
+
+        private void DeadjustCoordinates(ref int row, ref int col)
+        {
+            row -= (int)_stageDimensions.x / 2;
+            col -= (int)_stageDimensions.y / 2;
         }
     }
 }
