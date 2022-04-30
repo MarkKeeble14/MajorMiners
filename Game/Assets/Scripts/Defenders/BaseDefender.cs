@@ -3,14 +3,13 @@ using UnityEngine;
 public class BaseDefender : MonoBehaviour
 {
     [field: SerializeField] public float Cost { get; private set; }
-    [field: SerializeField] public float BaseDamage { get; private set; } = 1.0f;
-    [field: SerializeField] public float AggroRadius { get; private set; } = 5.0f;
+    [SerializeField] private float aggroRadius = 5.0f;
     // The distance to lose aggro should always be larger than the aggro radius.
-    [field: SerializeField] public float LoseAggroDistance { get; private set; } = 6.0f;
-    [field: SerializeField] public LayerMask TargetLayerMask { get; private set; }
-
+    [SerializeField] private float loseAggroDistance = 6.0f;
+    [SerializeField] private LayerMask targetLayerMask;
     [SerializeField] private float timeBetweenTargetingChecks = 5.0f;
-    private BaseDefenderShoot _baseDefenderShoot;
+    
+    private BaseDefenderShoot baseDefenderShoot;
     private Timer _targetingCheckTimer;
     private bool _isTargetingEnemy;
     private GameObject _currentTarget;
@@ -53,7 +52,7 @@ public class BaseDefender : MonoBehaviour
         if (_isTargetingEnemy)
         {
             // See if targeted enemy is still in range.
-            if (Vector2.Distance(transform.position, _currentTarget.transform.position) <= LoseAggroDistance) return;
+            if (Vector2.Distance(transform.position, _currentTarget.transform.position) <= loseAggroDistance) return;
 
             _isTargetingEnemy = false;
         }
@@ -61,7 +60,7 @@ public class BaseDefender : MonoBehaviour
         if (_isTargetingEnemy) return;
         
         // Try finding an enemy within range.
-        var hitResult = Physics2D.CircleCast(transform.position, AggroRadius, Vector2.one, 0.0f, TargetLayerMask);
+        var hitResult = Physics2D.CircleCast(transform.position, aggroRadius, Vector2.one, 0.0f, targetLayerMask);
         var hitCollider = hitResult.collider;
 
         if (!hitCollider) return;
@@ -74,6 +73,6 @@ public class BaseDefender : MonoBehaviour
     {
         if (!_isTargetingEnemy) return;
 
-        _baseDefenderShoot.UpdateShoot(_currentTarget);
+        baseDefenderShoot.UpdateShoot(_currentTarget);
     }
 }
