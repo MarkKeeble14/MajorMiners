@@ -10,6 +10,7 @@ public class BaseDefender : MonoBehaviour
     [field: SerializeField] public LayerMask TargetLayerMask { get; private set; }
 
     [SerializeField] private float timeBetweenTargetingChecks = 5.0f;
+    private BaseDefenderShoot _baseDefenderShoot;
     private Timer _targetingCheckTimer;
     private bool _isTargetingEnemy;
     private GameObject _currentTarget;
@@ -22,18 +23,20 @@ public class BaseDefender : MonoBehaviour
     private void Update()
     {
         UpdateTargetChecks();
+        UpdateShooting();
     }
 
     /*
      * Every so often, updates the current target for this defender.
-     * If not targeting, checks for units to target.
-     * Else, sees if the currently targeted unit is still in range.
+     * If not targeting, checks for enemies to target.
+     * Else, sees if the currently targeted enemy is still in range.
      */
     private void UpdateTargetChecks()
     {
         if (!_targetingCheckTimer.IsFinished())
         {
             UpdateTargetedEnemy();
+            _targetingCheckTimer.Reset();
         }
         else
         {
@@ -65,5 +68,12 @@ public class BaseDefender : MonoBehaviour
         
         _currentTarget = hitCollider.gameObject;
         _isTargetingEnemy = true;
+    }
+
+    private void UpdateShooting()
+    {
+        if (!_isTargetingEnemy) return;
+
+        _baseDefenderShoot.UpdateShoot(_currentTarget);
     }
 }
