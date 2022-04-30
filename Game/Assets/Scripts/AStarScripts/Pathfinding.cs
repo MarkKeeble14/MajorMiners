@@ -73,6 +73,7 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
+        Debug.Log("NO PATH FOUND");
     }
 
     // Retraces and calculates what the path it took was, the parent node in the Node class is vital

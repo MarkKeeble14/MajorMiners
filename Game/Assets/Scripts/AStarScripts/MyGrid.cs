@@ -7,6 +7,8 @@ public class MyGrid : MonoBehaviour
 {
     //  (defined in unity editor)
     public LayerMask unwalkableMask;
+    //  (defined in unity editor)
+    public LayerMask breakableMask;
     //Size the grid will cover (defined in unity editor)
     public Vector2 gridWorldSize;
     // How much space each node covers (defined in unity editor)
@@ -18,7 +20,7 @@ public class MyGrid : MonoBehaviour
     int gridSizeX, gridSizeY;
 
     // Defines how many nodes we can fit into our grid world size
-    void Start()
+    void Update()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -43,8 +45,12 @@ public class MyGrid : MonoBehaviour
                 // Collision check (true if we don't collide with anything in the walkable mask)
                 Vector2 box = new Vector2(nodeDiameter, nodeDiameter);
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, box, 90, unwalkableMask));
+                bool breakable = (Physics2D.OverlapBox(worldPoint, box, 90, breakableMask));
                 // Create a point on the grid using the Node class
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
+                grid[x, y].row = y;
+                grid[x, y].column = x;
+                grid[x, y].breakable = breakable;
             }
         }
     }
@@ -105,7 +111,18 @@ public class MyGrid : MonoBehaviour
             foreach (Node n in grid)
             {
                 // if n is walkable then its white but if its collision then its red
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
+                if (!n.walkable)
+                {
+                    Gizmos.color = Color.red;
+                }
+                if (n.breakable)
+                {
+                    Gizmos.color = Color.blue;
+                }
+                if (n.walkable && !n.breakable)
+                {
+                    Gizmos.color = Color.white;
+                }
 
                 // Set the path color to black
                 if (path != null)

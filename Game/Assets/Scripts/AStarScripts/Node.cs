@@ -6,6 +6,7 @@ using UnityEngine;
 public class Node
 {
     public bool walkable;
+    public bool breakable;
     public Vector3 worldPosition;
     // Position of node in the array of nodes
     public int gridX;
@@ -15,6 +16,9 @@ public class Node
     public int hCost;
     // Keeps track of parent node/last node (relative path it takes, parent node is the node before it in the path)
     public Node parent;
+
+    public int row;
+    public int column;
 
     public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY)
     {
