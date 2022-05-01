@@ -37,7 +37,6 @@ namespace Grid
             {
                 for (int j = 0; j < cols; ++j)
                 {
-                    Debug.Log(i + ", " + j);
                     Vector3 spawnPos = startPos + new Vector3(i, -j, 0);
                     GameObject spawned;
                     if (i == rows / 2 && j == cols / 2)   // Middle
