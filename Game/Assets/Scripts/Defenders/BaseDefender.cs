@@ -35,6 +35,8 @@ public class BaseDefender : BaseUnit
  
             float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 180));
+
+            transform.GetChild(0).transform.rotation = Quaternion.identity;
         }
         
         UpdateTargetChecks();
