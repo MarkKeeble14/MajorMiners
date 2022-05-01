@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Looter : MonoBehaviour
+public class LooterMove : MonoBehaviour
 {
 
     public GameObject Astar;
@@ -10,16 +10,18 @@ public class Looter : MonoBehaviour
     public List<Node> path;
 
     float speed = 10.0f;
+    bool onRoute = false;
 
     // Update is called once per frame
-    void Start()
+    public void GoToDest()
     {
-        if (Input.GetKeyDown("space"))
+        if (!onRoute)
         {
             grid = Astar.GetComponent<MyGrid>();
             path = grid.path;
 
             StartCoroutine(MoveToEachPosition());
+            onRoute = true;
         }
     }
 
@@ -31,6 +33,7 @@ public class Looter : MonoBehaviour
         {
             yield return MoveTo(path[i].worldPosition);
         }
+        onRoute = false;
     }
 
     IEnumerator MoveTo(Vector3 destination)

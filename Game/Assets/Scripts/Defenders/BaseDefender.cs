@@ -16,6 +16,7 @@ public class BaseDefender : BaseUnit
     private void Awake()
     {
         _targetingCheckTimer = new Timer(timeBetweenTargetingChecks);
+        baseDefenderShoot = GetComponent<BaseDefenderShoot>();
     }
 
     private void Update()
