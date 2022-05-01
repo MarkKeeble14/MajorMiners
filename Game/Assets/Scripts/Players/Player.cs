@@ -39,7 +39,7 @@ public abstract class Player : MonoBehaviour
 
     }
     
-    private void Update()
+    protected virtual void Update()
     {
         unitRender.gameObject.transform.position = tileCursor.transform.position;
         if (_canMoveTimer.IsFinished())

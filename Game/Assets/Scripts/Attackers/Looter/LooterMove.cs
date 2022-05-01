@@ -36,6 +36,9 @@ public class LooterMove : MonoBehaviour
             yield return MoveTo(path[i].worldPosition);
         }
         onRoute = false;
+        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
+        Destroy(gameObject);
     }
 
     IEnumerator MoveTo(Vector3 destination)

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9, type: 3}
   m_Name: TileManager
   m_EditorClassIdentifier: 
-  rows: 25
-  cols: 11
-  aroundAsteroid: 2
+  rows: 27
+  cols: 15
+  aroundAsteroid: 1
   aroundCanyon: 1
   outsideCanyonSprite: {fileID: 7213639340675471223, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   asteroidSpriteArray:
@@ -29,4 +29,3 @@ MonoBehaviour:
   - {fileID: 4755084460827791951, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
   worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}
   asteroidTile: {fileID: 8312990029052005097, guid: c36b7824629dbe645a421709e1f11cf5, type: 3}
-  asteroidTiles: []
