@@ -13,6 +13,8 @@ namespace Grid
         [SerializeField] private Sprite walkableSprite;
         [SerializeField] private Sprite blockableSprite;
         private SpriteRenderer sr;
+        private string unwalkableLayer = "Unwalkable";
+        private string breakableLayer = "Breakable";
 
         private void Awake()
         {
@@ -24,6 +26,7 @@ namespace Grid
         {
             Walkable = walkable;
             sr.sprite = Walkable ? walkableSprite : blockableSprite;
+            gameObject.layer = LayerMask.NameToLayer(Walkable ? breakableLayer : unwalkableLayer);
         }
     }
 }

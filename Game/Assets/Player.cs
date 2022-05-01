@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(exitPlacementMode))
             ClosePlacementMode();
 
+        if (Input.GetKeyDown(KeyCode.R))
+            tileCursor.SetWalkable(true);
+
         if (!placing)
             return;
         ControlCursor();
