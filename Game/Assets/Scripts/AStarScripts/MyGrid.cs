@@ -43,7 +43,7 @@ public class MyGrid : MonoBehaviour
                 // Each point a node will occupy
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
                 // Collision check (true if we don't collide with anything in the walkable mask)
-                Vector2 box = new Vector2(nodeDiameter, nodeDiameter);
+                Vector2 box = new Vector2(nodeDiameter - 0.1f, nodeDiameter - 0.1f);
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, box, 90, unwalkableMask));
                 bool breakable = (Physics2D.OverlapBox(worldPoint, box, 90, breakableMask));
                 // Create a point on the grid using the Node class
