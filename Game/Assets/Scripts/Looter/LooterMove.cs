@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class LooterMove : MonoBehaviour
 {
-
-    public GameObject Astar;
     MyGrid grid;
     public List<Node> path;
 
     float speed = 10.0f;
     bool onRoute = false;
 
+    private void Awake()
+    {
+        grid = FindObjectOfType<MyGrid>();
+    }
+
     // Update is called once per frame
     public void GoToDest()
     {
         if (!onRoute)
         {
-            grid = Astar.GetComponent<MyGrid>();
             path = grid.path;
 
             StartCoroutine(MoveToEachPosition());

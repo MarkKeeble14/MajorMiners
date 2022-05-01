@@ -194,7 +194,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 355043135
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e2bbef76be5e2064a89362f9bdded2ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -224,7 +224,7 @@ Transform:
 --- !u!1 &35636436
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5551689623887243191, guid: a46a26a0470fd154f93ed75794dcc6cf, type: 3}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -237,11 +237,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &35636437
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5551689623887243190, guid: a46a26a0470fd154f93ed75794dcc6cf, type: 3}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35636436}
@@ -252,12 +252,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   breakableMask:
     serializedVersion: 2
-    m_Bits: 128
-  gridWorldSize: {x: 15, y: 9}
-  nodeRadius: 0.5
+    m_Bits: 0
+  gridWorldSize: {x: 0, y: 0}
+  nodeRadius: 0
   gridSizeX: 0
   gridSizeY: 0
 --- !u!4 &35636438
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9c7206c5d9ae4fa719ccb56d8b240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacker: {fileID: 1010479725}
+  attacker: {fileID: 0}
   defender: {fileID: 0}
 --- !u!4 &1439298651
 Transform:

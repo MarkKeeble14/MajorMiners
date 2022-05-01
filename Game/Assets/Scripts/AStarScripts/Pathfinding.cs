@@ -8,7 +8,8 @@ public class Pathfinding : MonoBehaviour
     public Transform seeker, target;
     void Update()
     {
-        FindPath(seeker.position, target.position);
+        if (target)
+            FindPath(seeker.position, target.position);
     }
     // (FOR TESTING)
 
@@ -17,7 +18,7 @@ public class Pathfinding : MonoBehaviour
     // Gets the grid from the MyGrid Script
     void Awake()
     {
-        //grid = GetComponent<MyGrid>();
+        grid = FindObjectOfType<MyGrid>();
     }
 
     // Refer to the PSEUDO-CODE in A* algorithm notes

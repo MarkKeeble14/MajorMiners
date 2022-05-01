@@ -5,6 +5,7 @@ using UnityEngine;
 //Class to represent a world position.
 public class Node
 {
+    private const int BreakableWeightIncrease = 30;
     public bool walkable;
     public bool breakable;
     public Vector3 worldPosition;
@@ -31,7 +32,7 @@ public class Node
     public int fCost()
     {
         if (breakable) {
-            return gCost + hCost + 100;
+            return gCost + hCost + BreakableWeightIncrease;
         } else
         {
             return gCost + hCost;

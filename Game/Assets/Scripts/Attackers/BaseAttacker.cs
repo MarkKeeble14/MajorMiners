@@ -4,7 +4,12 @@ public class BaseAttacker : BaseUnit
 {
     [field: SerializeField] public float TotalHealth { get; private set; }
 
-    private float _currentHealth = 1.0f;
+    private float _currentHealth;
+
+    public void Awake()
+    {
+        _currentHealth = TotalHealth;
+    }
 
     public void DealDamage(float damageDealt)
     {

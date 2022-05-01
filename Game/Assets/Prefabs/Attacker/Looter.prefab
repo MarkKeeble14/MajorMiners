@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2219256707859678096}
   - component: {fileID: 2219256707859678094}
   - component: {fileID: 2219256707859678097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Looter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2bf18be2297634a84ab1768ef11e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Astar: {fileID: 0}
 --- !u!114 &2219256707859678094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b2a626f73056648b11b4d4aedee80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TotalHealth>k__BackingField: 10
+  <Cost>k__BackingField: 100
+  <TotalHealth>k__BackingField: 100
 --- !u!114 &2219256707859678097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e4c4a2a5bfdef41b28edc3cceefb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileManager: {fileID: 11400000, guid: 0f77cf296c760124cb63ce158b206efc, type: 2}
   looterMove: {fileID: 2219256707859678096}
   seeker: {fileID: 2219256707859678093}
   target: {fileID: 0}

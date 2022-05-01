@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Grid;
 using UnityEngine;
 
 public class MinerPathfind : MonoBehaviour
 {
+    public TileManager tileManager;
     public MinerMove minerMove;
     // (FOR TESTING)
     public Transform seeker, target;
@@ -18,7 +20,8 @@ public class MinerPathfind : MonoBehaviour
     // Gets the grid from the MyGrid Script
     void Awake()
     {
-        //grid = GetComponent<MyGrid>();
+        grid = FindObjectOfType<MyGrid>();
+        target = tileManager.GetTile(tileManager.Rows / 2, tileManager.Columns / 2).transform;
     }
 
     // Refer to the PSEUDO-CODE in A* algorithm notes
