@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100657615600069172, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 306114a9d26e3ec4a8489df436e874d0, type: 2}
     - target: {fileID: 2357758418065903456, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
       propertyPath: m_Name
       value: AOEDefender Variant
