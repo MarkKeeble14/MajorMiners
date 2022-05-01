@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 15
   cols: 9
-  spaceAroundAsteroidHorizontal: 2
-  spaceAroundAsteroidVertical: 2
+  aroundAsteroid: 1
+  aroundCanyon: 1
   worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}
   asteroidTile: {fileID: 8312990029052005097, guid: c36b7824629dbe645a421709e1f11cf5, type: 3}

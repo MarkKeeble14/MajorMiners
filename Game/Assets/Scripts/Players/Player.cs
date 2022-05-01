@@ -1,38 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
     public int money;
     public bool placing;
-
-    [SerializeField] private TileCursor tileCursor;
-    [SerializeField] private KeyCode enterPlacementMode = KeyCode.KeypadEnter;
+    
+    [SerializeField] protected TileCursor tileCursor;
+    [SerializeField] private KeyCode enterPlacementMode = KeyCode.LeftShift;
     [SerializeField] private KeyCode exitPlacementMode = KeyCode.Escape;
-    [SerializeField] private KeyCode moveCursorLeft = KeyCode.LeftArrow;
-    [SerializeField] private KeyCode moveCursorRight = KeyCode.RightArrow;
-    [SerializeField] private KeyCode moveCursorUp = KeyCode.UpArrow;
-    [SerializeField] private KeyCode moveCursorDown = KeyCode.DownArrow;
+    [SerializeField] protected KeyCode moveCursorLeft = KeyCode.LeftArrow;
+    [SerializeField] protected KeyCode moveCursorRight = KeyCode.RightArrow;
+    [SerializeField] protected KeyCode moveCursorUp = KeyCode.UpArrow;
+    [SerializeField] protected KeyCode moveCursorDown = KeyCode.DownArrow;
+    [SerializeField] private KeyCode _placeUnit = KeyCode.Tab;
+    [SerializeField] protected GameObject[] _unitsToSpawn;
 
-    public void Update()
+    protected int currentUnitIndex;
+
+    private void Update()
     {
         if (Input.GetKeyDown(enterPlacementMode))
             OpenPlacementMode();
 
         if (Input.GetKeyDown(exitPlacementMode))
             ClosePlacementMode();
-
-        if (Input.GetKeyDown(KeyCode.R))
-            tileCursor.SetBreakable(true);
-
+        
         if (!placing)
-            return;
-        ControlCursor();
+        {
+            ControlUnitCursor();
+        }
+        else
+        {
+            ControlPlacementCursor();
+        }
     }
-
-    private void ControlCursor()
+    
+    private void ControlPlacementCursor()
     {
         if (!Input.GetKey(moveCursorLeft)
             && !Input.GetKey(moveCursorRight)
@@ -61,6 +68,39 @@ public class Player : MonoBehaviour
         {
             StopAllCoroutines();
             StartCoroutine(StartMove(moveCursorDown, 0, 1, 0.5f, 0.05f));
+        }
+        
+        // Place unit down.
+        if (Input.GetKeyDown(_placeUnit))
+        {
+            TryPlaceUnit();
+        }
+    }
+
+    protected abstract void TryPlaceUnit();
+
+    private void ControlUnitCursor()
+    {
+        if (Input.GetKeyDown(moveCursorLeft))
+        {
+            --currentUnitIndex;
+            if (currentUnitIndex < 0)
+            {
+                currentUnitIndex = _unitsToSpawn.Length - 1;
+            }
+            
+            Debug.Log(_unitsToSpawn[currentUnitIndex]);
+        }
+
+        if (Input.GetKeyDown(moveCursorRight))
+        {
+            ++currentUnitIndex;
+            if (currentUnitIndex >= _unitsToSpawn.Length)
+            {
+                currentUnitIndex = 0;
+            }
+            
+            Debug.Log(_unitsToSpawn[currentUnitIndex]);
         }
     }
 
@@ -92,7 +132,7 @@ public class Player : MonoBehaviour
         tileCursor.Show();
     }
 
-    private void ClosePlacementMode()
+    protected void ClosePlacementMode()
     {
         placing = false;
         tileCursor.Hide();

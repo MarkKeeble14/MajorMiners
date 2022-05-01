@@ -21,8 +21,8 @@ namespace Grid
             get { return cols; }
         }
 
-        [SerializeField] private int spaceAroundAsteroidHorizontal;
-        [SerializeField] private int spaceAroundAsteroidVertical;
+        [SerializeField] private int aroundAsteroid;
+        [SerializeField] private int aroundCanyon;
 
         [SerializeField] private GameObject worldTile;
         [SerializeField] private GameObject asteroidTile;
@@ -39,16 +39,19 @@ namespace Grid
                 {
                     Vector3 spawnPos = startPos + new Vector3(i, -j, 1);
                     GameObject spawned;
-                    if (spawnPos == Vector3.zero)
+                    if (i == rows / 2 && j == cols / 2)   // Middle
                     {
-                        // spawn resource
+                        // Spawn resource
                         spawned = Instantiate(asteroidTile, spawnPos, Quaternion.identity);
                     }
-                    else if (
-                            spawnPos.x > -spaceAroundAsteroidHorizontal
-                        && spawnPos.x < spaceAroundAsteroidHorizontal
-                        && spawnPos.y > -spaceAroundAsteroidVertical
-                        && spawnPos.y < spaceAroundAsteroidVertical)
+                    else if (i > rows / 2 - aroundAsteroid && i < aroundAsteroid + rows / 2
+                        && j > cols / 2 - aroundAsteroid && j < aroundAsteroid + cols / 2)
+                    {
+                        spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
+                        spawned.GetComponent<WorldTile>().SetBreakable(false);
+                    }
+                    else if (i < aroundCanyon || i > rows - aroundCanyon - 1
+                        || j < aroundCanyon || j > cols - aroundCanyon - 1)
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
                         spawned.GetComponent<WorldTile>().SetBreakable(false);

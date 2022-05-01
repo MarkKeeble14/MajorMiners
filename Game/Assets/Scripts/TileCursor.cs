@@ -6,8 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class TileCursor : MonoBehaviour
 {
-    [SerializeField] private TileManager tileManager;
-    [SerializeField] private WorldTile currentTile;
+    [SerializeField] public TileManager tileManager;
+    [SerializeField] public WorldTile currentTile;
     [SerializeField] public Vector2Int coordinates;
     private SpriteRenderer sr;
     public bool Enabled
