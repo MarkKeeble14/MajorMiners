@@ -335,6 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 10000
   placing: 0
+  tileManager: {fileID: 0}
   tileCursor: {fileID: 261586187}
   _unitKeys: 310000003200000033000000
   _buttonNames:
@@ -1087,6 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 10000
   placing: 0
+  tileManager: {fileID: 0}
   tileCursor: {fileID: 961842318}
   _unitKeys: 010100000201000003010000
   _buttonNames:

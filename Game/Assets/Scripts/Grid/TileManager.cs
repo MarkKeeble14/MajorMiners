@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Utilities;
+using UnityEngine.SceneManagement;
 
 namespace Grid
 {
@@ -32,17 +33,10 @@ namespace Grid
         [SerializeField] private GameObject asteroidTile;
 
         private WorldTile[,] _tiles;
-        [SerializeField] private List<WorldTile> asteroidTiles = new List<WorldTile>();
-
-        private void OnDisable()
-        {
-            asteroidTiles.Clear();
-        }
 
         public void SpawnGrid(Transform parent)
         {
             Vector3 startPos = new Vector3(-rows / 2, cols / 2, 0);
-
             int asteroidTilesPlaced = 0;
             _tiles = new WorldTile[rows, cols];
             for (int i = 0; i < rows; ++i)
@@ -58,7 +52,6 @@ namespace Grid
                         spawned = Instantiate(asteroidTile, spawnPos, Quaternion.identity);
                         WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
                         spawnedTile.SetLockedSprite(asteroidSpriteArray[asteroidTilesPlaced++]);
-                        asteroidTiles.Add(spawnedTile);
                     }
                     else if (i > rows / 2 - aroundAsteroid - 2 && i < aroundAsteroid + 2 + rows / 2
                         && j > cols / 2 - aroundAsteroid - 2 && j < aroundAsteroid + 2 + cols / 2)
