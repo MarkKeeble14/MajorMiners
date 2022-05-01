@@ -336,7 +336,7 @@ MonoBehaviour:
   money: 10000
   placing: 0
   tileCursor: {fileID: 261586187}
-  _unitKeys: 3100000032000000
+  _unitKeys: 310000003200000033000000
   _buttonNames:
   - Fire1
   - Fire2
@@ -350,6 +350,7 @@ MonoBehaviour:
   _unitsToSpawn:
   - {fileID: 2219256707859678099, guid: 0cde1afec275b894ca0bf4ce4725294d, type: 3}
   - {fileID: 3568673735996287543, guid: 5a1846dccfc36064a995c4259bb9ee1d, type: 3}
+  - {fileID: 6595957569325983401, guid: 493212699b3365d42aea6737802210c9, type: 3}
 --- !u!1 &261586185
 GameObject:
   m_ObjectHideFlags: 0
