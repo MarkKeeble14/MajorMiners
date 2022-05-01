@@ -5,6 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Player attacker;
-    [SerializeField] private Player defender;
+    public Player attacker;
+    public Player defender;
 }
