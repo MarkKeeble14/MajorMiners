@@ -11,6 +11,8 @@ public abstract class Player : MonoBehaviour
     
     [SerializeField] protected TileCursor tileCursor;
     [SerializeField] private KeyCode[] _unitKeys;
+    [SerializeField] private string[] _buttonNames;
+
     [SerializeField] private KeyCode exitPlacementMode = KeyCode.Backspace;
     
     [SerializeField] protected KeyCode moveCursorLeft = KeyCode.LeftArrow;
@@ -28,6 +30,7 @@ public abstract class Player : MonoBehaviour
         {
             for (var i = 0; i < _unitKeys.Length; ++i)
             {
+                //if (!!Input.GetKeyDown(_unitKeys[i]) && !Input.GetButtonDown(_buttonNames[0])) continue;
                 if (!Input.GetKeyDown(_unitKeys[i])) continue;
 
                 var enemyUnit = _unitsToSpawn[i].GetComponent<BaseUnit>();

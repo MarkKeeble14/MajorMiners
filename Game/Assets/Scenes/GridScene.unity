@@ -238,7 +238,11 @@ MonoBehaviour:
   money: 50
   placing: 0
   tileCursor: {fileID: 859709283}
-  enterPlacementMode: 13
+  _unitKeys: 010100000201000003010000
+  _buttonNames:
+  - Fire1
+  - Fire2
+  - Fire3
   exitPlacementMode: 8
   moveCursorLeft: 276
   moveCursorRight: 275
@@ -837,7 +841,11 @@ MonoBehaviour:
   money: 50
   placing: 0
   tileCursor: {fileID: 961842318}
-  enterPlacementMode: 304
+  _unitKeys: 310000003200000033000000
+  _buttonNames:
+  - joystick button 0
+  - joystick button 1
+  - joystick button 2
   exitPlacementMode: 27
   moveCursorLeft: 97
   moveCursorRight: 100
