@@ -260,10 +260,9 @@ MonoBehaviour:
   - Fire3
   _placeButtonName: PlaceUnit1
   exitPlacementMode: 8
-  moveCursorLeft: 97
-  moveCursorRight: 100
-  moveCursorUp: 119
-  moveCursorDown: 115
+  horizontalString: Horizontal
+  verticalString: Vertical
+  unitRender: {fileID: 0}
   _placeUnit: 101
   _unitsToSpawn:
   - {fileID: 2219256707859678099, guid: 0cde1afec275b894ca0bf4ce4725294d, type: 3}
@@ -353,7 +352,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 355043135
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e2bbef76be5e2064a89362f9bdded2ab, type: 3}
   m_Color: {r: 1, g: 0, b: 0.017746449, a: 1}
@@ -635,7 +634,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 355043135
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e2bbef76be5e2064a89362f9bdded2ab, type: 3}
   m_Color: {r: 0, g: 0.09429884, b: 1, a: 1}
@@ -873,10 +872,9 @@ MonoBehaviour:
   - Fire5
   _placeButtonName: PlaceUnit2
   exitPlacementMode: 27
-  moveCursorLeft: 276
-  moveCursorRight: 275
-  moveCursorUp: 273
-  moveCursorDown: 274
+  horizontalString: Horizontal
+  verticalString: Vertical
+  unitRender: {fileID: 0}
   _placeUnit: 13
   _unitsToSpawn:
   - {fileID: 4923408997573691875, guid: 1e91c4bc173298343947df7292d37404, type: 3}

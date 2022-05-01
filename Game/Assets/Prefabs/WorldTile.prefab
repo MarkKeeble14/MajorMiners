@@ -148,3 +148,17 @@ MonoBehaviour:
   Breakable: 0
   breakableSprite: {fileID: -2884756588528375457, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
   walkableSprite: {fileID: 5962255778811429813, guid: caee56d7710b9a24b994588aa29ff745, type: 3}
+  spriteLocked: 0
+  rightTile: {fileID: -9076032170068489642, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  leftTile: {fileID: -5101821357727554639, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  downTile: {fileID: -7607187387151836486, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  upTile: {fileID: 3518339793968192057, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  midTile: {fileID: 7213639340675471223, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  rightUpTile: {fileID: 2946845331945392286, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  rightDownTile: {fileID: 5535226985061942197, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  leftUpTile: {fileID: 3222003104322823138, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  leftDownTile: {fileID: 7071104368224478110, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  grassTile: {fileID: 21300000, guid: a15af520646f200479a4aa99a43e8ac1, type: 3}
+  block:
+    serializedVersion: 2
+    m_Bits: 128

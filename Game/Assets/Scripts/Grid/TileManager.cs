@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -31,6 +32,12 @@ namespace Grid
         [SerializeField] private GameObject asteroidTile;
 
         private WorldTile[,] _tiles;
+        [SerializeField] private List<WorldTile> asteroidTiles = new List<WorldTile>();
+
+        private void OnDisable()
+        {
+            asteroidTiles.Clear();
+        }
 
         public void SpawnGrid(Transform parent)
         {
@@ -44,20 +51,22 @@ namespace Grid
                 {
                     Vector3 spawnPos = startPos + new Vector3(i, -j, 1);
                     GameObject spawned;
-                    if (i > rows / 2 - 1 || i < rows / 2 + 1 ||
-                        j > cols / 2 - 1 || j < cols / 2 + 1)   // Middle
+                    if (i > rows / 2 - 2 && i < 2 + rows / 2 &&
+                        j > cols / 2 - 2 && j < 2 + cols / 2)   // Middle
                     {
                         // Spawn resource
                         spawned = Instantiate(asteroidTile, spawnPos, Quaternion.identity);
-                        spawned.GetComponent<SpriteRenderer>().sprite
-                            = asteroidSpriteArray[asteroidTilesPlaced++];
-
+                        WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                        spawnedTile.SetLockedSprite(asteroidSpriteArray[asteroidTilesPlaced++]);
+                        asteroidTiles.Add(spawnedTile);
                     }
-                    else if (i > rows / 2 - aroundAsteroid - 1 && i < aroundAsteroid + rows / 2 + 1
-                        && j > cols / 2 - aroundAsteroid - 1 && j < aroundAsteroid + cols / 2 + 1)
+                    else if (i > rows / 2 - aroundAsteroid - 2 && i < aroundAsteroid + 2 + rows / 2
+                        && j > cols / 2 - aroundAsteroid - 2 && j < aroundAsteroid + 2 + cols / 2)
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
-                        spawned.GetComponent<WorldTile>().SetBreakable(false);
+                        WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                        spawnedTile.SetBreakable(false);
+                        spawnedTile.spriteLocked = true;
                     }
                     else if (i < aroundCanyon || i > rows - aroundCanyon - 1
                         || j < aroundCanyon || j > cols - aroundCanyon - 1)
@@ -69,13 +78,19 @@ namespace Grid
                     else
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
-                        spawned.GetComponent<WorldTile>().SetBreakable(true);
+                        WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                        spawnedTile.SetBreakable(true);
+                        spawnedTile.spriteLocked = true;
                     }
                     spawned.transform.SetParent(parent);
                     _tiles[i, j] = spawned.GetComponent<WorldTile>();
                 }
             }
 
+            foreach (WorldTile t in _tiles)
+            {
+                t.RaycastSetSprite();
+            }
         }
 
         public void SetWalkable(int row, int col, bool breakable)
