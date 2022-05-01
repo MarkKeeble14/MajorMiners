@@ -27,6 +27,7 @@ public class BaseDefenderShoot : MonoBehaviour
 
     protected virtual void ShootTarget(GameObject currentTarget)
     {
-        Instantiate(projectilePrefab, transform);
+        var createdProjectile = Instantiate(projectilePrefab, transform);
+        createdProjectile.GetComponent<BaseDefenderProjectile>().CurrentTarget = currentTarget;
     }
 }

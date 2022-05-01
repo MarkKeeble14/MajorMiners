@@ -17,6 +17,7 @@ public class BaseDefender : MonoBehaviour
     private void Awake()
     {
         _targetingCheckTimer = new Timer(timeBetweenTargetingChecks);
+        baseDefenderShoot = GetComponent<BaseDefenderShoot>();
     }
 
     private void Update()
