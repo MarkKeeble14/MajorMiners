@@ -5,7 +5,7 @@ public class BaseDefenderProjectile : MonoBehaviour
     [field: SerializeField] public float Speed { get; private set; } = 10.0f;
     [field: SerializeField] public float BaseDamage { get; private set; } = 1.0f;
     [SerializeField] private float maxDistanceToTargetBeforeHit = 0.1f;
-    
+
     public GameObject CurrentTarget { get; set; }
     private bool _hasHitTarget;
     private BaseProjectileEffect _projectileEffect;
@@ -14,7 +14,7 @@ public class BaseDefenderProjectile : MonoBehaviour
     private void Awake()
     {
         _projectileEffect = GetComponent<BaseProjectileEffect>();
-        _numberPopup = (GameObject) Resources.Load("PopupText/PopupText");
+        _numberPopup = (GameObject)Resources.Load("PopupText/NumberPopupCanvas");
     }
 
     private void Update()
@@ -24,7 +24,7 @@ public class BaseDefenderProjectile : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         if (!_hasHitTarget)
         {
             UpdateMovement();
@@ -34,10 +34,16 @@ public class BaseDefenderProjectile : MonoBehaviour
         if (!_hasHitTarget) return;
 
         GetComponent<SpriteRenderer>().enabled = false;
-        GameObject spawned = Instantiate(_numberPopup, CurrentTarget.transform.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
-        spawned.GetComponent<PopupText>().Set(BaseDamage.ToString(), Color.black);
+        // Spawn Number Popup
+        GameObject spawned = Instantiate(_numberPopup,
+            CurrentTarget.transform.position,
+            Quaternion.identity);
+        GameObject numberPopup = spawned.transform.GetChild(0).gameObject;
+        numberPopup.GetComponent<PopupText>().Set(BaseDamage.ToString(), Color.black);
+
+        // Set Projectile Effect
         _projectileEffect.UpdateEffect(CurrentTarget, BaseDamage);
-        
+
         if (_projectileEffect.IsDoneEffect)
         {
             Destroy(gameObject);
