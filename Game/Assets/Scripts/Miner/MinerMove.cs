@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Grid;
 using UnityEngine;
 
 public class MinerMove : MonoBehaviour
@@ -12,6 +13,7 @@ public class MinerMove : MonoBehaviour
 
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] float mineSpeed = 1.0f;
+    [SerializeField] private GameObject dirtEffect;
 
     bool onRoute = false;
 
@@ -41,7 +43,9 @@ public class MinerMove : MonoBehaviour
             if (path[i].breakable)
             {
                 yield return new WaitForSeconds(mineSpeed);
-                tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetBreakable(false);
+                WorldTile current = tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1);
+                Instantiate(dirtEffect, current.transform);
+                current.SetBreakable(false);
             }
             yield return MoveTo(path[i].worldPosition);
         }

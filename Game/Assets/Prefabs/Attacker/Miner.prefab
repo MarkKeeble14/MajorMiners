@@ -117,6 +117,7 @@ MonoBehaviour:
   <Cost>k__BackingField: 100
   <CurrencyDropped>k__BackingField: 100
   <TotalHealth>k__BackingField: 100
+  bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}
 --- !u!114 &3568673735996287541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   Astar: {fileID: 5551689623887243191, guid: a46a26a0470fd154f93ed75794dcc6cf, type: 3}
   moveSpeed: 0.25
   mineSpeed: 0.0001
+  dirtEffect: {fileID: 2039848956633507748, guid: 673c027d0d1904b41ad6583f2287b390, type: 3}
 --- !u!114 &3568673735996287542
 MonoBehaviour:
   m_ObjectHideFlags: 0
