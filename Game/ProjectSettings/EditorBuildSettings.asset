@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GridScene.unity
     guid: 74a1989a007ec5742a7c8f3298a59766
+  - enabled: 1
+    path: Assets/Scenes/ControlsScene.unity
+    guid: c7e4e243c4e256641b0a60fbb690590e
   m_configObjects: {}
