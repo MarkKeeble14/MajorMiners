@@ -34,7 +34,7 @@ public class BaseDefenderProjectile : MonoBehaviour
         if (!_hasHitTarget) return;
 
         GetComponent<SpriteRenderer>().enabled = false;
-        GameObject spawned = Instantiate(_numberPopup, CurrentTarget.transform.position, Quaternion.identity);
+        GameObject spawned = Instantiate(_numberPopup, CurrentTarget.transform.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
         spawned.GetComponent<PopupText>().Set(BaseDamage.ToString(), Color.black);
         _projectileEffect.UpdateEffect(CurrentTarget, BaseDamage);
         
