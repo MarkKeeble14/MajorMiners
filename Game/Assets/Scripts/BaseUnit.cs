@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    [field: SerializeField] public uint Cost { get; private set; } = 100;
+    
 }

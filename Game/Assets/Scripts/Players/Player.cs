@@ -6,34 +6,53 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Player : MonoBehaviour
 {
-    public int money;
+    public uint money;
     public bool placing;
     
     [SerializeField] protected TileCursor tileCursor;
-    [SerializeField] private KeyCode enterPlacementMode = KeyCode.LeftShift;
-    [SerializeField] private KeyCode exitPlacementMode = KeyCode.Escape;
+    [SerializeField] private KeyCode[] _unitKeys;
+    [SerializeField] private KeyCode exitPlacementMode = KeyCode.Backspace;
+    
     [SerializeField] protected KeyCode moveCursorLeft = KeyCode.LeftArrow;
     [SerializeField] protected KeyCode moveCursorRight = KeyCode.RightArrow;
     [SerializeField] protected KeyCode moveCursorUp = KeyCode.UpArrow;
     [SerializeField] protected KeyCode moveCursorDown = KeyCode.DownArrow;
-    [SerializeField] private KeyCode _placeUnit = KeyCode.Tab;
+    [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
 
     protected int currentUnitIndex;
 
     private void Update()
     {
-        if (Input.GetKeyDown(enterPlacementMode))
-            OpenPlacementMode();
-
-        if (Input.GetKeyDown(exitPlacementMode))
-            ClosePlacementMode();
-        
         if (!placing)
         {
-            ControlUnitCursor();
+            for (var i = 0; i < _unitKeys.Length; ++i)
+            {
+                if (!Input.GetKeyDown(_unitKeys[i])) continue;
+
+                var enemyUnit = _unitsToSpawn[i].GetComponent<BaseUnit>();
+                
+                if (enemyUnit.Cost > money) break;
+
+                money -= enemyUnit.Cost;
+
+                currentUnitIndex = i;
+                Debug.Log(_unitsToSpawn[i]);
+                OpenPlacementMode();
+                break;
+            }
         }
-        else
+
+        if (Input.GetKeyDown(exitPlacementMode))
+        {
+            var enemyUnit = _unitsToSpawn[currentUnitIndex].GetComponent<BaseUnit>();
+
+            money += enemyUnit.Cost;
+            
+            ClosePlacementMode();
+        }
+        
+        if (placing)
         {
             ControlPlacementCursor();
         }
@@ -78,31 +97,6 @@ public abstract class Player : MonoBehaviour
     }
 
     protected abstract void TryPlaceUnit();
-
-    private void ControlUnitCursor()
-    {
-        if (Input.GetKeyDown(moveCursorLeft))
-        {
-            --currentUnitIndex;
-            if (currentUnitIndex < 0)
-            {
-                currentUnitIndex = _unitsToSpawn.Length - 1;
-            }
-            
-            Debug.Log(_unitsToSpawn[currentUnitIndex]);
-        }
-
-        if (Input.GetKeyDown(moveCursorRight))
-        {
-            ++currentUnitIndex;
-            if (currentUnitIndex >= _unitsToSpawn.Length)
-            {
-                currentUnitIndex = 0;
-            }
-            
-            Debug.Log(_unitsToSpawn[currentUnitIndex]);
-        }
-    }
 
     private IEnumerator StartMove(KeyCode key, int moveRow, int moveCol,
         float waitAfterFirstMove,
