@@ -135,6 +135,7 @@ MonoBehaviour:
   moveSpeed: 0.25
   mineSpeed: 0.0001
   dirtEffect: {fileID: 2039848956633507748, guid: 673c027d0d1904b41ad6583f2287b390, type: 3}
+  resourceEffect: {fileID: 5013162318792119461, guid: b8bcebee9809dc549b465f4265f7472b, type: 3}
 --- !u!114 &3568673735996287541
 MonoBehaviour:
   m_ObjectHideFlags: 0

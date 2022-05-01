@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Grid;
 using UnityEngine;
 
 //Class to represent the grid, the entire map
@@ -12,7 +13,12 @@ public class MyGrid : MonoBehaviour
     //  (defined in unity editor)
     public LayerMask towerMask;
     //Size the grid will cover (defined in unity editor)
-    public Vector2 gridWorldSize;
+    public TileManager _tileManager;
+
+    public Vector2 gridWorldSize
+    {
+        get { return new Vector2(_tileManager.Rows, _tileManager.Columns); }
+    }
     // How much space each node covers (defined in unity editor)
     public float nodeRadius;
     Node[,] grid;
