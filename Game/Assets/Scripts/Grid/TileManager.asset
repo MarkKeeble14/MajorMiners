@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9, type: 3}
   m_Name: TileManager
   m_EditorClassIdentifier: 
-  rows: 15
-  cols: 9
+  rows: 17
+  cols: 11
   aroundAsteroid: 2
   aroundCanyon: 1
   worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}
