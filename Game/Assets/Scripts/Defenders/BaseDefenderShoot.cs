@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BaseDefenderShoot : MonoBehaviour
 {
-    [SerializeField] private float shootDelay;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float shootDelay = 1.0f;
 
     private Timer _shootTimer;
 
@@ -26,6 +27,6 @@ public class BaseDefenderShoot : MonoBehaviour
 
     protected virtual void ShootTarget(GameObject currentTarget)
     {
-        // TODO: Shoot projectile.
+        Instantiate(projectilePrefab, transform);
     }
 }

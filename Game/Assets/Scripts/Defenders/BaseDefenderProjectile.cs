@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class BaseDefenderProjectile : MonoBehaviour
 {
-    [field: SerializeField] public float Speed { get; private set; }
+    [field: SerializeField] public float Speed { get; private set; } = 0.5f;
     [field: SerializeField] public float BaseDamage { get; private set; } = 1.0f;
     [SerializeField] private float maxDistanceToTargetBeforeHit = 0.1f;
-
+    
     public GameObject CurrentTarget { get; set; }
-    private BaseProjectileEffect projectileEffect;
     private bool _hasHitTarget;
+    private BaseProjectileEffect _projectileEffect;
 
     private void Awake()
     {
-        projectileEffect = GetComponent<BaseProjectileEffect>();
+        _projectileEffect = GetComponent<BaseProjectileEffect>();
     }
 
     private void Update()
@@ -25,11 +25,11 @@ public class BaseDefenderProjectile : MonoBehaviour
 
         if (!_hasHitTarget) return;
         
-        projectileEffect.UpdateEffect(CurrentTarget, BaseDamage);
+        _projectileEffect.UpdateEffect(CurrentTarget, BaseDamage);
         
-        if (projectileEffect.IsDoneEffect)
+        if (_projectileEffect.IsDoneEffect)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

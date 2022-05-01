@@ -11,7 +11,11 @@ public class AOEEffect : BaseProjectileEffect
 
         foreach (var hit in raycastHits)
         {
-            // TODO: Deal damage to enemy.
+            var hitGameObject = hit.collider.gameObject;
+
+            var hitAttacker = hitGameObject.GetComponent<BaseAttacker>();
+            
+            hitAttacker.DealDamage(baseDamage);
         }
 
         IsDoneEffect = true;
