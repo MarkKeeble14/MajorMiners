@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7276920332908421820, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: <BaseDamage>k__BackingField
-      value: 5
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8066935279854981475, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_RootOrder

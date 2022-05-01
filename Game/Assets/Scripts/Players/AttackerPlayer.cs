@@ -8,10 +8,11 @@ public class AttackerPlayer : Player
         
         var unit = _unitsToSpawn[currentUnitIndex].GetComponent<BaseUnit>();
         if (unit.Cost > money) return;
+        if (tileCursor.currentTile.occupyingTower) return;
 
         money -= unit.Cost;
         
+        Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
         placedUnit = true;
-        Instantiate(_unitsToSpawn[currentUnitIndex], new Vector3(tileCursor.currentTile.transform.position.x, tileCursor.currentTile.transform.position.y, 0), Quaternion.identity);
     }
 }

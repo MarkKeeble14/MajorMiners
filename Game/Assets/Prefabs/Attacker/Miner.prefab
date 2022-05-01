@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b2a626f73056648b11b4d4aedee80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Cost>k__BackingField: 100
-  <CurrencyDropped>k__BackingField: 100
-  <TotalHealth>k__BackingField: 100
+  <Cost>k__BackingField: 1500
+  <CurrencyDropped>k__BackingField: 300
+  <TotalHealth>k__BackingField: 175
   bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}
 --- !u!114 &3568673735996287542
 MonoBehaviour:

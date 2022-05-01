@@ -146,7 +146,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveMiners: []
   Breakable: 0
-  breakableSprite: {fileID: -2884756588528375457, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  breakableSprite:
+  - {fileID: -4952200318764043218, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
+  - {fileID: -9184001456575089111, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
+  - {fileID: -307049834671298306, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
+  - {fileID: 4941076502802663785, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
+  - {fileID: 2041590907583759736, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
+  - {fileID: 7917389796270876215, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
   walkableSprite: {fileID: 5962255778811429813, guid: caee56d7710b9a24b994588aa29ff745, type: 3}
   spriteLocked: 0
   rightTile: {fileID: -9076032170068489642, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
@@ -162,3 +168,5 @@ MonoBehaviour:
   block:
     serializedVersion: 2
     m_Bits: 128
+  towerSprite: {fileID: 0}
+  occupyingTower: {fileID: 0}
