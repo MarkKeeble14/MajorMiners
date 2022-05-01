@@ -37,7 +37,7 @@ namespace Grid
             {
                 for (int j = 0; j < cols; ++j)
                 {
-                    Vector3 spawnPos = startPos + new Vector3(i, -j, 0);
+                    Vector3 spawnPos = startPos + new Vector3(i, -j, 1);
                     GameObject spawned;
                     if (spawnPos == Vector3.zero)
                     {
