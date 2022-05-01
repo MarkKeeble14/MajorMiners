@@ -12,7 +12,6 @@ public class AttackerPlayer : Player
 
         money -= unit.Cost;
         
-        
         Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
         placedUnit = true;
     }
