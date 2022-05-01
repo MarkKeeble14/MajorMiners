@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class AttackerPlayer : Player
@@ -13,6 +14,8 @@ public class AttackerPlayer : Player
         if (tileCursor.currentTile.occupyingTower) return;
 
         money -= unit.Cost;
+        
+        RuntimeManager.PlayOneShot("event:/SFX/Deploy_Human", tileCursor.currentTile.transform.position);
         
         Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
         placedUnit = true;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class LooterMove : MonoBehaviour
@@ -36,6 +37,10 @@ public class LooterMove : MonoBehaviour
             yield return MoveTo(path[i].worldPosition);
         }
         onRoute = false;
+        
+        RuntimeManager.PlayOneShot("event:/SFX/Mining");
+        RuntimeManager.PlayOneShot("event:/SFX/Human_Cheer");
+
         FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
         FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
         Destroy(gameObject);

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using FMODUnity;
 using UnityEngine;
 
 public class DismantlerMove : MonoBehaviour
@@ -46,8 +48,14 @@ public class DismantlerMove : MonoBehaviour
             }
             yield return MoveTo(path[i].worldPosition);
         }
+
+        if (tileManager.GetTile(path[path.Count - 1].gridX, grid.gridSizeY - path[path.Count - 1].gridY - 1).occupyingTower)
+        {
+            FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        }
+
+
         onRoute = false;
-        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
         Destroy(gameObject);
     }
 
