@@ -258,6 +258,7 @@ MonoBehaviour:
   - Fire1
   - Fire2
   - Fire3
+  _placeButtonName: PlaceUnit1
   exitPlacementMode: 8
   moveCursorLeft: 97
   moveCursorRight: 100
@@ -870,6 +871,7 @@ MonoBehaviour:
   - Fire3
   - Fire4
   - Fire5
+  _placeButtonName: PlaceUnit2
   exitPlacementMode: 27
   moveCursorLeft: 276
   moveCursorRight: 275

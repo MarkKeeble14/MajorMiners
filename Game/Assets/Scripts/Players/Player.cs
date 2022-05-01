@@ -13,84 +13,114 @@ public abstract class Player : MonoBehaviour
     [SerializeField] protected TileCursor tileCursor;
     [SerializeField] private KeyCode[] _unitKeys;
     [SerializeField] private string[] _buttonNames;
+    [SerializeField] private string _placeButtonName;
 
     [SerializeField] private KeyCode exitPlacementMode = KeyCode.Backspace;
+    
+    [SerializeField] private string horizontalString = "Horizontal";
+    [SerializeField] private string verticalString = "Vertical";
+    [SerializeField] private SpriteRenderer unitRender;
+    
 
-    [SerializeField] protected KeyCode moveCursorLeft = KeyCode.LeftArrow;
-    [SerializeField] protected KeyCode moveCursorRight = KeyCode.RightArrow;
-    [SerializeField] protected KeyCode moveCursorUp = KeyCode.UpArrow;
-    [SerializeField] protected KeyCode moveCursorDown = KeyCode.DownArrow;
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
+    private Timer _canMoveTimer;
 
     protected int currentUnitIndex;
+    protected bool placedUnit;
 
+    private void Awake()
+    {
+        _canMoveTimer = new Timer(0.15f);
+        unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
+
+    }
+    
     private void Update()
     {
+        unitRender.gameObject.transform.position = tileCursor.transform.position;
+        if (_canMoveTimer.IsFinished())
+        {
+            _canMoveTimer.Reset();
+        }
+        
+        _canMoveTimer.UpdateTime();
+        
+        bool isPressingUnitKey = false;
         for (var i = 0; i < _unitKeys.Length; ++i)
         {
-            //if (!!Input.GetKeyDown(_unitKeys[i]) && !Input.GetButtonDown(_buttonNames[0])) continue;
-            if (!Input.GetKeyDown(_unitKeys[i])) continue;
-
+            if (!Input.GetKey(_unitKeys[i]) && !Input.GetButton(_buttonNames[i])) continue;
 
             currentUnitIndex = i;
+            isPressingUnitKey = true;
+
+            unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
             
             break;
         }
-        
+
+        if (placedUnit)
+        {
+            placedUnit = isPressingUnitKey;
+        }
+
         ControlPlacementCursor();
     }
 
     private void ControlPlacementCursor()
     {
-        if (!Input.GetKey(moveCursorLeft)
-            && !Input.GetKey(moveCursorRight)
-            && !Input.GetKey(moveCursorUp)
-            && !Input.GetKey(moveCursorDown))
+        if (Input.GetAxisRaw(horizontalString) > -0.2f
+            && Input.GetAxisRaw(horizontalString) < 0.2f
+            && Input.GetAxisRaw(verticalString) > -0.2f
+            && Input.GetAxisRaw(verticalString) < 0.2f)
         {
             StopAllCoroutines();
         }
-
-        if (Input.GetKeyDown(moveCursorLeft))
-        {
-            StopAllCoroutines();
-            StartCoroutine(StartMove(moveCursorLeft, -1, 0, 0.5f, 0.05f));
-        }
-
-        if (Input.GetKeyDown(moveCursorRight))
-        {
-            StopAllCoroutines();
-            StartCoroutine(StartMove(moveCursorRight, 1, 0, 0.5f, 0.05f));
-        }
-
-        if (Input.GetKeyDown(moveCursorUp))
-        {
-            StopAllCoroutines();
-            StartCoroutine(StartMove(moveCursorUp, 0, -1, 0.5f, 0.05f));
-        }
-
-        if (Input.GetKeyDown(moveCursorDown))
-        {
-            StopAllCoroutines();
-            StartCoroutine(StartMove(moveCursorDown, 0, 1, 0.5f, 0.05f));
-        }
-
+        
         // Place unit down.
-        if (Input.GetKeyDown(_placeUnit))
+        if ((Input.GetKey(_placeUnit) || Input.GetButton(_placeButtonName)) && !placedUnit)
         {
             TryPlaceUnit();
         }
+
+        if (!_canMoveTimer.IsFinished()) return;
+
+        if (Input.GetAxisRaw(horizontalString) < -0.2f)
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(horizontalString, -1, 0, 0.5f, 0.05f));
+        }
+
+        if (Input.GetAxisRaw(horizontalString) > 0.2f)
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(horizontalString, 1, 0, 0.5f, 0.05f));
+        }
+
+        if (Input.GetAxisRaw(verticalString) > 0.2f)
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(verticalString, 0, -1, 0.5f, 0.05f));
+        }
+
+        if (Input.GetAxisRaw(verticalString) < -0.2f)
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(verticalString, 0, 1, 0.5f, 0.05f));
+        }
+
+        
     }
 
     protected abstract void TryPlaceUnit();
 
-    private IEnumerator StartMove(KeyCode key, int moveRow, int moveCol,
+    private IEnumerator StartMove(string key, int moveRow, int moveCol,
         float waitAfterFirstMove,
         float waitPastFirstMove)
     {
         bool first = true;
         tileCursor.Move(moveRow, moveCol);
-        while (Input.GetKey(key))
+        while (Input.GetAxisRaw(key) > 0.2f || Input.GetAxisRaw(key) < -0.2f)
         {
             if (first)
             {
