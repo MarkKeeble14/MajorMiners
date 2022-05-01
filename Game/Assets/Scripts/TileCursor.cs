@@ -10,6 +10,10 @@ public class TileCursor : MonoBehaviour
     [SerializeField] public WorldTile currentTile;
     [SerializeField] public Vector2Int coordinates;
     private SpriteRenderer sr;
+    public bool Enabled
+    {
+        get { return sr.enabled; }
+    }
 
     private void Start()
     {
@@ -28,7 +32,7 @@ public class TileCursor : MonoBehaviour
         coordinates = new Vector2Int(row, col);
         SetCurrentTile();
     }
-    
+
     public void Move(int rowWise, int colWise)
     {
         if (coordinates.x + rowWise > tileManager.Rows - 1
@@ -39,13 +43,14 @@ public class TileCursor : MonoBehaviour
             return;
         Vector2Int moveBy = new Vector2Int(rowWise, colWise);
         coordinates += moveBy;
-        
         SetCurrentTile();
     }
 
-    public void SetWalkable()
+    public void SetBreakable(bool breakable)
     {
-        currentTile.SetWalkable(true);
+        if (!Enabled)
+            return;
+        currentTile.SetBreakable(breakable);
     }
 
     public void Show()

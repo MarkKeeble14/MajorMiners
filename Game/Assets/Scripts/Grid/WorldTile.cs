@@ -9,21 +9,23 @@ namespace Grid
     public class WorldTile : MonoBehaviour
     {
         public List<GameObject> ActiveMiners = new List<GameObject>();
-        public bool Walkable = false;
-        [SerializeField] private Sprite walkableSprite;
-        [SerializeField] private Sprite blockableSprite;
+        public bool Breakable;
+        [SerializeField] private Sprite breakableSprite;
+        [SerializeField] private Sprite unwalkableSprite;
         private SpriteRenderer sr;
+        private string breakableLayer = "Breakable";
+        private string unwalkableLayer = "Unwalkable";
 
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
-            SetWalkable(false);
         }
 
-        public void SetWalkable(bool walkable)
+        public void SetBreakable(bool breakable)
         {
-            Walkable = walkable;
-            sr.sprite = Walkable ? walkableSprite : blockableSprite;
+            Breakable = breakable;
+            sr.sprite = Breakable ? breakableSprite : unwalkableSprite;
+            gameObject.layer = LayerMask.NameToLayer(Breakable ? breakableLayer : unwalkableLayer);
         }
     }
 }
