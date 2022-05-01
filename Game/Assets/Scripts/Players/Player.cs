@@ -20,8 +20,9 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private string horizontalString = "Horizontal";
     [SerializeField] private string verticalString = "Vertical";
     [SerializeField] private SpriteRenderer unitRender;
-    
 
+
+    [SerializeField] private SelectUnits unitSelector;
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
     private Timer _canMoveTimer;
@@ -53,6 +54,7 @@ public abstract class Player : MonoBehaviour
 
             currentUnitIndex = i;
             isPressingUnitKey = true;
+            unitSelector.SelectUnit(currentUnitIndex);
 
             unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
             
