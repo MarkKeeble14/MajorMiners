@@ -51,12 +51,12 @@ namespace Grid
                         && spawnPos.y < spaceAroundAsteroidVertical)
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
-                        spawned.GetComponent<WorldTile>().SetWalkable(true);
+                        spawned.GetComponent<WorldTile>().SetBreakable(false);
                     }
                     else
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
-                        spawned.GetComponent<WorldTile>().SetWalkable(false);
+                        spawned.GetComponent<WorldTile>().SetBreakable(true);
                     }
                     spawned.transform.SetParent(parent);
                     _tiles[i, j] = spawned.GetComponent<WorldTile>();
@@ -65,10 +65,10 @@ namespace Grid
 
         }
 
-        public void SetWalkable(int row, int col, bool walkable)
+        public void SetWalkable(int row, int col, bool breakable)
         {
             WorldTile tile = _tiles[row, -col];
-            tile.SetWalkable(walkable);
+            tile.SetBreakable(breakable);
         }
 
         public WorldTile GetTile(int row, int col)
