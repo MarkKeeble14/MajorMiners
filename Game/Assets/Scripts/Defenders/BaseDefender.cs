@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class BaseDefender : MonoBehaviour
 {
-    [field: SerializeField] public float Cost { get; private set; }
+    [field: SerializeField] public float Cost { get; private set; } = 1.0f;
     [SerializeField] private float aggroRadius = 5.0f;
     // The distance to lose aggro should always be larger than the aggro radius.
     [SerializeField] private float loseAggroDistance = 6.0f;
     [SerializeField] private LayerMask targetLayerMask;
-    [SerializeField] private float timeBetweenTargetingChecks = 5.0f;
+    [SerializeField] private float timeBetweenTargetingChecks = 1.0f;
     
     private BaseDefenderShoot baseDefenderShoot;
     private Timer _targetingCheckTimer;
