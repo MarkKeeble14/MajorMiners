@@ -7,4 +7,5 @@ public class GameManager : MonoBehaviour
 {
     public Player attacker;
     public Player defender;
+    
 }

@@ -335,6 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 10000
   placing: 0
+  tileManager: {fileID: 0}
   tileCursor: {fileID: 261586187}
   _unitKeys: 310000003200000033000000
   _buttonNames:
@@ -352,6 +353,16 @@ MonoBehaviour:
   - {fileID: 2219256707859678099, guid: 0cde1afec275b894ca0bf4ce4725294d, type: 3}
   - {fileID: 3568673735996287543, guid: 5a1846dccfc36064a995c4259bb9ee1d, type: 3}
   - {fileID: 6595957569325983401, guid: 493212699b3365d42aea6737802210c9, type: 3}
+--- !u!1 &98851419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7453433653346330713, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+  m_PrefabInstance: {fileID: 624479344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &231351518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7453433653325176773, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+  m_PrefabInstance: {fileID: 624479344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &261586185
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e85046c07a73c24b85b497c563571c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  units:
+  - {fileID: 231351518}
+  - {fileID: 1366174732}
+  - {fileID: 98851419}
   disable: {fileID: 21300000, guid: 9dee179f3f506e94cb12bcbc92926b34, type: 3}
   enable: {fileID: 21300000, guid: 7c9a49d50225ceb4888b6fd0cbdccf4d, type: 3}
 --- !u!114 &451284829 stripped
@@ -954,6 +968,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1366174732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7453433652469808709, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+  m_PrefabInstance: {fileID: 624479344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369861148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 10000
   placing: 0
+  tileManager: {fileID: 0}
   tileCursor: {fileID: 961842318}
   _unitKeys: 010100000201000003010000
   _buttonNames:

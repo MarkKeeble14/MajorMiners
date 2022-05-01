@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Grid;
 using UI;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public abstract class Player : MonoBehaviour
 {
     public uint money;
     public bool placing;
+
+    [SerializeField] protected TileManager tileManager;
 
     [SerializeField] protected TileCursor tileCursor;
     [SerializeField] private KeyCode[] _unitKeys;
@@ -20,8 +23,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private string horizontalString = "Horizontal";
     [SerializeField] private string verticalString = "Vertical";
     [SerializeField] private SpriteRenderer unitRender;
-
-
+    
     [SerializeField] private SelectUnits unitSelector;
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
@@ -47,23 +49,15 @@ public abstract class Player : MonoBehaviour
         
         _canMoveTimer.UpdateTime();
         
-        bool isPressingUnitKey = false;
         for (var i = 0; i < _unitKeys.Length; ++i)
         {
             if (!Input.GetKey(_unitKeys[i]) && !Input.GetButton(_buttonNames[i])) continue;
 
             currentUnitIndex = i;
-            isPressingUnitKey = true;
             unitSelector.SelectUnit(currentUnitIndex);
-
             unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
             
             break;
-        }
-
-        if (placedUnit)
-        {
-            placedUnit = isPressingUnitKey;
         }
 
         ControlPlacementCursor();
@@ -77,6 +71,11 @@ public abstract class Player : MonoBehaviour
             && Input.GetAxisRaw(verticalString) < 0.2f)
         {
             StopAllCoroutines();
+        }
+
+        if (!Input.GetKey(_placeUnit) && !Input.GetButton(_placeButtonName))
+        {
+            placedUnit = false;
         }
         
         // Place unit down.
