@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseAttacker : MonoBehaviour
+public class BaseAttacker : BaseUnit
 {
     [field: SerializeField] public float TotalHealth { get; private set; }
 

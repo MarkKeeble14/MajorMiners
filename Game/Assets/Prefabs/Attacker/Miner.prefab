@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2219256707859678099
+--- !u!1 &3568673735996287543
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2219256707859678093}
-  - component: {fileID: 2219256707859678092}
-  - component: {fileID: 2219256707859678095}
-  - component: {fileID: 2219256707859678096}
-  - component: {fileID: 2219256707859678094}
-  - component: {fileID: 2219256707859678097}
+  - component: {fileID: 3568673735996287945}
+  - component: {fileID: 3568673735996287946}
+  - component: {fileID: 3568673735996287947}
+  - component: {fileID: 3568673735996287944}
+  - component: {fileID: 3568673735996287541}
+  - component: {fileID: 3568673735996287542}
   m_Layer: 0
-  m_Name: Looter
+  m_Name: Miner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2219256707859678093
+--- !u!4 &3568673735996287945
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219256707859678099}
+  m_GameObject: {fileID: 3568673735996287543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.99, y: -3.02, z: 1}
-  m_LocalScale: {x: 0.6734, y: 0.6734, z: 0.6734}
+  m_LocalPosition: {x: -5.99, y: 2.94, z: 0}
+  m_LocalScale: {x: 0.7283, y: 0.7283, z: 0.7283}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2219256707859678092
+--- !u!212 &3568673735996287946
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219256707859678099}
+  m_GameObject: {fileID: 3568673735996287543}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2219256707859678095
+--- !u!58 &3568673735996287947
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219256707859678099}
+  m_GameObject: {fileID: 3568673735996287543}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -102,45 +102,46 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2219256707859678096
+--- !u!114 &3568673735996287944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219256707859678099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2bf18be2297634a84ab1768ef11e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Astar: {fileID: 0}
---- !u!114 &2219256707859678094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219256707859678099}
+  m_GameObject: {fileID: 3568673735996287543}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5b2a626f73056648b11b4d4aedee80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <TotalHealth>k__BackingField: 10
---- !u!114 &2219256707859678097
+--- !u!114 &3568673735996287541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219256707859678099}
+  m_GameObject: {fileID: 3568673735996287543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e4c4a2a5bfdef41b28edc3cceefb1c, type: 3}
+  m_Script: {fileID: 11500000, guid: fea41988f7a298d4491b0dc7f86fd3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looterMove: {fileID: 2219256707859678096}
-  seeker: {fileID: 2219256707859678093}
+  tileManager: {fileID: 11400000, guid: 0f77cf296c760124cb63ce158b206efc, type: 2}
+  Astar: {fileID: 0}
+--- !u!114 &3568673735996287542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568673735996287543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1d6cb428ce4944996ab8aa89607937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minerMove: {fileID: 3568673735996287541}
+  seeker: {fileID: 3568673735996287945}
   target: {fileID: 0}
   grid: {fileID: 0}

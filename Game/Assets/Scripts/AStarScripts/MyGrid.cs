@@ -17,7 +17,7 @@ public class MyGrid : MonoBehaviour
 
     float nodeDiameter;
     // Amount of nodes fits into our grid world
-    int gridSizeX, gridSizeY;
+    public int gridSizeX, gridSizeY;
 
     // Defines how many nodes we can fit into our grid world size
     void Update()
