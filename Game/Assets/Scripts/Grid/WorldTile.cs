@@ -11,10 +11,10 @@ namespace Grid
         public List<GameObject> ActiveMiners = new List<GameObject>();
         public bool Breakable;
         [SerializeField] private Sprite breakableSprite;
-        [SerializeField] private Sprite unwalkableSprite;
+        [SerializeField] private Sprite walkableSprite;
         private SpriteRenderer sr;
         private string breakableLayer = "Breakable";
-        private string unwalkableLayer = "Unwalkable";
+        private string walkableLayer = "Walkable";
 
         private void Awake()
         {
@@ -24,8 +24,8 @@ namespace Grid
         public void SetBreakable(bool breakable)
         {
             Breakable = breakable;
-            sr.sprite = Breakable ? breakableSprite : unwalkableSprite;
-            gameObject.layer = LayerMask.NameToLayer(Breakable ? breakableLayer : unwalkableLayer);
+            sr.sprite = Breakable ? breakableSprite : walkableSprite;
+            gameObject.layer = LayerMask.NameToLayer(Breakable ? breakableLayer : walkableLayer);
         }
     }
 }

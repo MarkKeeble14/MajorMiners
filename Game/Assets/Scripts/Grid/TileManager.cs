@@ -24,12 +24,23 @@ namespace Grid
         [SerializeField] private int spaceAroundAsteroidHorizontal;
         [SerializeField] private int spaceAroundAsteroidVertical;
 
+        [SerializeField] private int spaceAroundCanyonHorizontal;
+        [SerializeField] private int spaceAroundCanyonVertical;
+
         [SerializeField] private GameObject worldTile;
         [SerializeField] private GameObject asteroidTile;
         private WorldTile[,] _tiles;
 
+        private void OnDisable()
+        {
+            rows -= spaceAroundCanyonVertical;
+            cols -= spaceAroundCanyonHorizontal;
+        }
+
         public void SpawnGrid(Transform parent)
         {
+            rows += spaceAroundCanyonVertical;
+            cols += spaceAroundCanyonHorizontal;
             Vector3 startPos = new Vector3(-rows / 2, cols / 2, 0);
 
             _tiles = new WorldTile[rows, cols];
@@ -39,16 +50,26 @@ namespace Grid
                 {
                     Vector3 spawnPos = startPos + new Vector3(i, -j, 0);
                     GameObject spawned;
-                    if (spawnPos == Vector3.zero)
+                    if (spawnPos == Vector3.zero)   // Middle
                     {
                         // spawn resource
                         spawned = Instantiate(asteroidTile, spawnPos, Quaternion.identity);
                     }
-                    else if (
+                    else if (   // Space Around Middle
                             spawnPos.x > -spaceAroundAsteroidHorizontal
                         && spawnPos.x < spaceAroundAsteroidHorizontal
                         && spawnPos.y > -spaceAroundAsteroidVertical
                         && spawnPos.y < spaceAroundAsteroidVertical)
+                    {
+                        spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
+                        spawned.GetComponent<WorldTile>().SetBreakable(false);
+                    }
+                    else if (
+                        spawnPos.x < -rows / 2 + spaceAroundCanyonHorizontal
+                        || spawnPos.x > rows / 2 - spaceAroundCanyonHorizontal
+                        || spawnPos.y < -cols / 2 + spaceAroundCanyonVertical
+                        || spawnPos.y > cols / 2 - spaceAroundCanyonHorizontal
+                        )
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
                         spawned.GetComponent<WorldTile>().SetBreakable(false);
