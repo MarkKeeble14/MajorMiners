@@ -27,25 +27,43 @@ namespace UI
         /// We can separate inputs from functionality this way since attacker and defender have different controls.
         /// </summary>
         
-        public void SelectFirst()
+        public void SelectUnit(int index)
         {
-            units[0].GetComponent<Image>().sprite = enable;
-            units[1].GetComponent<Image>().sprite = disable;
-            units[2].GetComponent<Image>().sprite = disable;
-        }
-
-        public void SelectSecond()
-        {
-            units[0].GetComponent<Image>().sprite = disable;
-            units[1].GetComponent<Image>().sprite = enable;
-            units[2].GetComponent<Image>().sprite = disable;
-        }
-
-        public void SelectThird()
-        {
-            units[0].GetComponent<Image>().sprite = disable;
-            units[1].GetComponent<Image>().sprite = disable;
-            units[2].GetComponent<Image>().sprite = enable;
+            switch (index)
+            {
+                case 0:
+                    units[0].GetComponent<Image>().sprite = enable;
+                    units[0].GetComponent<Image>().transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    units[1].GetComponent<Image>().sprite = disable;
+                    units[1].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f,1f);
+                    units[2].GetComponent<Image>().sprite = disable;
+                    units[2].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    break;
+                case 1:
+                    units[0].GetComponent<Image>().sprite = disable;
+                    units[0].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    units[1].GetComponent<Image>().sprite = enable;
+                    units[1].GetComponent<Image>().transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    units[2].GetComponent<Image>().sprite = disable;
+                    units[2].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    break;
+                case 2:
+                    units[0].GetComponent<Image>().sprite = disable;
+                    units[0].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    units[1].GetComponent<Image>().sprite = disable;
+                    units[1].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    units[2].GetComponent<Image>().sprite = enable;
+                    units[2].GetComponent<Image>().transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    break;
+                default:
+                    units[0].GetComponent<Image>().sprite = disable;
+                    units[0].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    units[1].GetComponent<Image>().sprite = disable;
+                    units[1].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    units[2].GetComponent<Image>().sprite = disable;
+                    units[2].GetComponent<Image>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    break;
+            }
         }
     }
 }

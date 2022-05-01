@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 1933047523990348854, guid: 2845488e276758944b1ea90989ecfa77, type: 3}
+    - target: {fileID: 7634357814886762474, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
+      propertyPath: <Cost>k__BackingField
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
 --- !u!1 &4923408997573691875 stripped

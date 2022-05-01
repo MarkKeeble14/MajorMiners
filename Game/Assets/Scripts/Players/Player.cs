@@ -24,7 +24,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private string verticalString = "Vertical";
     [SerializeField] private SpriteRenderer unitRender;
     
-    
+    [SerializeField] private SelectUnits unitSelector;
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
     private Timer _canMoveTimer;
@@ -54,7 +54,7 @@ public abstract class Player : MonoBehaviour
             if (!Input.GetKey(_unitKeys[i]) && !Input.GetButton(_buttonNames[i])) continue;
 
             currentUnitIndex = i;
-
+            unitSelector.SelectUnit(currentUnitIndex);
             unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
             
             break;

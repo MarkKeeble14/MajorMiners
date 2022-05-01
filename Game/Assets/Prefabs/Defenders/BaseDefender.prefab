@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a214514ee32d7d48b402464c43ee44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Cost>k__BackingField: 100
+  <Cost>k__BackingField: 500
   aggroRadius: 2
   loseAggroDistance: 2.2
   targetLayerMask:
