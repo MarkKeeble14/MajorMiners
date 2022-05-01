@@ -43,12 +43,14 @@ public class DismantlerMove : MonoBehaviour
                 yield return new WaitForSeconds(mineSpeed);
                 tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetTower(null);
                 tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetBreakable(false);
+                
+                
+                onRoute = false;
+                FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+                Destroy(gameObject);
             }
             yield return MoveTo(path[i].worldPosition);
         }
-        onRoute = false;
-        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
-        Destroy(gameObject);
     }
 
     IEnumerator MoveTo(Vector3 destination)

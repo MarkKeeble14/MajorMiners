@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9, type: 3}
-  m_Name: TileManager
+  m_Name: MainMenuTileManager
   m_EditorClassIdentifier: 
-  rows: 27
+  rows: 25
   cols: 15
   aroundAsteroid: 2
   aroundCanyon: 1
