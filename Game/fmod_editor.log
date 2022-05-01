@@ -3,11 +3,11 @@
 [LOG] SystemI::init                            : Initialize version=20111 (118066), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD Core Audio Output'
 [LOG] OutputCoreAudio::init                    : Output running 2 channels at 96000Hz sample rate.
-[LOG] OutputCoreAudio::init                    : Maximum hardware read size: 1024 samples, Software buffer size: 512 samples, Number of software buffers: 4.
+[LOG] OutputCoreAudio::init                    : Maximum hardware read size: 512 samples, Software buffer size: 512 samples, Number of software buffers: 4.
 [LOG] SystemI::init                            : Output requires a sample rate of 96000Hz, resampling will occur.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0x7fee23132a08 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0x7fdd73d29008 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,31 +18,25 @@
 [LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 132, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
-[WRN] OutputRingBuffer::read                   : Buffer starvation detected, requested 8192 bytes, 0 / 16384 bytes available.
+[LOG] SoundI::release                          : Major Miners - Violin Intro (Non Loop) (0x7fdd74f2a418)
+[LOG] SoundI::release                          :     Major Miners - Violin Intro (Non Loop) (0x7fdd7141d6c8)
+[LOG] SoundI::release                          :     Major Miners - Violin Intro (Non Loop) (0x7fdd7141d858)
+[LOG] SoundI::release                          : Major Miners - Arp Intro (Non Loop) (0x7fdd74f9c758)
+[LOG] SoundI::release                          :     Major Miners - Arp Intro (Non Loop) (0x7fdd71484428)
+[LOG] SoundI::release                          :     Major Miners - Arp Intro (Non Loop) (0x7fdd71428028)
+[LOG] SoundI::release                          : Major Miners - Main Intro (non Loop) (0x7fdd74f8bbb8)
+[LOG] SoundI::release                          :     Major Miners - Main Intro (non Loop) (0x7fdd714aa848)
+[LOG] SoundI::release                          :     Major Miners - Main Intro (non Loop) (0x7fdd714b0f88)
+[LOG] SoundI::release                          : Major Miners - Drum Intro (Non Loop) (0x7fdd7117bb18)
+[LOG] SoundI::release                          :     Major Miners - Drum Intro (Non Loop) (0x7fdd7141cdd8)
+[LOG] SoundI::release                          :     Major Miners - Drum Intro (Non Loop) (0x7fdd7141cf68)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.

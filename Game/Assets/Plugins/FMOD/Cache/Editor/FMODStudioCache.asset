@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Major Miners Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637868556150000000
+  lastModified: 637868564140000000
   FileSizes:
   - Name: Desktop
-    Value: 700
+    Value: 770
   Exists: 1
 --- !u!114 &-5917862032127940256
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Major Miners Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637868556150000000
+  lastModified: 637868564140000000
   FileSizes:
   - Name: Desktop
-    Value: 1012
+    Value: 1304
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -61,5 +61,5 @@ MonoBehaviour:
   - {fileID: -5917862032127940256}
   StringsBanks:
   - {fileID: -9220933015547120624}
-  stringsBankWriteTime: 637868556150000000
+  stringsBankWriteTime: 637868564140000000
   cacheVersion: 8
