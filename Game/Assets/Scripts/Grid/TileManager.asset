@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9, type: 3}
   m_Name: TileManager
   m_EditorClassIdentifier: 
-  stageDimensions: 0
-  tileMap: {fileID: 0}
-  blockedTile: {fileID: 11400000, guid: 3c7168d7fab4f1d42b031c0656956181, type: 2}
-  walkableTile: {fileID: 11400000, guid: 50fbc9525fb42d04e82507f2786e300c, type: 2}
+  rows: 15
+  cols: 9
+  worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}

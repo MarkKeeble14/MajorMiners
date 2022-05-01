@@ -7,33 +7,45 @@ using UnityEngine.Tilemaps;
 public class TileCursor : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
-    [SerializeField] private TileState currentTileState;
+    [SerializeField] private WorldTile currentTile;
     [SerializeField] public Vector2Int coordinates;
     private SpriteRenderer sr;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        SetCurrentTile();
+        SetTo(0, 0);
     }
 
     private void SetCurrentTile()
     {
-        currentTileState = tileManager.GetTileState(coordinates.x, coordinates.y);
+        currentTile = tileManager.GetTile(coordinates.x, coordinates.y);
+        transform.position = currentTile.transform.position;
     }
 
+    public void SetTo(int row, int col)
+    {
+        coordinates = new Vector2Int(row, col);
+        SetCurrentTile();
+    }
+    
     public void Move(int rowWise, int colWise)
     {
-        if (coordinates.x + rowWise > tileManager.StageDimensions.x - 1
+        if (coordinates.x + rowWise > tileManager.Rows - 1
             || coordinates.x + rowWise < 0)
             return;
-        if (coordinates.y + colWise > tileManager.StageDimensions.y - 1
+        if (coordinates.y + colWise > tileManager.Columns - 1
             || coordinates.y + colWise < 0)
             return;
         Vector2Int moveBy = new Vector2Int(rowWise, colWise);
         coordinates += moveBy;
-        transform.position += new Vector3(moveBy.x, moveBy.y, 0);
+        
         SetCurrentTile();
+    }
+
+    public void SetWalkable()
+    {
+        currentTile.SetWalkable(true);
     }
 
     public void Show()

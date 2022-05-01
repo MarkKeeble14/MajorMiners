@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseDefenderShoot : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float shootDelay;
+    [SerializeField] private float shootDelay = 1.0f;
 
     private Timer _shootTimer;
 

@@ -9,68 +9,47 @@ namespace Grid
     [CreateAssetMenu(fileName = "TileManager", menuName = "TileManager", order = 1)]
     public class TileManager : ScriptableObject
     {
-        [SerializeField] private Tile blockedTile;
-        [SerializeField] private Tile walkableTile;
-        private Tilemap _tileMap;
-        private Vector3 _stageDimensions;
-        public Vector3 StageDimensions
+        [SerializeField] private int rows;
+        public int Rows
         {
-            get { return _stageDimensions; }
+            get { return rows; }
         }
-        private TileState[,] _tileStates;
+        [SerializeField] private int cols;
 
-        public void SetWalkable(int row, int col)
+        public int Columns
         {
-            _tileMap.SetTile(new Vector3Int(row, col, 1), walkableTile);
-            Tile self = GetTile(row, col);
-            AdjustCoordinates(ref row, ref col);
-            Debug.Log($"row: {row}, col: {col}");
-            _tileStates[row, col] = new Walkable(self);
+            get { return cols; }
         }
 
-        public Tile GetTile(int row, int col)
-        {
-            return (Tile)_tileMap.GetTile(new Vector3Int(row, col, 0));
-        }
+        [SerializeField] private GameObject worldTile;
+        private WorldTile[,] _tiles;
 
-        public TileState GetTileState(int row, int col)
+        public void SpawnGrid(Transform parent)
         {
-            return _tileStates[row, col];
-        }
-
-        public void SetTileStates(Tilemap tileMap)
-        {
-            _tileMap = tileMap;
-            _stageDimensions = _tileMap.size;
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            _tileStates = new TileState[(int)_stageDimensions.x, (int)_stageDimensions.y];
-            for (var i = 0; i < _tileStates.GetLength(0); ++i)
+            Vector3 startPos = new Vector3(-rows / 2, cols / 2, 0);
+            _tiles = new WorldTile[rows, cols];
+            for (int i = 0; i < rows; ++i)
             {
-                for (var j = 0; j < _tileStates.GetLength(1); ++j)
+                for (int j = 0; j < cols; ++j)
                 {
-                    int row = i;
-                    int col = j;
-                    DeadjustCoordinates(ref row, ref col);
-                    _tileStates[i, j] = new Blocked(GetTile(row, col));
+                    Vector3 spawnPos = startPos + new Vector3(i, -j, 0);
+                    GameObject spawned = GameObject.Instantiate(worldTile, spawnPos, Quaternion.identity);
+                    spawned.transform.SetParent(parent);
+                    _tiles[i, j] = spawned.GetComponent<WorldTile>();
                 }
             }
-            Helper.PrintMatrix(_tileStates);
+            
         }
 
-        private void AdjustCoordinates(ref int row, ref int col)
+        public void SetWalkable(int row, int col, bool walkable)
         {
-            row += (int)_stageDimensions.x / 2;
-            col += (int)_stageDimensions.y / 2;
+            WorldTile tile = _tiles[row, -col];
+            tile.SetWalkable(walkable);
         }
 
-        private void DeadjustCoordinates(ref int row, ref int col)
+        public WorldTile GetTile(int row, int col)
         {
-            row -= (int)_stageDimensions.x / 2;
-            col -= (int)_stageDimensions.y / 2;
+            return _tiles[row, col];
         }
     }
 }
