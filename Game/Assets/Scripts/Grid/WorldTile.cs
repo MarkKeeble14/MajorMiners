@@ -25,6 +25,5 @@ namespace Grid
             Walkable = walkable;
             sr.sprite = Walkable ? walkableSprite : blockableSprite;
         }
-        
     }
 }
