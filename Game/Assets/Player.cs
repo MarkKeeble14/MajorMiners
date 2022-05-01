@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
             ClosePlacementMode();
 
         if (Input.GetKeyDown(KeyCode.R))
-            tileCursor.SetWalkable(true);
+            tileCursor.SetBreakable(true);
 
         if (!placing)
             return;

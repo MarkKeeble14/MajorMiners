@@ -46,11 +46,11 @@ public class TileCursor : MonoBehaviour
         SetCurrentTile();
     }
 
-    public void SetWalkable(bool walkable)
+    public void SetBreakable(bool breakable)
     {
         if (!Enabled)
             return;
-        currentTile.SetWalkable(walkable);
+        currentTile.SetBreakable(breakable);
     }
 
     public void Show()
