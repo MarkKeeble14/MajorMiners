@@ -8,6 +8,7 @@ public class LooterMove : MonoBehaviour
     public List<Node> path;
 
     [SerializeField] private float moveSpeed = 1.0f;
+    [SerializeField] private GameObject resourceEffect;
     bool onRoute = false;
 
     private void Awake()
@@ -35,7 +36,9 @@ public class LooterMove : MonoBehaviour
         {
             yield return MoveTo(path[i].worldPosition);
         }
+        Instantiate(resourceEffect, transform.position, Quaternion.identity);
         onRoute = false;
+        Destroy(gameObject);
     }
 
     IEnumerator MoveTo(Vector3 destination)
