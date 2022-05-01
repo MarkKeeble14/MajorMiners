@@ -17,9 +17,8 @@ public class DestroyOnAnimationEnd : MonoBehaviour
     void Update()
     {
         // Setting the State depending on which animation is currently playing
-		done = AnimatorIsPlaying();
-
-        if (done) Destroy(gameObject);
+        done = !AnimatorIsPlaying();
+        if (done) Destroy(transform.parent.gameObject);
     }
 
     private bool AnimatorIsPlaying()
