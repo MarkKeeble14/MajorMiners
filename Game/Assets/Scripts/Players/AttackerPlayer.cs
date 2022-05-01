@@ -22,7 +22,7 @@ public class AttackerPlayer : Player
     {
         if (resourceHealth <= 0)
         {
-            tileManager.GetTile(tileManager.Rows/2, tileManager.Columns/2).SetAsteroid(false);
+
         }
     }
 }
