@@ -2,25 +2,36 @@ using System.Collections.Generic;
 using Grid;
 using UnityEngine;
 
-public class LooterPathfind : MonoBehaviour
+public class DismantlerPathfind : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
-    public LooterMove looterMove;
-    // (FOR TESTING)
+    public DismantlerMove dismantlerMove;
     public Transform seeker, target;
+    public MyGrid grid;
     void Update()
     {
-        FindPath(seeker.position, target.position);
+        var foundDefenderObjects = GameObject.FindGameObjectsWithTag("Defender");
+        float closestDistance = float.MaxValue;
+        foreach (GameObject defender in foundDefenderObjects)
+        {
+            float dist = Vector3.Distance(defender.transform.position, transform.position);
+            if (dist < closestDistance)
+            {
+                closestDistance = dist;
+                target = defender.transform;
+            }
+        }
+        if (target != null)
+        {
+            FindPath(seeker.position, target.position);
+        }
     }
-    // (FOR TESTING)
 
-    public MyGrid grid;
 
     // Gets the grid from the MyGrid Script
     void Awake()
     {
         grid = FindObjectOfType<MyGrid>();
-        target = tileManager.GetTile(tileManager.Rows / 2, tileManager.Columns / 2).transform;
     }
 
     // Refer to the PSEUDO-CODE in A* algorithm notes
@@ -57,6 +68,10 @@ public class LooterPathfind : MonoBehaviour
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
+                if (neighbour.isTower)
+                {
+                    targetNode = neighbour;
+                }
                 if (!neighbour.walkable || closedSet.Contains(neighbour) || neighbour.breakable)
                 {
                     continue;
@@ -94,7 +109,7 @@ public class LooterPathfind : MonoBehaviour
 
         // (FOR TESTING)
         grid.path = path;
-        looterMove.GoToDest();
+        dismantlerMove.GoToDest();
         // (FOR TESTING)
     }
 

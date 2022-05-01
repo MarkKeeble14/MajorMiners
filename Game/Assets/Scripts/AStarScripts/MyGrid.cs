@@ -9,6 +9,8 @@ public class MyGrid : MonoBehaviour
     public LayerMask unwalkableMask;
     //  (defined in unity editor)
     public LayerMask breakableMask;
+    //  (defined in unity editor)
+    public LayerMask towerMask;
     //Size the grid will cover (defined in unity editor)
     public Vector2 gridWorldSize;
     // How much space each node covers (defined in unity editor)
@@ -46,11 +48,13 @@ public class MyGrid : MonoBehaviour
                 Vector2 box = new Vector2(nodeDiameter - 0.1f, nodeDiameter - 0.1f);
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, box, 90, unwalkableMask));
                 bool breakable = (Physics2D.OverlapBox(worldPoint, box, 90, breakableMask));
+                bool isTower = (Physics2D.OverlapBox(worldPoint, box, 90, towerMask));
                 // Create a point on the grid using the Node class
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
                 grid[x, y].row = y;
                 grid[x, y].column = x;
                 grid[x, y].breakable = breakable;
+                grid[x, y].isTower = isTower;
             }
         }
     }
@@ -119,7 +123,11 @@ public class MyGrid : MonoBehaviour
                 {
                     Gizmos.color = Color.blue;
                 }
-                if (n.walkable && !n.breakable)
+                if (n.isTower)
+                {
+                    Gizmos.color = Color.green;
+                }
+                if (n.walkable && !n.breakable && !n.isTower)
                 {
                     Gizmos.color = Color.white;
                 }

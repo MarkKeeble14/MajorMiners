@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinerMove : MonoBehaviour
+public class DismantlerMove : MonoBehaviour
 {
     public Grid.TileManager tileManager;
 
@@ -38,9 +38,10 @@ public class MinerMove : MonoBehaviour
     {
         for (int i = 0; i < path.Count; i++)
         {
-            if (path[i].breakable)
+            if (path[i].isTower)
             {
                 yield return new WaitForSeconds(mineSpeed);
+                tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetTower(null);
                 tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetBreakable(false);
             }
             yield return MoveTo(path[i].worldPosition);

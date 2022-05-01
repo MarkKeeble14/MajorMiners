@@ -49,5 +49,10 @@ MonoBehaviour:
   breakableMask:
     serializedVersion: 2
     m_Bits: 128
+  towerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   gridWorldSize: {x: 15, y: 9}
   nodeRadius: 0.5
+  gridSizeX: 0
+  gridSizeY: 0
