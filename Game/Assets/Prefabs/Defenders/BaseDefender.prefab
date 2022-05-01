@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 100657615600069172}
   m_Layer: 0
   m_Name: BaseDefender
-  m_TagString: Untagged
+  m_TagString: Defender
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

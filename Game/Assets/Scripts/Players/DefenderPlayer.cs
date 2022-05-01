@@ -11,7 +11,8 @@ public class DefenderPlayer : Player
 
         money -= unit.Cost;
         
-        Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
+        var spawn = Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
+        tileCursor.currentTile.SetTower(spawn);
         placedUnit = true;
     }
 }

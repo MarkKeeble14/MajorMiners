@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3568673735996287946}
   - component: {fileID: 3568673735996287947}
   - component: {fileID: 3568673735996287944}
-  - component: {fileID: 3568673735996287541}
   - component: {fileID: 3568673735996287542}
+  - component: {fileID: 3568673735996287541}
   m_Layer: 8
   m_Name: Miner
   m_TagString: Untagged
@@ -118,7 +118,7 @@ MonoBehaviour:
   <CurrencyDropped>k__BackingField: 300
   <TotalHealth>k__BackingField: 175
   bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}
---- !u!114 &3568673735996287541
+--- !u!114 &3568673735996287542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   moveSpeed: 0.25
   mineSpeed: 0.0001
   dirtEffect: {fileID: 2039848956633507748, guid: 673c027d0d1904b41ad6583f2287b390, type: 3}
---- !u!114 &3568673735996287542
+--- !u!114 &3568673735996287541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileManager: {fileID: 11400000, guid: 0f77cf296c760124cb63ce158b206efc, type: 2}
-  minerMove: {fileID: 3568673735996287541}
+  minerMove: {fileID: 3568673735996287542}
   seeker: {fileID: 3568673735996287945}
   target: {fileID: 0}
   grid: {fileID: 0}
