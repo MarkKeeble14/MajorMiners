@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9c7206c5d9ae4fa719ccb56d8b240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacker: {fileID: 0}
+  attacker: {fileID: 75052498}
   defender: {fileID: 1485108219}
 --- !u!4 &1369861150
 Transform:
