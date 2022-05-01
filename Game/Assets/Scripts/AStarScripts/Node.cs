@@ -8,6 +8,7 @@ public class Node
     private const int BreakableWeightIncrease = 30;
     public bool walkable;
     public bool breakable;
+    public bool isTower;
     public Vector3 worldPosition;
     // Position of node in the array of nodes
     public int gridX;

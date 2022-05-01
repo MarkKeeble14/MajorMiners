@@ -12,9 +12,12 @@ namespace Grid
         public bool Breakable;
         [SerializeField] private Sprite breakableSprite;
         [SerializeField] private Sprite walkableSprite;
+        [SerializeField] private Sprite towerSprite;
         private SpriteRenderer sr;
         private string breakableLayer = "Breakable";
         private string walkableLayer = "Walkable";
+        private string towerLayer = "Tower";
+        private GameObject occupyingTower;
 
         private void Awake()
         {
@@ -26,6 +29,18 @@ namespace Grid
             Breakable = breakable;
             sr.sprite = Breakable ? breakableSprite : walkableSprite;
             gameObject.layer = LayerMask.NameToLayer(Breakable ? breakableLayer : walkableLayer);
+        }
+
+        public void SetTower(GameObject tower)
+        {
+            if (!tower)
+            {
+                Destroy(occupyingTower);
+            }
+            occupyingTower = tower;
+            Breakable = false;
+            sr.sprite = tower ? towerSprite : walkableSprite;
+            gameObject.layer = LayerMask.NameToLayer(tower ? towerLayer : walkableLayer);
         }
     }
 }
