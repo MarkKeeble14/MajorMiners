@@ -253,6 +253,9 @@
 		<property name="length">
 			<value>14.115886935322187</value>
 		</property>
+		<property name="quantizationInterval">
+			<value>2</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{10ad2ece-4015-4a39-aa7a-b36880cd11eb}</destination>
 		</relationship>
