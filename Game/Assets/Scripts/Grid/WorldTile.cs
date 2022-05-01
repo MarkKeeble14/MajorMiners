@@ -42,5 +42,11 @@ namespace Grid
             sr.sprite = tower ? towerSprite : walkableSprite;
             gameObject.layer = LayerMask.NameToLayer(tower ? towerLayer : walkableLayer);
         }
+
+        public void SetAsteroid(bool asteroid)
+        {
+            sr.sprite = walkableSprite;
+            gameObject.layer = LayerMask.NameToLayer(walkableLayer);
+        }
     }
 }

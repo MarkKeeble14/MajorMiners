@@ -51,6 +51,7 @@ public class MinerMove : MonoBehaviour
         }
         onRoute = false;
         FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
         Destroy(gameObject);
     }
 

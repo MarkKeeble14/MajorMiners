@@ -351,6 +351,8 @@ MonoBehaviour:
   - {fileID: 2219256707859678099, guid: 0cde1afec275b894ca0bf4ce4725294d, type: 3}
   - {fileID: 3568673735996287543, guid: 5a1846dccfc36064a995c4259bb9ee1d, type: 3}
   - {fileID: 6595957569325983401, guid: 493212699b3365d42aea6737802210c9, type: 3}
+  resourceHealth: 10000
+  tileManager: {fileID: 11400000, guid: 0f77cf296c760124cb63ce158b206efc, type: 2}
 --- !u!1 &261586185
 GameObject:
   m_ObjectHideFlags: 0
