@@ -7,5 +7,7 @@ public class InstantEffect : BaseProjectileEffect
         var hitAttacker = effectTarget.GetComponent<BaseAttacker>();
         
         hitAttacker.DealDamage(baseDamage);
+
+        IsDoneEffect = true;
     }
 }

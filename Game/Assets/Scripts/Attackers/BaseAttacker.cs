@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BaseAttacker : BaseUnit
 {
+    [field: SerializeField] public uint CurrencyDropped { get; private set; } = 100;
     [field: SerializeField] public float TotalHealth { get; private set; }
 
     private float _currentHealth;

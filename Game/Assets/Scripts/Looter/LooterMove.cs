@@ -7,7 +7,7 @@ public class LooterMove : MonoBehaviour
     MyGrid grid;
     public List<Node> path;
 
-    float speed = 10.0f;
+    [SerializeField] private float moveSpeed = 1.0f;
     bool onRoute = false;
 
     private void Awake()
@@ -42,7 +42,7 @@ public class LooterMove : MonoBehaviour
     {
         while (transform.position != destination)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
             yield return null;
         }
     }

@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2bf18be2297634a84ab1768ef11e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0.1
 --- !u!114 &2219256707859678094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 100
+  <CurrencyDropped>k__BackingField: 100
   <TotalHealth>k__BackingField: 100
 --- !u!114 &2219256707859678097
 MonoBehaviour:

@@ -8,13 +8,13 @@ public abstract class Player : MonoBehaviour
 {
     public uint money;
     public bool placing;
-    
+
     [SerializeField] protected TileCursor tileCursor;
     [SerializeField] private KeyCode[] _unitKeys;
     [SerializeField] private string[] _buttonNames;
 
     [SerializeField] private KeyCode exitPlacementMode = KeyCode.Backspace;
-    
+
     [SerializeField] protected KeyCode moveCursorLeft = KeyCode.LeftArrow;
     [SerializeField] protected KeyCode moveCursorRight = KeyCode.RightArrow;
     [SerializeField] protected KeyCode moveCursorUp = KeyCode.UpArrow;
@@ -26,41 +26,19 @@ public abstract class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!placing)
+        for (var i = 0; i < _unitKeys.Length; ++i)
         {
-            for (var i = 0; i < _unitKeys.Length; ++i)
-            {
-                //if (!!Input.GetKeyDown(_unitKeys[i]) && !Input.GetButtonDown(_buttonNames[0])) continue;
-                if (!Input.GetKeyDown(_unitKeys[i])) continue;
+            //if (!!Input.GetKeyDown(_unitKeys[i]) && !Input.GetButtonDown(_buttonNames[0])) continue;
+            if (!Input.GetKeyDown(_unitKeys[i])) continue;
 
-                var enemyUnit = _unitsToSpawn[i].GetComponent<BaseUnit>();
-                
-                if (enemyUnit.Cost > money) break;
 
-                money -= enemyUnit.Cost;
-
-                currentUnitIndex = i;
-                Debug.Log(_unitsToSpawn[i]);
-                OpenPlacementMode();
-                break;
-            }
-        }
-
-        if (Input.GetKeyDown(exitPlacementMode))
-        {
-            var enemyUnit = _unitsToSpawn[currentUnitIndex].GetComponent<BaseUnit>();
-
-            money += enemyUnit.Cost;
-            
-            ClosePlacementMode();
+            currentUnitIndex = i;
+            break;
         }
         
-        if (placing)
-        {
-            ControlPlacementCursor();
-        }
+        ControlPlacementCursor();
     }
-    
+
     private void ControlPlacementCursor()
     {
         if (!Input.GetKey(moveCursorLeft)
@@ -76,22 +54,25 @@ public abstract class Player : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(StartMove(moveCursorLeft, -1, 0, 0.5f, 0.05f));
         }
+
         if (Input.GetKeyDown(moveCursorRight))
         {
             StopAllCoroutines();
             StartCoroutine(StartMove(moveCursorRight, 1, 0, 0.5f, 0.05f));
         }
+
         if (Input.GetKeyDown(moveCursorUp))
         {
             StopAllCoroutines();
             StartCoroutine(StartMove(moveCursorUp, 0, -1, 0.5f, 0.05f));
         }
+
         if (Input.GetKeyDown(moveCursorDown))
         {
             StopAllCoroutines();
             StartCoroutine(StartMove(moveCursorDown, 0, 1, 0.5f, 0.05f));
         }
-        
+
         // Place unit down.
         if (Input.GetKeyDown(_placeUnit))
         {
@@ -118,6 +99,7 @@ public abstract class Player : MonoBehaviour
             {
                 yield return new WaitForSeconds(waitPastFirstMove);
             }
+
             tileCursor.Move(moveRow, moveCol);
             yield return null;
         }

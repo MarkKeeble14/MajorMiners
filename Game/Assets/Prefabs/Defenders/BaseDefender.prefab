@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a214514ee32d7d48b402464c43ee44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Cost>k__BackingField: 1
-  aggroRadius: 5
-  loseAggroDistance: 6
+  <Cost>k__BackingField: 100
+  aggroRadius: 2
+  loseAggroDistance: 2.2
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  timeBetweenTargetingChecks: 1
+  timeBetweenTargetingChecks: 2
 --- !u!114 &6557017148687188672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
-  shootDelay: 1
+  shootDelay: 4
 --- !u!212 &-4138700985467392867
 SpriteRenderer:
   m_ObjectHideFlags: 0

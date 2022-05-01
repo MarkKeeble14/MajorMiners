@@ -60,12 +60,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1268412934359986679, guid: b28cc09970b6db149b5b7579b40e6ab4, type: 3}
     - target: {fileID: 7634357814886762474, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
-      propertyPath: aggroRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7634357814886762474, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
-      propertyPath: loseAggroDistance
-      value: 11
+      propertyPath: <Cost>k__BackingField
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}

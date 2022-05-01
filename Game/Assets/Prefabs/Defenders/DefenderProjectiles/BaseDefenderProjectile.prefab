@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70647b4d708240c49b8270720879c677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 0.5
+  <Speed>k__BackingField: 10
   <BaseDamage>k__BackingField: 1
   maxDistanceToTargetBeforeHit: 0.1
 --- !u!212 &-5387682789983786542

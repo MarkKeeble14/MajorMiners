@@ -56,9 +56,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6557017148687188672, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
+      propertyPath: shootDelay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6557017148687188672, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 8854475636630446754, guid: affd84fd3dae2fe468301c7651a82d68, type: 3}
+    - target: {fileID: 7634357814886762474, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
+      propertyPath: <Cost>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
 --- !u!1 &3667737630398585252 stripped

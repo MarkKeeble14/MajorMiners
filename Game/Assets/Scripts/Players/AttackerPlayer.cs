@@ -6,7 +6,10 @@ public class AttackerPlayer : Player
     {
         if (tileCursor.currentTile.Breakable) return;
         
+        var unit = _unitsToSpawn[currentUnitIndex].GetComponent<BaseUnit>();
+        if (unit.Cost > money) return;
+
+        money -= unit.Cost;
         Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
-        ClosePlacementMode();
     }
 }

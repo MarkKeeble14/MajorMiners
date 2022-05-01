@@ -18,7 +18,7 @@ PrefabInstance:
     - target: {fileID: -5387682789983786542, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2a2b4775272c890448e1bd6239fdfc84, type: 3}
+      objectReference: {fileID: 21300000, guid: 8ea795c067613354898068091ffc7130, type: 3}
     - target: {fileID: -5387682789983786542, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -28,8 +28,8 @@ PrefabInstance:
       value: DOTProjectile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7276920332908421820, guid: ba26f5a124990e840bc220343448e146, type: 3}
-      propertyPath: <Speed>k__BackingField
-      value: 5
+      propertyPath: <BaseDamage>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8066935279854981475, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_RootOrder
@@ -66,5 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f795df3e961489f44826c86406905887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalNumberOfDamageEffects: 3
-  timePerDamageEffect: 0.5
+  totalNumberOfDamageEffects: 5
+  timePerDamageEffect: 3
