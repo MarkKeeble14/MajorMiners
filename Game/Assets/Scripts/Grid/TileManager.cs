@@ -24,14 +24,19 @@ namespace Grid
         [SerializeField] private int aroundAsteroid;
         [SerializeField] private int aroundCanyon;
 
+        [SerializeField] private Sprite outsideCanyonSprite;
+        [SerializeField] private Sprite[] asteroidSpriteArray;
+
         [SerializeField] private GameObject worldTile;
         [SerializeField] private GameObject asteroidTile;
+
         private WorldTile[,] _tiles;
 
         public void SpawnGrid(Transform parent)
         {
             Vector3 startPos = new Vector3(-rows / 2, cols / 2, 0);
 
+            int asteroidTilesPlaced = 0;
             _tiles = new WorldTile[rows, cols];
             for (int i = 0; i < rows; ++i)
             {
@@ -39,13 +44,17 @@ namespace Grid
                 {
                     Vector3 spawnPos = startPos + new Vector3(i, -j, 1);
                     GameObject spawned;
-                    if (i == rows / 2 && j == cols / 2)   // Middle
+                    if (i > rows / 2 - 1 || i < rows / 2 + 1 ||
+                        j > cols / 2 - 1 || j < cols / 2 + 1)   // Middle
                     {
                         // Spawn resource
                         spawned = Instantiate(asteroidTile, spawnPos, Quaternion.identity);
+                        spawned.GetComponent<SpriteRenderer>().sprite
+                            = asteroidSpriteArray[asteroidTilesPlaced++];
+
                     }
-                    else if (i > rows / 2 - aroundAsteroid && i < aroundAsteroid + rows / 2
-                        && j > cols / 2 - aroundAsteroid && j < aroundAsteroid + cols / 2)
+                    else if (i > rows / 2 - aroundAsteroid - 1 && i < aroundAsteroid + rows / 2 + 1
+                        && j > cols / 2 - aroundAsteroid - 1 && j < aroundAsteroid + cols / 2 + 1)
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
                         spawned.GetComponent<WorldTile>().SetBreakable(false);
@@ -55,6 +64,7 @@ namespace Grid
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
                         spawned.GetComponent<WorldTile>().SetBreakable(false);
+                        spawned.GetComponent<SpriteRenderer>().sprite = outsideCanyonSprite;
                     }
                     else
                     {
