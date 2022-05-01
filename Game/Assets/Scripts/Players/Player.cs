@@ -18,6 +18,7 @@ public abstract class Player : MonoBehaviour
     
     [SerializeField] private string horizontalString = "Horizontal";
     [SerializeField] private string verticalString = "Vertical";
+    [SerializeField] private SpriteRenderer unitRender;
     
 
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
@@ -30,10 +31,13 @@ public abstract class Player : MonoBehaviour
     private void Awake()
     {
         _canMoveTimer = new Timer(0.15f);
+        unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
+
     }
     
     private void Update()
     {
+        unitRender.gameObject.transform.position = tileCursor.transform.position;
         if (_canMoveTimer.IsFinished())
         {
             _canMoveTimer.Reset();
@@ -48,6 +52,9 @@ public abstract class Player : MonoBehaviour
 
             currentUnitIndex = i;
             isPressingUnitKey = true;
+
+            unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
+            
             break;
         }
 

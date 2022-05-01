@@ -146,5 +146,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveMiners: []
   Breakable: 0
-  breakableSprite: {fileID: 21300000, guid: 6d6bc1a80c815be4a825157affae6408, type: 3}
-  walkableSprite: {fileID: 21300000, guid: a15af520646f200479a4aa99a43e8ac1, type: 3}
+  breakableSprite: {fileID: -2884756588528375457, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  walkableSprite: {fileID: 5962255778811429813, guid: caee56d7710b9a24b994588aa29ff745, type: 3}
