@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3997726127399221590
+--- !u!1 &5551689623887243191
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8066935279854981475}
-  - component: {fileID: 7276920332908421820}
+  - component: {fileID: 5551689623887243189}
+  - component: {fileID: 5551689623887243190}
   m_Layer: 0
-  m_Name: BaseDefenderProjectile
+  m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8066935279854981475
+--- !u!4 &5551689623887243189
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3997726127399221590}
+  m_GameObject: {fileID: 5551689623887243191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,18 +31,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7276920332908421820
+--- !u!114 &5551689623887243190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3997726127399221590}
+  m_GameObject: {fileID: 5551689623887243191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70647b4d708240c49b8270720879c677, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d6fa629f5e8d2c4ca06c2136c61c067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 60
-  <BaseDamage>k__BackingField: 1
-  maxDistanceToTargetBeforeHit: 0.1
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 64
+  breakableMask:
+    serializedVersion: 2
+    m_Bits: 128
+  gridWorldSize: {x: 15, y: 9}
+  nodeRadius: 0.5

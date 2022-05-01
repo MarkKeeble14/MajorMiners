@@ -16,6 +16,7 @@ public class BaseDefender : MonoBehaviour
 
     private void Awake()
     {
+        baseDefenderShoot = GetComponent<BaseDefenderShoot>();
         _targetingCheckTimer = new Timer(timeBetweenTargetingChecks);
     }
 
@@ -51,6 +52,13 @@ public class BaseDefender : MonoBehaviour
     {
         if (_isTargetingEnemy)
         {
+            // Check to make sure current target still exists
+            if (_currentTarget == null)
+            {
+                // Set is targeted enemy to false since previous target no longer exists
+                _isTargetingEnemy = false;
+                return;
+            }
             // See if targeted enemy is still in range.
             if (Vector2.Distance(transform.position, _currentTarget.transform.position) <= loseAggroDistance) return;
 

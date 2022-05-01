@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3997726127399221590, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_Name
-      value: InstantProjectile
+      value: InstantProjectile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8066935279854981475, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_RootOrder
