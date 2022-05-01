@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LooterPathfind : MonoBehaviour
+public class MinerPathfind : MonoBehaviour
 {
-    public LooterMove looterMove;
+    public MinerMove minerMove;
     // (FOR TESTING)
     public Transform seeker, target;
     void Update()
@@ -55,7 +55,7 @@ public class LooterPathfind : MonoBehaviour
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
-                if (!neighbour.walkable || closedSet.Contains(neighbour) || neighbour.breakable)
+                if (!neighbour.walkable || closedSet.Contains(neighbour))
                 {
                     continue;
                 }
@@ -92,7 +92,7 @@ public class LooterPathfind : MonoBehaviour
 
         // (FOR TESTING)
         grid.path = path;
-        looterMove.GoToDest();
+        minerMove.GoToDest();
         // (FOR TESTING)
     }
 

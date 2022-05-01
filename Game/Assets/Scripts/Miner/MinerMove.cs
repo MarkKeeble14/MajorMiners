@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LooterMove : MonoBehaviour
+public class MinerMove : MonoBehaviour
 {
+    public Grid.TileManager tileManager;
 
     public GameObject Astar;
     MyGrid grid;
@@ -31,6 +32,11 @@ public class LooterMove : MonoBehaviour
 
         for (int i = 0; i < path.Count; i++)
         {
+            if (path[i].breakable)
+            {
+                yield return new WaitForSeconds(0.5f);
+                tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetBreakable(false);
+            }
             yield return MoveTo(path[i].worldPosition);
         }
         onRoute = false;
