@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 27
   cols: 15
-  aroundAsteroid: 2
+  aroundAsteroid: 1
   aroundCanyon: 1
   outsideCanyonSprite: {fileID: 7213639340675471223, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   asteroidSpriteArray:

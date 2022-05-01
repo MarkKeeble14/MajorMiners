@@ -38,6 +38,8 @@ public class LooterMove : MonoBehaviour
         }
         Instantiate(resourceEffect, transform.position, Quaternion.identity);
         onRoute = false;
+        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
         Destroy(gameObject);
     }
 
