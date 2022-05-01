@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+  resourceEffect: {fileID: 5013162318792119461, guid: b8bcebee9809dc549b465f4265f7472b, type: 3}
 --- !u!114 &2219256707859678094
 MonoBehaviour:
   m_ObjectHideFlags: 0
