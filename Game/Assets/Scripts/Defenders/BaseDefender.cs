@@ -12,16 +12,31 @@ public class BaseDefender : BaseUnit
     private Timer _targetingCheckTimer;
     private bool _isTargetingEnemy;
     private GameObject _currentTarget;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
         baseDefenderShoot = GetComponent<BaseDefenderShoot>();
         _targetingCheckTimer = new Timer(timeBetweenTargetingChecks);
         baseDefenderShoot = GetComponent<BaseDefenderShoot>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        if (_currentTarget)
+        {
+            Vector3 targ = _currentTarget.transform.position;
+            targ.z = 0f;
+ 
+            Vector3 objectPos = transform.position;
+            targ.x = targ.x - objectPos.x;
+            targ.y = targ.y - objectPos.y;
+ 
+            float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 180));
+        }
+        
         UpdateTargetChecks();
         UpdateShooting();
     }

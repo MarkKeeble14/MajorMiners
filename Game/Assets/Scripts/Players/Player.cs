@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Grid;
 using UI;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public abstract class Player : MonoBehaviour
 {
     public uint money;
     public bool placing;
+
+    [SerializeField] protected TileManager tileManager;
 
     [SerializeField] protected TileCursor tileCursor;
     [SerializeField] private KeyCode[] _unitKeys;
