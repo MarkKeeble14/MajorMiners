@@ -508,6 +508,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7242590840506692552, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242590840506692552, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1369861149}
     - target: {fileID: 7453433652469808706, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -644,6 +652,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7892184000096485198, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892184000096485198, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1369861149}
     - target: {fileID: 7892184001465005870, guid: 68a350039c399b04c8761de89487c4ed, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 259.63
