@@ -16,5 +16,12 @@ MonoBehaviour:
   cols: 17
   aroundAsteroid: 3
   aroundCanyon: 3
+  waterAroundLand: 0
+  outsideCanyonSprite: {fileID: 0}
+  asteroidSpriteArray: []
   worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}
   asteroidTile: {fileID: 8312990029052005097, guid: c36b7824629dbe645a421709e1f11cf5, type: 3}
+  waterTile: {fileID: 0}
+  land:
+    serializedVersion: 2
+    m_Bits: 0

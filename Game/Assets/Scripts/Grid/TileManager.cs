@@ -25,12 +25,16 @@ namespace Grid
 
         [SerializeField] private int aroundAsteroid;
         [SerializeField] private int aroundCanyon;
+        [SerializeField] private int waterAroundLand;
 
         [SerializeField] private Sprite outsideCanyonSprite;
         [SerializeField] private Sprite[] asteroidSpriteArray;
 
         [SerializeField] private GameObject worldTile;
         [SerializeField] private GameObject asteroidTile;
+        [SerializeField] private GameObject waterTile;
+
+        [SerializeField] private LayerMask land;
 
         private WorldTile[,] _tiles;
 
@@ -83,6 +87,25 @@ namespace Grid
             foreach (WorldTile t in _tiles)
             {
                 t.RaycastSetSprite();
+            }
+            SpawnWater();
+        }
+
+        private void SpawnWater()
+        {
+            Vector3 startPos = new Vector3(-rows / 2 - waterAroundLand, cols / 2 + waterAroundLand, 0);
+            for (int i = 0; i < rows + 2 * waterAroundLand; i++)
+            {
+                for (int j = 0; j < cols + 2 * waterAroundLand; j++)
+                {
+                    Vector3 tilePos = startPos + new Vector3(i, j, 0);
+                    RaycastHit2D hit = Physics2D.Raycast(tilePos,
+                    Vector3.forward, Mathf.Infinity, land);
+                    if (!hit)
+                    {
+                        GameObject spawnedWater = Instantiate(waterTile, tilePos, Quaternion.identity);
+                    }
+                }
             }
         }
 
