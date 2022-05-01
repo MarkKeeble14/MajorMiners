@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 5f487d37b0a31f8408fed41c5036daf9, type: 3}
-  m_Color: {r: 0, g: 0.93671274, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -145,6 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveMiners: []
-  Walkable: 0
+  Breakable: 0
+  breakableSprite: {fileID: 0}
   walkableSprite: {fileID: 7482667652216324306, guid: 5f487d37b0a31f8408fed41c5036daf9, type: 3}
-  blockableSprite: {fileID: 7482667652216324306, guid: 5f487d37b0a31f8408fed41c5036daf9, type: 3}

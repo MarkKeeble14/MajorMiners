@@ -10,6 +10,8 @@ public class AttackerPlayer : Player
         if (unit.Cost > money) return;
 
         money -= unit.Cost;
+        
+        placedUnit = true;
         Instantiate(_unitsToSpawn[currentUnitIndex], new Vector3(tileCursor.currentTile.transform.position.x, tileCursor.currentTile.transform.position.y, 0), Quaternion.identity);
     }
 }
