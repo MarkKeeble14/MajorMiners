@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -20,7 +21,7 @@ namespace UI
         // Update is called once per frame
         private void Update()
         {
-            if (gameTime <= 0) return;
+            if (gameTime <= 0) SceneManager.LoadScene("DefenderWinScreen"); ;
             gameTime -= Time.deltaTime;
             _text.text = Mathf.Round(gameTime).ToString(CultureInfo.CurrentUICulture);
         }

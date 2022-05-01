@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AttackerPlayer : Player
 {
@@ -24,7 +25,7 @@ public class AttackerPlayer : Player
         
         if (resourceHealth <= 0)
         {
-
+            SceneManager.LoadScene("AttackerWinScreen");
         }
     }
 }
