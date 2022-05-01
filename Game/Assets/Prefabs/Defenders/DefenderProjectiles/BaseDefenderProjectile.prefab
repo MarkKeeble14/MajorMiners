@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 10
-  <BaseDamage>k__BackingField: 1
+  <BaseDamage>k__BackingField: 30
   maxDistanceToTargetBeforeHit: 0.1
 --- !u!212 &-5387682789983786542
 SpriteRenderer:

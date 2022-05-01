@@ -7,11 +7,11 @@ public class AttackerInputs : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        /*if (Input.GetKeyDown(KeyCode.Keypad1))
             unitSelector.SelectFirst();
         if (Input.GetKeyDown(KeyCode.Keypad2))
             unitSelector.SelectSecond();
         if (Input.GetKeyDown(KeyCode.Keypad3))
-            unitSelector.SelectThird();
+            unitSelector.SelectThird();*/
     }
 }
