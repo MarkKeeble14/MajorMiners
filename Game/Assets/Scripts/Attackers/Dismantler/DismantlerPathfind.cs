@@ -68,7 +68,11 @@ public class DismantlerPathfind : MonoBehaviour
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
-                if ((!neighbour.walkable || closedSet.Contains(neighbour) || neighbour.breakable) && !neighbour.isTower)
+                if (neighbour.isTower)
+                {
+                    targetNode = neighbour;
+                }
+                if (!neighbour.walkable || closedSet.Contains(neighbour) || neighbour.breakable)
                 {
                     continue;
                 }

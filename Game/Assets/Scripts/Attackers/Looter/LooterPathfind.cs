@@ -57,7 +57,7 @@ public class LooterPathfind : MonoBehaviour
 
             foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
-                if (!neighbour.walkable || closedSet.Contains(neighbour) || neighbour.breakable)
+                if (!neighbour.walkable || closedSet.Contains(neighbour) || neighbour.breakable || neighbour.isTower)
                 {
                     continue;
                 }
