@@ -15,6 +15,7 @@ public class MinerMove : MonoBehaviour
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] float mineSpeed = 1.0f;
     [SerializeField] private GameObject dirtEffect;
+    [SerializeField] private GameObject resourceEffect;
 
     bool onRoute = false;
 
@@ -54,6 +55,7 @@ public class MinerMove : MonoBehaviour
         }
         onRoute = false;
         FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        Instantiate(resourceEffect, transform.position, Quaternion.identity);
         FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
         Destroy(gameObject);
     }

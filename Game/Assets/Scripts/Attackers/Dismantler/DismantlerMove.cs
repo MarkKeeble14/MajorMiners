@@ -14,6 +14,7 @@ public class DismantlerMove : MonoBehaviour
 
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] float mineSpeed = 1.0f;
+    [SerializeField] private GameObject resourceEffect;
 
     bool onRoute = false;
 
@@ -45,6 +46,12 @@ public class DismantlerMove : MonoBehaviour
                 yield return new WaitForSeconds(mineSpeed);
                 tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetTower(null);
                 tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetBreakable(false);
+                
+                
+                onRoute = false;
+                FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+                Instantiate(resourceEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
             yield return MoveTo(path[i].worldPosition);
         }
