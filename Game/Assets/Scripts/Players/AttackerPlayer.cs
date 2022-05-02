@@ -12,6 +12,9 @@ public class AttackerPlayer : Player
         var unit = _unitsToSpawn[currentUnitIndex].GetComponent<BaseUnit>();
         if (unit.Cost > money) return;
         if (tileCursor.currentTile.occupyingTower) return;
+        var coords = tileCursor.coordinates;
+
+        if (!(coords.x == 0 || coords.x == tileManager.Rows - 1 || coords.y == 0 || coords.y == tileManager.Columns - 1)) return;
 
         money -= unit.Cost;
         

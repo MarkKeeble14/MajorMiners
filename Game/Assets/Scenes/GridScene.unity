@@ -177,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -368,6 +368,7 @@ MonoBehaviour:
   - {fileID: 2219256707859678099, guid: 0cde1afec275b894ca0bf4ce4725294d, type: 3}
   - {fileID: 3568673735996287543, guid: 5a1846dccfc36064a995c4259bb9ee1d, type: 3}
   - {fileID: 6595957569325983401, guid: 493212699b3365d42aea6737802210c9, type: 3}
+  playAlienCursorNoise: 0
   resourceHealth: 10000
 --- !u!1 &98851419 stripped
 GameObject:
@@ -1185,6 +1186,7 @@ MonoBehaviour:
   - {fileID: 4923408997573691875, guid: 1e91c4bc173298343947df7292d37404, type: 3}
   - {fileID: 6628905855379942153, guid: f61178b6e0499c14a805b6116b2ca739, type: 3}
   - {fileID: 3667737630398585252, guid: 90f209e6c313f304aa29b2657b5358cc, type: 3}
+  playAlienCursorNoise: 0
 --- !u!1 &1787669341
 GameObject:
   m_ObjectHideFlags: 0
