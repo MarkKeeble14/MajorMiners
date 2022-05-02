@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using Grid;
 using UnityEngine;
 
@@ -49,6 +50,8 @@ public class MinerMove : MonoBehaviour
                 current.SetBreakable(false);
             }
             yield return MoveTo(path[i].worldPosition);
+            RuntimeManager.PlayOneShot("event:/SFX/Digging");
+
         }
         onRoute = false;
         FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;

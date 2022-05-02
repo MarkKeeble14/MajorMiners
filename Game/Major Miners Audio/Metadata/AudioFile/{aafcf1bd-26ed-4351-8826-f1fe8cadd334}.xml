@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{aafcf1bd-26ed-4351-8826-f1fe8cadd334}">
+		<property name="assetPath">
+			<value>sfx_laser_shot_4.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.72964583333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{630f42d8-33ca-4c81-b584-062193142ade}</destination>
+		</relationship>
+	</object>
+</objects>

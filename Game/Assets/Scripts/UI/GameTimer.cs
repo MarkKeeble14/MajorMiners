@@ -10,6 +10,7 @@ namespace UI
     public class GameTimer : MonoBehaviour
     {
         [SerializeField] private float gameTime;
+        [SerializeField] private float hurryUpTime = 30;
         private TextMeshProUGUI _text;
         private void Start()
         {
@@ -20,6 +21,10 @@ namespace UI
         // Update is called once per frame
         private void Update()
         {
+            if (gameTime <= hurryUpTime)
+            {
+                GameManager.HurryUp();
+            }
             if (gameTime <= 0) return;
             gameTime -= Time.deltaTime;
             _text.text = Mathf.Round(gameTime).ToString(CultureInfo.CurrentUICulture);

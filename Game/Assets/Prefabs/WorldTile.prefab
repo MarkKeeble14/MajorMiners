@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a15af520646f200479a4aa99a43e8ac1, type: 3}
+  m_Sprite: {fileID: 8611844643339386859, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,6 +154,8 @@ MonoBehaviour:
   - {fileID: 2041590907583759736, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
   - {fileID: 7917389796270876215, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
   walkableSprite: {fileID: 5962255778811429813, guid: caee56d7710b9a24b994588aa29ff745, type: 3}
+  towerSprite: {fileID: 0}
+  occupyingTower: {fileID: 0}
   spriteLocked: 0
   rightTile: {fileID: -9076032170068489642, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   leftTile: {fileID: -5101821357727554639, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
@@ -164,9 +166,7 @@ MonoBehaviour:
   rightDownTile: {fileID: 5535226985061942197, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   leftUpTile: {fileID: 3222003104322823138, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   leftDownTile: {fileID: 7071104368224478110, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
-  grassTile: {fileID: 21300000, guid: a15af520646f200479a4aa99a43e8ac1, type: 3}
+  grassTile: {fileID: 8611844643339386859, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   block:
     serializedVersion: 2
     m_Bits: 128
-  towerSprite: {fileID: 0}
-  occupyingTower: {fileID: 0}

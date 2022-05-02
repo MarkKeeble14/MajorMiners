@@ -77,4 +77,9 @@ Game/.idea/
 
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
+<<<<<<< HEAD
 fmod_editor.log
+=======
+fmod_editor.log
+
+>>>>>>> 9992a51fa93bddbfd1725cd07d17193271b641e7

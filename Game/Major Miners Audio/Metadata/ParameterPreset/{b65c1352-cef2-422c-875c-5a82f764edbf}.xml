@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{b65c1352-cef2-422c-875c-5a82f764edbf}">
+		<property name="name">
+			<value>Intensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{12c04416-2895-422c-820d-e4cce668a5d8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0a0a2811-2a17-4431-b7e5-c47c06bf9536}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0a0a2811-2a17-4431-b7e5-c47c06bf9536}">
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1.1999999284744263</value>
+		</property>
+	</object>
+</objects>

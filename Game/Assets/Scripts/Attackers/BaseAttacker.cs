@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class BaseAttacker : BaseUnit
@@ -9,8 +10,10 @@ public class BaseAttacker : BaseUnit
 
     private float _currentHealth;
 
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        
         _currentHealth = TotalHealth;
     }
 
@@ -26,6 +29,7 @@ public class BaseAttacker : BaseUnit
 
     private void OnDeath()
     {
+        RuntimeManager.PlayOneShot("event:/SFX/Human_Death", transform.position);
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
