@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class BaseDefenderProjectile : MonoBehaviour
@@ -13,6 +14,8 @@ public class BaseDefenderProjectile : MonoBehaviour
 
     private void Awake()
     {
+        RuntimeManager.PlayOneShot("event:/SFX/Laser_Shot", transform.position);
+
         _projectileEffect = GetComponent<BaseProjectileEffect>();
         _numberPopup = (GameObject)Resources.Load("PopupText/NumberPopupCanvas");
     }
@@ -40,6 +43,8 @@ public class BaseDefenderProjectile : MonoBehaviour
             Quaternion.identity);
         GameObject numberPopup = spawned.transform.GetChild(0).gameObject;
         numberPopup.GetComponent<PopupText>().Set(BaseDamage.ToString(), Color.black);
+        
+        RuntimeManager.PlayOneShot("event:/SFX/Hit_Hurt");
 
         // Set Projectile Effect
         _projectileEffect.UpdateEffect(CurrentTarget, BaseDamage);

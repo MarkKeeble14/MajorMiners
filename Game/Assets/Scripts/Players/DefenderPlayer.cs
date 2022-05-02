@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class DefenderPlayer : Player
@@ -11,6 +12,8 @@ public class DefenderPlayer : Player
         if (tileCursor.currentTile.occupyingTower) return;
 
         money -= unit.Cost;
+        RuntimeManager.PlayOneShot("event:/SFX/Tower_Deploy", tileCursor.currentTile.transform.position);
+
         
         var spawn = Instantiate(_unitsToSpawn[currentUnitIndex], tileCursor.currentTile.transform.position, Quaternion.identity);
         tileCursor.currentTile.SetTower(spawn);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using Grid;
 using UI;
 using UnityEngine;
@@ -28,6 +29,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
     private Timer _canMoveTimer;
+    public bool playAlienCursorNoise = false;
 
     protected int currentUnitIndex;
     protected bool placedUnit;
@@ -119,6 +121,7 @@ public abstract class Player : MonoBehaviour
         float waitAfterFirstMove,
         float waitPastFirstMove)
     {
+        PlayCursorSoundFX();
         bool first = true;
         tileCursor.Move(moveRow, moveCol);
         while (Input.GetAxisRaw(key) > 0.2f || Input.GetAxisRaw(key) < -0.2f)
@@ -164,5 +167,17 @@ public abstract class Player : MonoBehaviour
         if (money < unit.Cost)
             return;
         OpenPlacementMode();
+    }
+
+    private void PlayCursorSoundFX()
+    {
+        if (playAlienCursorNoise)
+        {
+            RuntimeManager.PlayOneShot("event:/SFX/Alien_Cursor", tileCursor.currentTile.transform.position);
+        }
+        else
+        {
+            RuntimeManager.PlayOneShot("event:/SFX/Human_Cursor", tileCursor.currentTile.transform.position);
+        }
     }
 }
