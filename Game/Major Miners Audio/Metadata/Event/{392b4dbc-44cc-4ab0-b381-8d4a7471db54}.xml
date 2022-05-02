@@ -53,7 +53,7 @@
 			<destination>{48410b82-e360-423c-a55f-449c9aa4ed66}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{6c4a33fb-29bf-4bd5-96de-9731fc0fec04}</destination>
+			<destination>{249da30c-bc74-46de-be28-a80c09d1cdd1}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{294e65e1-dc38-4a93-9cd1-8da3952b7943}" />
@@ -130,7 +130,7 @@
 			<value>0</value>
 		</property>
 		<property name="maximumDistance">
-			<value>30</value>
+			<value>40</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{ce6104f6-f4b3-4cec-8f6c-8472463e8105}" />

@@ -19,7 +19,6 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private string[] _buttonNames;
     [SerializeField] private string _placeButtonName;
 
-    [SerializeField] private KeyCode exitPlacementMode = KeyCode.Backspace;
     
     [SerializeField] private string horizontalString = "Horizontal";
     [SerializeField] private string verticalString = "Vertical";
@@ -28,8 +27,10 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private SelectUnits unitSelector;
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     [SerializeField] protected GameObject[] _unitsToSpawn;
+    
+    
     private Timer _canMoveTimer;
-    public bool playAlienCursorNoise = false;
+    public bool playAlienCursorNoise;
 
     protected int currentUnitIndex;
     protected bool placedUnit;
@@ -67,6 +68,13 @@ public abstract class Player : MonoBehaviour
 
     private void ControlPlacementCursor()
     {
+        bool startedHoldLeft = false;
+        bool startedHoldRight = false;
+        bool startedHoldUp = false;
+        bool startedHoldDown = false;
+        
+        
+        
         if (Input.GetAxisRaw(horizontalString) > -0.2f
             && Input.GetAxisRaw(horizontalString) < 0.2f
             && Input.GetAxisRaw(verticalString) > -0.2f
