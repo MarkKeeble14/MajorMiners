@@ -1,5 +1,319 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9113002430997879101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Mining
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Mining
+  guid: 1186516db6e0724092364253067cdb3e
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 800
+--- !u!114 &-8903772512044527901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Human_Cursor
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Human_Cursor
+  guid: 08b1e3a0e5d9284985512e4155e4003b
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
+  Length: 49
+--- !u!114 &-7436204891431927107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Alien_Cursor
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Alien_Cursor
+  guid: 42f80a42b8615d4f9b8d3f0efcb376e5
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 50
+--- !u!114 &-7390004941972542529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music_Loop_V2
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music_Loop_V2
+  guid: 9c66dd4de0abe747ba7063eaf71abf62
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7286245351627550752}
+  - {fileID: -24666336296929104}
+  - {fileID: -3778561396780121922}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 160000
+--- !u!114 &-7231669738724685500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/GameStart
+  m_EditorClassIdentifier: 
+  Name: GameStart
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-6985068788982915667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-4143031695806501376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Digging
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Digging
+  guid: 68411b7f1413bd46a432d9355ef0a025
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 400
+--- !u!114 &-3778561396780121922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 1
+--- !u!114 &-3482351459068877514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Major Miners Audio/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637870244358744533
+  FileSizes:
+  - Name: Desktop
+    Value: 1658
+  Exists: 1
+--- !u!114 &-3375139989715308871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/GameStart
+  m_EditorClassIdentifier: 
+  Name: GameStart
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-1105042866321584432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Major Miners Audio/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637870244358734515
+  FileSizes:
+  - Name: Desktop
+    Value: 5510080
+  Exists: 1
+--- !u!114 &-222627239348396464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/General_Click 2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/General_Click 2
+  guid: 859a6c410d337546b85c7c4a875da9f3
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 409
+--- !u!114 &-141884305254923016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tower_Deploy
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tower_Deploy
+  guid: f2d87bdf5cc55849b5e8afd2a8b72890
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1050
+--- !u!114 &-24666336296929104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/HurryUp
+  m_EditorClassIdentifier: 
+  Name: HurryUp
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +326,568 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: -3482351459068877514}
+  - {fileID: -1105042866321584432}
+  EditorEvents:
+  - {fileID: -8903772512044527901}
+  - {fileID: 5932640793043564611}
+  - {fileID: -9113002430997879101}
+  - {fileID: -7436204891431927107}
+  - {fileID: 876136084042761592}
+  - {fileID: -4143031695806501376}
+  - {fileID: 4505919372186024991}
+  - {fileID: 5028034936184555202}
+  - {fileID: -222627239348396464}
+  - {fileID: -7390004941972542529}
+  - {fileID: 4873879587658844421}
+  - {fileID: 4179004438281320222}
+  - {fileID: 8395723065982734431}
+  - {fileID: 7045817264498077062}
+  - {fileID: 2544394484470747080}
+  - {fileID: -141884305254923016}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  stringsBankWriteTime: 0
+  MasterBanks:
+  - {fileID: -1105042866321584432}
+  StringsBanks:
+  - {fileID: -3482351459068877514}
+  stringsBankWriteTime: 637870244358744533
   cacheVersion: 8
+--- !u!114 &173494403182594318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/HurryUp
+  m_EditorClassIdentifier: 
+  Name: HurryUp
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &876136084042761592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Start_Game
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Start_Game
+  guid: 4f963f2dba8ea344aedca4a0bdd6ffcc
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3182
+--- !u!114 &1738312626157678223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &1820110627224216225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/HurryUp
+  m_EditorClassIdentifier: 
+  Name: HurryUp
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &2471925134106168026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &2544394484470747080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tower_Destroy
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tower_Destroy
+  guid: d3722d0978260945a5fa0b9e052fc245
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 1162
+--- !u!114 &2819610111498995211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &4179004438281320222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/General_Click
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/General_Click
+  guid: ae833ba83b8e8c46a9c7adf4a97cf363
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 386
+--- !u!114 &4505919372186024991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Human_Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Human_Death
+  guid: 6e5311418c28544eb2c03dbfd3f9f3f6
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 1000
+--- !u!114 &4873879587658844421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Human_Cheer
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Human_Cheer
+  guid: a60784971a7f054280fe25c3f90e928a
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 726
+--- !u!114 &5028034936184555202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music_Loop
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music_Loop
+  guid: 6ec2c614438f4541b905ac58de98b8be
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5634771027009047269}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 98823
+--- !u!114 &5089550922326536690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &5408125788065070052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/GameStart
+  m_EditorClassIdentifier: 
+  Name: GameStart
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &5634771027009047269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 1
+--- !u!114 &5932640793043564611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Laser_Shot
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Laser_Shot
+  guid: 0d8f28e11aa62e49b8d5d177c02eda16
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 5000
+--- !u!114 &6483268818163899466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &6739419248152486398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/HurryUp
+  m_EditorClassIdentifier: 
+  Name: HurryUp
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &6878673763670316105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/HurryUp
+  m_EditorClassIdentifier: 
+  Name: HurryUp
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &7045817264498077062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Deploy_Human
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Deploy_Human
+  guid: bc4d2b39cc44b04ab3818d4a7471db54
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 40
+  Length: 1169
+--- !u!114 &7192772492029358870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &7261547297938443063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/GameStart
+  m_EditorClassIdentifier: 
+  Name: GameStart
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &7286245351627550752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/GameStart
+  m_EditorClassIdentifier: 
+  Name: GameStart
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 1
+--- !u!114 &8395723065982734431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hit_Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hit_Hurt
+  guid: ba296b6993c5f14a97a20b7e38bde5bc
+  Banks:
+  - {fileID: -1105042866321584432}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 365
+--- !u!114 &9156866535793187169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music_Loop_V2/Intensity
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 0
+  Exists: 0

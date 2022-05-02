@@ -16,7 +16,8 @@ namespace UI
 
         private void Start()
         {
-            units[0].GetComponent<Image>().sprite = disable;
+            units[0].GetComponent<Image>().sprite = enable;
+            units[0].GetComponent<Image>().transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             units[1].GetComponent<Image>().sprite = disable;
             units[2].GetComponent<Image>().sprite = disable;
         }
