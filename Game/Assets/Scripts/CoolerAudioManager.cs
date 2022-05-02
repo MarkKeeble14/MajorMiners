@@ -16,7 +16,7 @@ public class CoolerAudioManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         mainAudio = RuntimeManager.CreateInstance(aSound);
-        //mainAudio.start();
+        mainAudio.start();
     }
 
     private void Update()
