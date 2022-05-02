@@ -115,9 +115,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 100
+  <Damage>k__BackingField: 1000
   <CurrencyDropped>k__BackingField: 100
   <TotalHealth>k__BackingField: 100
   bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}
+  deathEffect: {fileID: 7862222581451341584, guid: 6c2a7c2c2545b5744bbb529a7d5d79ed, type: 3}
 --- !u!114 &6595957569325983415
 MonoBehaviour:
   m_ObjectHideFlags: 0

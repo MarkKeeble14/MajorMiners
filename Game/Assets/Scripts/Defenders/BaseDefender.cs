@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class BaseDefender : BaseUnit
@@ -14,12 +15,22 @@ public class BaseDefender : BaseUnit
     private GameObject _currentTarget;
     private SpriteRenderer _spriteRenderer;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        
         baseDefenderShoot = GetComponent<BaseDefenderShoot>();
         _targetingCheckTimer = new Timer(timeBetweenTargetingChecks);
         baseDefenderShoot = GetComponent<BaseDefenderShoot>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        
+        RuntimeManager.PlayOneShot("event:/SFX/Tower_Destroy", transform.position);
+
     }
 
     private void Update()

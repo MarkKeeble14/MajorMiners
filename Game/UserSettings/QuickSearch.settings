@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 trackSelection = false
 fetchPreview = true
 wantsMore = true
@@ -61,3 +62,6 @@ providers = {
 	}
 }
 assetIndexing = 1
+=======
+{}
+>>>>>>> 9992a51fa93bddbfd1725cd07d17193271b641e7

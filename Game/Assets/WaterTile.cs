@@ -90,7 +90,6 @@ public class WaterTile : MonoBehaviour
 
     private void SetSprite(List<ArrowDirection> blocked)
     {
-        Debug.Log(blocked.Count);
         if (blocked.Count == 1)
         {
             switch (blocked[0])

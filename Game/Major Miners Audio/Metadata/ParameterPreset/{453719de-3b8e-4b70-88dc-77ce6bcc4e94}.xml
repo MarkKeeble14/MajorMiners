@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{453719de-3b8e-4b70-88dc-77ce6bcc4e94}">
+		<property name="name">
+			<value>HurryUp</value>
+		</property>
+		<relationship name="folder">
+			<destination>{12c04416-2895-422c-820d-e4cce668a5d8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a1408cf1-f7dc-41f1-9669-7029c55905d3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a1408cf1-f7dc-41f1-9669-7029c55905d3}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1.8999999761581421</value>
+		</property>
+	</object>
+</objects>
