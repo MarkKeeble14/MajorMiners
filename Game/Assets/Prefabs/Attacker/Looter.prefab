@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2bf18be2297634a84ab1768ef11e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 1
   resourceEffect: {fileID: 5013162318792119461, guid: b8bcebee9809dc549b465f4265f7472b, type: 3}
 --- !u!114 &2219256707859678094
 MonoBehaviour:
@@ -129,9 +129,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 500
+  <Damage>k__BackingField: 1000
   <CurrencyDropped>k__BackingField: 100
   <TotalHealth>k__BackingField: 100
   bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}
+  deathEffect: {fileID: 7862222581451341584, guid: 6c2a7c2c2545b5744bbb529a7d5d79ed, type: 3}
 --- !u!114 &2219256707859678097
 MonoBehaviour:
   m_ObjectHideFlags: 0
