@@ -36,10 +36,13 @@ namespace Grid
 
         [SerializeField] private LayerMask land;
 
+        private Transform _parent;
+
         private WorldTile[,] _tiles;
 
         public void SpawnGrid(Transform parent)
         {
+            _parent = parent;
             Vector3 startPos = new Vector3(-rows / 2, cols / 2, 0);
             int asteroidTilesPlaced = 0;
             _tiles = new WorldTile[rows, cols];
@@ -79,7 +82,7 @@ namespace Grid
                         spawnedTile.SetBreakable(true);
                         spawnedTile.spriteLocked = true;
                     }
-                    spawned.transform.SetParent(parent);
+                    spawned.transform.SetParent(_parent);
                     _tiles[i, j] = spawned.GetComponent<WorldTile>();
                 }
             }
@@ -88,24 +91,33 @@ namespace Grid
             {
                 t.RaycastSetSprite();
             }
-            // SpawnWater();
+            SpawnWater();
         }
 
         private void SpawnWater()
         {
+            List<WaterTile> waterTiles = new List<WaterTile>();
             Vector3 startPos = new Vector3(-rows / 2 - waterAroundLand, cols / 2 + waterAroundLand, 0);
-            for (int i = 0; i < rows + 2 * waterAroundLand; i++)
+
+            for (int i = 0; i < rows + waterAroundLand * 2; i++)
             {
-                for (int j = 0; j < cols + 2 * waterAroundLand; j++)
+                for (int j = 0; j < cols + waterAroundLand * 2; j++)
                 {
-                    Vector3 tilePos = startPos + new Vector3(i, j, 0);
-                    RaycastHit2D hit = Physics2D.Raycast(tilePos,
-                    Vector3.forward, Mathf.Infinity, land);
+                    Vector3 tilePos = startPos + new Vector3(i, -j, 0);
+                    RaycastHit2D hit = Physics2D.Raycast(tilePos, Vector3.forward, Mathf.Infinity, land);
+
                     if (!hit)
                     {
                         GameObject spawnedWater = Instantiate(waterTile, tilePos, Quaternion.identity);
+                        spawnedWater.transform.SetParent(_parent);
+                        waterTiles.Add(spawnedWater.GetComponent<WaterTile>());
                     }
                 }
+            }
+
+            foreach (WaterTile t in waterTiles)
+            {
+                t.RaycastSetSprite();
             }
         }
 

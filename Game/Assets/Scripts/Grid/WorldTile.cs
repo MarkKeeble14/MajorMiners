@@ -80,19 +80,20 @@ namespace Grid
         private List<ArrowDirection> GetAdjacentBlocked()
         {
             List<ArrowDirection> blockedDirections = new List<ArrowDirection>();
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity, block);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-1, 0, 0), Vector3.forward,
+                Mathf.Infinity, block);
             if (hit)
                 blockedDirections.Add(ArrowDirection.LEFT);
 
-            hit = Physics2D.Raycast(transform.position, Vector2.right, Mathf.Infinity, block);
+            hit = Physics2D.Raycast(transform.position + new Vector3(1, 0, 0), Vector3.forward, Mathf.Infinity, block);
             if (hit)
                 blockedDirections.Add(ArrowDirection.RIGHT);
 
-            hit = Physics2D.Raycast(transform.position, Vector2.up, Mathf.Infinity, block);
+            hit = Physics2D.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.forward, Mathf.Infinity, block);
             if (hit)
                 blockedDirections.Add(ArrowDirection.UP);
 
-            hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, block);
+            hit = Physics2D.Raycast(transform.position + new Vector3(0, -1, 0), Vector3.forward, Mathf.Infinity, block);
             if (hit)
                 blockedDirections.Add(ArrowDirection.DOWN);
             return blockedDirections;
@@ -163,7 +164,6 @@ namespace Grid
             }
             else
             {
-
                 sr.sprite = midTile;
             }
         }
