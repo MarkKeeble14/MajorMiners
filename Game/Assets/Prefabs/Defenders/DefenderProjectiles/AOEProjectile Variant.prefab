@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7276920332908421820, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: <BaseDamage>k__BackingField
-      value: 21
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8066935279854981475, guid: ba26f5a124990e840bc220343448e146, type: 3}
       propertyPath: m_RootOrder
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364d80faace19bb4fa040dc490878b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageRadius: 4
+  damageRadius: 5
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 256
