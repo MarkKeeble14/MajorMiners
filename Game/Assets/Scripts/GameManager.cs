@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         audioManager = FindObjectOfType<CoolerAudioManager>();
+        if (!audioManager) return;
         audioManager.gameStartParam = 1;
     }
 
@@ -33,11 +34,13 @@ public class GameManager : MonoBehaviour
 
     public static void HurryUp()
     {
+        if (!audioManager) return;
         audioManager.hurryUpParam = 1;
     }
 
     private static void CheckIntensity()
     {
+        if (!audioManager) return;
         if (numberOfUnits < 5)
         {
             audioManager.intensityLevel = 0;

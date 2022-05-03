@@ -13,6 +13,7 @@ namespace UI
         [SerializeField] private float gameTime;
         [SerializeField] private float hurryUpTime = 30;
         private TextMeshProUGUI _text;
+
         private void Start()
         {
             _text = transform.GetComponent<TextMeshProUGUI>();

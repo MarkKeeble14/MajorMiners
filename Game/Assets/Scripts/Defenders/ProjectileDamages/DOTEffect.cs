@@ -3,35 +3,26 @@ using UnityEngine.Tilemaps;
 
 public class DOTEffect : BaseProjectileEffect
 {
-    [SerializeField] private ushort totalNumberOfDamageEffects = 3;
-    [SerializeField] private float timePerDamageEffect = 0.5f;
-    
-    private Timer _dealDamageTimer;
-    private ushort _currentNumberOfDamageEffects;
+    [SerializeField] private int totalNumberOfDamageEffects = 3;
+    private int _currentNumberOfDamageEffects;
 
-    private void Awake()
-    {
-        _dealDamageTimer = new Timer(timePerDamageEffect);
-    }
+    private float currentDealDamageTimer;
+    [SerializeField] private float timePerDamageEffect = 0.5f;
     
     public override void UpdateEffect(GameObject effectTarget, float baseDamage)
     {
-        if (!_dealDamageTimer.IsFinished())
+        if (currentDealDamageTimer > 0)
         {
-            _dealDamageTimer.UpdateTime();
+            currentDealDamageTimer -= Time.deltaTime;
         }
+        else
+        {
+            BaseAttacker hitAttacker = effectTarget.GetComponent<BaseAttacker>();
+            hitAttacker.DealDamage(baseDamage);
+            currentDealDamageTimer = timePerDamageEffect;
 
-        if (!_dealDamageTimer.IsFinished()) return;
-        _dealDamageTimer.Reset();
-        
-        var hitAttacker = effectTarget.GetComponent<BaseAttacker>();
-        
-        hitAttacker.DealDamage(baseDamage);
-
-        ++_currentNumberOfDamageEffects;
-
-        if (_currentNumberOfDamageEffects < totalNumberOfDamageEffects) return;
-        
-        IsDoneEffect = true;
+            if (++_currentNumberOfDamageEffects > totalNumberOfDamageEffects)
+                IsDoneEffect = true;
+        }
     }
 }

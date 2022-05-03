@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 180
+  hurryUpTime: 30
 --- !u!1 &7892184001222604685
 GameObject:
   m_ObjectHideFlags: 0

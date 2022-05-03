@@ -14,6 +14,8 @@ public class MyGrid : MonoBehaviour
     public LayerMask towerMask;
     //Size the grid will cover (defined in unity editor)
     public TileManager _tileManager;
+    // (FOR TESTING)
+    public List<Node> path;
 
     public Vector2 gridWorldSize
     {
@@ -34,10 +36,9 @@ public class MyGrid : MonoBehaviour
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
-
     }
 
-    void CreateGrid()
+    public void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
         // WorldBottomLeft = (position (0, 0, 0)) - (left edge of the world) - (bottom left corner)
@@ -108,9 +109,6 @@ public class MyGrid : MonoBehaviour
     }
 
 
-
-    // (FOR TESTING)
-    public List<Node> path;
     void OnDrawGizmos()
     {
         // Lets us draw the gridworldsize in the unity editor

@@ -24,6 +24,11 @@ public class Timer
         return ElapsedTime >= TotalTime;
     }
 
+    public void SetTime(float time)
+    {
+        ElapsedTime = time;
+    }
+
     public void Reset()
     {
         if (IsFinished())

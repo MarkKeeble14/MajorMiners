@@ -2,76 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using FMODUnity;
+using Grid;
 using UnityEngine;
 
-public class DismantlerMove : MonoBehaviour
+public class DismantlerMove : UnitMove
 {
-    public Grid.TileManager tileManager;
+    [SerializeField] protected TileManager tileManager;
+    [SerializeField] protected float timeToMine = 1f;
+    [SerializeField] protected int numTowersCanBreak = 1;
+    private int currentNumberTowersBroken;
 
-    public GameObject Astar;
-    MyGrid grid;
-    public List<Node> path;
-
-    [SerializeField] float moveSpeed = 5.0f;
-    [SerializeField] float mineSpeed = 1.0f;
-    [SerializeField] private GameObject resourceEffect;
-
-    bool onRoute = false;
-
-    private void Awake()
-    {
-        Astar = FindObjectOfType<MyGrid>().gameObject;
-    }
-
-    // Update is called once per frame
-    public void GoToDest()
-    {
-        if (!onRoute)
-        {
-            grid = Astar.GetComponent<MyGrid>();
-            path = grid.path;
-
-            StartCoroutine(MoveToEachPosition());
-            onRoute = true;
-        }
-    }
-
-
-    IEnumerator MoveToEachPosition()
+    protected override IEnumerator MoveToEachPosition()
     {
         for (int i = 0; i < path.Count; i++)
         {
             if (path[i].isTower)
             {
-                yield return new WaitForSeconds(mineSpeed);
-                tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetTower(null);
-                tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1).SetBreakable(false);
-                
-                
-                onRoute = false;
-                FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
-                Instantiate(resourceEffect, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                WorldTile t = tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1);
+                if (!t.occupyingTower)
+                {
+                    uPathfind.FindNewPath();
+                    break;
+                }
+                BaseDefender tower = t.occupyingTower.GetComponent<BaseDefender>();
+                tower.SetDismantleBar(timeToMine);
+
+                yield return new WaitForSeconds(timeToMine);
+
+                if (!tower)
+                {
+                    uPathfind.FindNewPath();
+                    break;
+                } else
+                {
+                    tower.HideDismantleBar();
+
+                    // Successfully broke tower
+                    t.SetTower(null);
+                    t.SetBreakable(true);
+                    FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost * 2;
+
+                    if (++currentNumberTowersBroken > numTowersCanBreak - 1)
+                    {
+                        onRoute = false;
+
+                        // Add Resources
+                        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+
+                        // Spawn particles
+                        Instantiate(resourceEffect, transform.position, Quaternion.identity);
+
+                        // Die
+                        Destroy(gameObject);
+                        bAttacker.onDeath();
+                    }
+                    uPathfind.FindNewPath();
+                    break;
+                }
             }
             yield return MoveTo(path[i].worldPosition);
-        }
-
-        if (tileManager.GetTile(path[path.Count - 1].gridX, grid.gridSizeY - path[path.Count - 1].gridY - 1).occupyingTower)
-        {
-            FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
-        }
-
-
-        onRoute = false;
-        Destroy(gameObject);
-    }
-
-    IEnumerator MoveTo(Vector3 destination)
-    {
-        while (transform.position != destination)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
-            yield return null;
         }
     }
 }

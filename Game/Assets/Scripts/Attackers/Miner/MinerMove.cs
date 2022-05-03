@@ -4,68 +4,49 @@ using FMODUnity;
 using Grid;
 using UnityEngine;
 
-public class MinerMove : MonoBehaviour
+public class MinerMove : UnitMove
 {
-    public Grid.TileManager tileManager;
-
-    public GameObject Astar;
-    MyGrid grid;
-    public List<Node> path;
-
-    [SerializeField] float moveSpeed = 5.0f;
-    [SerializeField] float mineSpeed = 1.0f;
+    [SerializeField] public TileManager tileManager;
+    [SerializeField] float timeToMine = 1.0f;
     [SerializeField] private GameObject dirtEffect;
-    [SerializeField] private GameObject resourceEffect;
+    private AttackerPlayer attacker;
 
-    bool onRoute = false;
-
-    private void Awake()
+    private new void Awake()
     {
-        Astar = FindObjectOfType<MyGrid>().gameObject;
+        base.Awake();
+        attacker = FindObjectOfType<AttackerPlayer>();
     }
 
-    // Update is called once per frame
-    public void GoToDest()
-    {
-        if (!onRoute)
-        {
-            grid = Astar.GetComponent<MyGrid>();
-            path = grid.path;
-
-            StartCoroutine(MoveToEachPosition());
-            onRoute = true;
-        }
-    }
-
-
-    IEnumerator MoveToEachPosition()
+    protected override IEnumerator MoveToEachPosition()
     {
         for (int i = 0; i < path.Count; i++)
         {
             if (path[i].breakable)
             {
-                yield return new WaitForSeconds(mineSpeed);
+                yield return new WaitForSeconds(timeToMine);
                 WorldTile current = tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1);
                 Instantiate(dirtEffect, current.transform);
-                current.SetBreakable(false);
+                RuntimeManager.PlayOneShot("event:/SFX/Digging");
+                current.BreakBreakable();
+                attacker.money += current.resourceValue;
             }
             yield return MoveTo(path[i].worldPosition);
-            RuntimeManager.PlayOneShot("event:/SFX/Digging");
-
         }
         onRoute = false;
-        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
-        Instantiate(resourceEffect, transform.position, Quaternion.identity);
-        FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
-        Destroy(gameObject);
-    }
 
-    IEnumerator MoveTo(Vector3 destination)
-    {
-        while (transform.position != destination)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
+        // Spawn particles
+        Instantiate(resourceEffect, transform.position, Quaternion.identity);
+
+        // Add Money and subtract resources
+        attacker.money += GetComponent<BaseUnit>().Cost;
+        attacker.resourceHealth -= GetComponent<BaseUnit>().Damage;
+
+        // Play sounds
+        RuntimeManager.PlayOneShot("event:/SFX/Mining");
+        RuntimeManager.PlayOneShot("event:/SFX/Human_Cheer");
+
+        // Die!
+        bAttacker.onDeath();
+        Destroy(gameObject);
     }
 }

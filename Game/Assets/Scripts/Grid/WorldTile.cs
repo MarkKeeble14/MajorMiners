@@ -5,25 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-public enum ArrowDirection
-{
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
-
-    LEFTUP,
-    RIGHTUP,
-    LEFTDOWN,
-    RIGHTDOWN
-}
-
 namespace Grid
 {
     public class WorldTile : MonoBehaviour
     {
         public List<GameObject> ActiveMiners = new List<GameObject>();
         public bool Breakable;
+        public bool Walkable;
         [SerializeField] private Sprite[] breakableSprite;
         [SerializeField] private Sprite walkableSprite;
         [SerializeField] private Sprite towerSprite;
@@ -49,16 +37,13 @@ namespace Grid
         [SerializeField] private Sprite grassTile;
         [SerializeField] private LayerMask block;
 
+        [SerializeField] private Vector2 minMaxResourceValue;
+        public uint resourceValue { get; private set; }
+
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
-        }
-
-        public void SetBreakable(bool breakable)
-        {
-            Breakable = breakable;
-            sr.sprite = Breakable ? breakableSprite[RandomHelper.RandomIntInclusive(0, breakableSprite.Length - 1)] : walkableSprite;
-            gameObject.layer = LayerMask.NameToLayer(Breakable ? breakableLayer : walkableLayer);
+            resourceValue = (uint)RandomHelper.RandomIntInclusive(minMaxResourceValue);
         }
 
         public void RaycastSetSprite()
@@ -128,6 +113,8 @@ namespace Grid
 
         private void SetSprite(List<ArrowDirection> blocked)
         {
+            if (spriteLocked) return;
+
             if (blocked.Count == 1)
             {
                 switch (blocked[0])
@@ -173,6 +160,48 @@ namespace Grid
             sr.sprite = sprite;
             spriteLocked = true;
         }
+
+        public void SetBreakable(bool breakable)
+        {
+            Breakable = breakable;
+            SetTileData();
+        }
+
+        public void SetWalkable(bool walkable)
+        {
+            Walkable = walkable;
+            SetTileData();
+        }
+
+        public void BreakBreakable()
+        {
+            SetBreakable(false);
+            SetWalkable(true);
+        }
+
+        public void SetRock()
+        {
+            SetBreakable(true);
+            SetWalkable(false);
+        }
+
+        private void SetTileData()
+        {
+            if (Walkable)
+            {
+                if (!spriteLocked) sr.sprite = walkableSprite;
+                gameObject.layer = LayerMask.NameToLayer(walkableLayer);
+            } else if (Breakable)
+            {
+                if (!spriteLocked) sr.sprite = breakableSprite[RandomHelper.RandomIntInclusive(0, breakableSprite.Length - 1)];
+                gameObject.layer = LayerMask.NameToLayer(breakableLayer);
+            } else if (occupyingTower != null)
+            {
+                if (!spriteLocked) sr.sprite = towerSprite;
+                gameObject.layer = LayerMask.NameToLayer(towerLayer);
+            }
+        }
+
         public void SetTower(GameObject tower)
         {
             if (!tower)
@@ -181,14 +210,8 @@ namespace Grid
             }
             occupyingTower = tower;
             Breakable = false;
-            sr.sprite = tower ? towerSprite : walkableSprite;
-            gameObject.layer = LayerMask.NameToLayer(tower ? towerLayer : walkableLayer);
-        }
-
-        public void SetAsteroid(bool asteroid)
-        {
-            sr.sprite = walkableSprite;
-            gameObject.layer = LayerMask.NameToLayer(walkableLayer);
+            Walkable = false;
+            SetTileData();
         }
     }
 }

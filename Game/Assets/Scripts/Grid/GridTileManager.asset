@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9, type: 3}
-  m_Name: TileManager
+  m_Name: GridTileManager
   m_EditorClassIdentifier: 
-  rows: 27
-  cols: 15
-  aroundAsteroid: 1
-  aroundCanyon: 1
-  waterAroundLand: 6
+  rows: 37
+  cols: 29
+  aroundAsteroid: 2
+  aroundCanyon: 2
+  waterAroundLand: 15
   outsideCanyonSprite: {fileID: 7213639340675471223, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   asteroidSpriteArray:
   - {fileID: 6678127448765364976, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
@@ -28,9 +28,10 @@ MonoBehaviour:
   - {fileID: -4862901738488999286, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
   - {fileID: -7583263325477471717, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
   - {fileID: 4755084460827791951, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  aroundAsteroidSprite: {fileID: -1042647230065682567, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
   worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}
   asteroidTile: {fileID: 8312990029052005097, guid: c36b7824629dbe645a421709e1f11cf5, type: 3}
   waterTile: {fileID: 8312990029052005097, guid: 7cae3657067fa8a42954fd5e70560c42, type: 3}
   land:
     serializedVersion: 2
-    m_Bits: 704
+    m_Bits: 1728

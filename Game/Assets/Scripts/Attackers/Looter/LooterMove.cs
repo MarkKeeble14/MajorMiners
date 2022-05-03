@@ -3,57 +3,29 @@ using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 
-public class LooterMove : MonoBehaviour
+public class LooterMove : UnitMove
 {
-    MyGrid grid;
-    public List<Node> path;
-
-    [SerializeField] private float moveSpeed = 1.0f;
-    [SerializeField] private GameObject resourceEffect;
-    bool onRoute = false;
-
-    private void Awake()
+    protected override IEnumerator MoveToEachPosition()
     {
-        grid = FindObjectOfType<MyGrid>();
-    }
-
-    // Update is called once per frame
-    public void GoToDest()
-    {
-        if (!onRoute)
-        {
-            path = grid.path;
-
-            StartCoroutine(MoveToEachPosition());
-            onRoute = true;
-        }
-    }
-
-
-    IEnumerator MoveToEachPosition()
-    {
-
         for (int i = 0; i < path.Count; i++)
         {
             yield return MoveTo(path[i].worldPosition);
         }
-        Instantiate(resourceEffect, transform.position, Quaternion.identity);
         onRoute = false;
-        
+
+        // Spawn particles
+        Instantiate(resourceEffect, transform.position, Quaternion.identity);
+
+        // Add Money and subtract resources
+        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
+
+        // Play sounds
         RuntimeManager.PlayOneShot("event:/SFX/Mining");
         RuntimeManager.PlayOneShot("event:/SFX/Human_Cheer");
 
-        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
-        FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
+        // Die!
         Destroy(gameObject);
-    }
-
-    IEnumerator MoveTo(Vector3 destination)
-    {
-        while (transform.position != destination)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
+        bAttacker.onDeath();
     }
 }

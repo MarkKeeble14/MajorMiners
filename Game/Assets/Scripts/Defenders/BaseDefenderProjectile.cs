@@ -10,14 +10,12 @@ public class BaseDefenderProjectile : MonoBehaviour
     public GameObject CurrentTarget { get; set; }
     private bool _hasHitTarget;
     private BaseProjectileEffect _projectileEffect;
-    private GameObject _numberPopup;
 
     private void Awake()
     {
         RuntimeManager.PlayOneShot("event:/SFX/Laser_Shot", transform.position);
 
         _projectileEffect = GetComponent<BaseProjectileEffect>();
-        _numberPopup = (GameObject)Resources.Load("PopupText/NumberPopupCanvas");
     }
 
     private void Update()
@@ -37,14 +35,6 @@ public class BaseDefenderProjectile : MonoBehaviour
         if (!_hasHitTarget) return;
 
         GetComponent<SpriteRenderer>().enabled = false;
-        // Spawn Number Popup
-        GameObject spawned = Instantiate(_numberPopup,
-            CurrentTarget.transform.position,
-            Quaternion.identity);
-        GameObject numberPopup = spawned.transform.GetChild(0).gameObject;
-        numberPopup.GetComponent<PopupText>().Set(BaseDamage.ToString(), Color.black);
-        
-        RuntimeManager.PlayOneShot("event:/SFX/Hit_Hurt");
 
         // Set Projectile Effect
         _projectileEffect.UpdateEffect(CurrentTarget, BaseDamage);

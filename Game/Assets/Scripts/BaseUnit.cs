@@ -8,6 +8,8 @@ public class BaseUnit : MonoBehaviour
 
     public static int numberOfUnits;
 
+    public float placeCD = 0.2f;
+
     public virtual void Awake()
     {
         GameManager.IncreaseUnits();

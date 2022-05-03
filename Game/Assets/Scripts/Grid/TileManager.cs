@@ -24,11 +24,20 @@ namespace Grid
         }
 
         [SerializeField] private int aroundAsteroid;
+        public int AroundAsteroid
+        {
+            get { return aroundAsteroid; }
+        }
         [SerializeField] private int aroundCanyon;
+        public int AroundCanyon
+        {
+            get { return aroundCanyon; }
+        }
         [SerializeField] private int waterAroundLand;
 
         [SerializeField] private Sprite outsideCanyonSprite;
         [SerializeField] private Sprite[] asteroidSpriteArray;
+        [SerializeField] private Sprite aroundAsteroidSprite;
 
         [SerializeField] private GameObject worldTile;
         [SerializeField] private GameObject asteroidTile;
@@ -65,22 +74,22 @@ namespace Grid
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
                         WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                        spawnedTile.SetLockedSprite(aroundAsteroidSprite);
                         spawnedTile.SetBreakable(false);
-                        spawnedTile.spriteLocked = true;
+                        spawnedTile.SetWalkable(true);
                     }
                     else if (i < aroundCanyon || i > rows - aroundCanyon - 1
                         || j < aroundCanyon || j > cols - aroundCanyon - 1)
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
-                        spawned.GetComponent<WorldTile>().SetBreakable(false);
-                        spawned.GetComponent<SpriteRenderer>().sprite = outsideCanyonSprite;
+                        WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                        spawnedTile.SetBreakable(false);
                     }
                     else
                     {
                         spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
                         WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
-                        spawnedTile.SetBreakable(true);
-                        spawnedTile.spriteLocked = true;
+                        spawnedTile.SetRock();
                     }
                     spawned.transform.SetParent(_parent);
                     _tiles[i, j] = spawned.GetComponent<WorldTile>();
@@ -89,7 +98,8 @@ namespace Grid
 
             foreach (WorldTile t in _tiles)
             {
-                t.RaycastSetSprite();
+                if (!t.Breakable)
+                    t.RaycastSetSprite();
             }
             SpawnWater();
         }

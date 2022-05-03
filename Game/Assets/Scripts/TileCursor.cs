@@ -9,7 +9,11 @@ public class TileCursor : MonoBehaviour
     [SerializeField] public TileManager tileManager;
     [SerializeField] public WorldTile currentTile;
     [SerializeField] public Vector2Int coordinates;
+    [SerializeField] private Vector2Int startAt;
+    [SerializeField] private bool invert;
+    [SerializeField] private bool startInMiddle;
     private SpriteRenderer sr;
+
     public bool Enabled
     {
         get { return sr.enabled; }
@@ -18,7 +22,21 @@ public class TileCursor : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        SetTo(0, 0);
+
+        if (startInMiddle)
+        {
+            SetTo(tileManager.Rows / 2, tileManager.Columns / 2);
+        } else
+        {
+            if (invert)
+            {
+                SetTo(tileManager.Rows - startAt.x - 1, tileManager.Columns - startAt.y - 1);
+            }
+            else
+            {
+                SetTo(startAt.x, startAt.y);
+            }
+        }
     }
 
     private void SetCurrentTile()
@@ -45,14 +63,6 @@ public class TileCursor : MonoBehaviour
         coordinates += moveBy;
         SetCurrentTile();
     }
-
-    public void SetBreakable(bool breakable)
-    {
-        if (!Enabled)
-            return;
-        currentTile.SetBreakable(breakable);
-    }
-
 
     public void Show()
     {

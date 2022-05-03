@@ -2,29 +2,29 @@ using System.Collections.Generic;
 using Grid;
 using UnityEngine;
 
-public class LooterPathfind : MonoBehaviour
+public class LooterPathfind : UnitPathfind
 {
-    [SerializeField] private TileManager tileManager;
     public LooterMove looterMove;
-    // (FOR TESTING)
-    public Transform seeker, target;
+
     void Update()
     {
         FindPath(seeker.position, target.position);
     }
-    // (FOR TESTING)
 
-    public MyGrid grid;
-
-    // Gets the grid from the MyGrid Script
-    void Awake()
+    public override void FindTarget()
     {
-        grid = FindObjectOfType<MyGrid>();
         target = tileManager.GetTile(tileManager.Rows / 2, tileManager.Columns / 2).transform;
     }
 
+    // Gets the grid from the MyGrid Script
+    protected override void Awake()
+    {
+        base.Awake();
+        FindTarget();
+    }
+
     // Refer to the PSEUDO-CODE in A* algorithm notes
-    void FindPath(Vector3 startPos, Vector3 targetPos)
+    public override void FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
@@ -77,40 +77,4 @@ public class LooterPathfind : MonoBehaviour
             }
         }
     }
-
-    // Retraces and calculates what the path it took was, the parent node in the Node class is vital
-    void RetracePath(Node startNode, Node endNode)
-    {
-        List<Node> path = new List<Node>();
-        Node currentNode = endNode;
-
-        while (currentNode != startNode)
-        {
-            path.Add(currentNode);
-            currentNode = currentNode.parent;
-        }
-        // Path will be backwards, need to reverse
-        path.Reverse();
-
-        // (FOR TESTING)
-        grid.path = path;
-        looterMove.GoToDest();
-        // (FOR TESTING)
-    }
-
-    // Function to get the distance of two nodes
-    int GetDistance(Node nodeA, Node nodeB)
-    {
-        int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-        int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-
-        // 14 is the unit for diagonals and 10 is non-diagonals, this is a fancy math equation refer to notes on A* algorithm
-        if (dstX > dstY)
-        {
-            return 14 * dstY + 10 * (dstX - dstY);
-        }
-        return 14 * dstX + 10 * (dstY - dstX);
-    }
-
-
 }

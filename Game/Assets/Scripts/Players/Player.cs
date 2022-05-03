@@ -13,68 +13,152 @@ public abstract class Player : MonoBehaviour
     public bool placing;
 
     [SerializeField] protected TileManager tileManager;
-
+    [SerializeField] private SpriteRenderer selectedIndicator;
     [SerializeField] protected TileCursor tileCursor;
-    [SerializeField] private KeyCode[] _unitKeys;
-    [SerializeField] private string[] _buttonNames;
+    [SerializeField] private GameObject buyableUnitDisplay;
+    [SerializeField] private Transform buyableUnitDisplayParent;
     [SerializeField] private string _placeButtonName;
-
-    
+    [SerializeField] private string[] _buttonNames;
     [SerializeField] private string horizontalString = "Horizontal";
     [SerializeField] private string verticalString = "Vertical";
-    [SerializeField] private SpriteRenderer unitRender;
-    
-    [SerializeField] private SelectUnits unitSelector;
-    [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
+
     [SerializeField] protected GameObject[] _unitsToSpawn;
+    [SerializeField] private KeyCode[] _unitKeys;
+    [SerializeField] private KeyCode moveCursorLeft;
+    [SerializeField] private KeyCode moveCursorRight;
+    [SerializeField] private KeyCode moveCursorDown;
+    [SerializeField] private KeyCode moveCursorUp;
+    [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
     
-    
-    private Timer _canMoveTimer;
+    [SerializeField] private float _delayAfterKeyPressed = 0.5f;
+    [SerializeField] private float _delayWhileKeyHeld = 0.05f;
+
+    protected Dictionary<GameObject, BaseUnit> baseUnitDictionary = new Dictionary<GameObject, BaseUnit>();
+    protected Dictionary<GameObject, UnitDisplay> unitDisplayDictionary = new Dictionary<GameObject, UnitDisplay>();
+    protected Dictionary<GameObject, Timer> cooldowns = new Dictionary<GameObject, Timer>();
+    private UnitDisplay[] unitDisplays;
+
     public bool playAlienCursorNoise;
 
     protected int currentUnitIndex;
     protected bool placedUnit;
 
+    [SerializeField] protected List<GameObject> spawnedUnits = new List<GameObject>();
+
     private void Awake()
     {
-        _canMoveTimer = new Timer(0.15f);
-        unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
+        selectedIndicator.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
 
+        unitDisplays = new UnitDisplay[_unitsToSpawn.Length];
+        for (int i = 0; i < _unitsToSpawn.Length; i++)
+        {
+            // father forgive me for i have sinned
+            GameObject o = _unitsToSpawn[i];
+            BaseUnit bUnit = o.GetComponent<BaseUnit>();
+            baseUnitDictionary.Add(o, bUnit);
+            GameObject spawned = Instantiate(buyableUnitDisplay, buyableUnitDisplayParent);
+            UnitDisplay sUnitDisplay = spawned.GetComponent<UnitDisplay>();
+            unitDisplays[i] = sUnitDisplay;
+            sUnitDisplay.Set(o);
+            unitDisplayDictionary.Add(o, sUnitDisplay);
+            cooldowns.Add(o, new Timer(bUnit.placeCD));
+            cooldowns[o].Reset();
+        }
+        SelectUnitDisplay(0);
     }
-    
+
+    private void UpdateCooldowns()
+    {
+        foreach (KeyValuePair<GameObject, BaseUnit> kvp in baseUnitDictionary)
+        {
+            Timer t = cooldowns[kvp.Key];
+            t.UpdateTime();
+            unitDisplayDictionary[kvp.Key].SetCD(t.ElapsedTime, t.TotalTime);
+        }
+    }
+
     protected virtual void Update()
     {
-        unitRender.gameObject.transform.position = tileCursor.transform.position;
-        if (_canMoveTimer.IsFinished())
-        {
-            _canMoveTimer.Reset();
-        }
-        
-        _canMoveTimer.UpdateTime();
-        
+        if (Time.timeScale == 0) return;
+        UpdateCooldowns();
+        selectedIndicator.enabled = CanPlaceUnit();
+
         for (var i = 0; i < _unitKeys.Length; ++i)
         {
             if (!Input.GetKey(_unitKeys[i]) && !Input.GetButton(_buttonNames[i])) continue;
 
             currentUnitIndex = i;
-            unitSelector.SelectUnit(currentUnitIndex);
-            unitRender.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
-            
+            SelectUnitDisplay(i);
+            selectedIndicator.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
             break;
         }
 
-        ControlPlacementCursor();
+        // AxisControlPlacementCursor();
+        KeyboardControlPlacementCursor();
     }
 
-    private void ControlPlacementCursor()
+    private void SelectUnitDisplay(int i)
     {
-        bool startedHoldLeft = false;
-        bool startedHoldRight = false;
-        bool startedHoldUp = false;
-        bool startedHoldDown = false;
-        
-        
-        
+        for (int j = 0; j < unitDisplays.Length; j++)
+        {
+            if (j != i)
+            {
+                unitDisplays[j].selected = false;
+            } else
+            {
+                unitDisplays[i].selected = true;
+            }
+        }
+    }
+
+    private void KeyboardControlPlacementCursor()
+    {
+        // Place Units
+        if (!Input.GetKey(_placeUnit) && !Input.GetButton(_placeButtonName))
+        {
+            placedUnit = false;
+        }
+
+        // Place unit down.
+        if ((Input.GetKey(_placeUnit) || Input.GetButton(_placeButtonName)) && !placedUnit)
+        {
+            TryPlaceUnit();
+        }
+
+        if (!Input.GetKey(moveCursorRight) && !Input.GetKey(moveCursorLeft) && !Input.GetKey(moveCursorUp) && !Input.GetKey(moveCursorDown))
+        {
+            StopAllCoroutines();
+        }
+
+        // if (!_canMoveTimer.IsFinished()) return;
+
+        if (Input.GetKeyDown(moveCursorLeft))
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(moveCursorLeft, -1, 0, _delayAfterKeyPressed, _delayWhileKeyHeld));
+        }
+
+        if (Input.GetKeyDown(moveCursorRight))
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(moveCursorRight, 1, 0, _delayAfterKeyPressed, _delayWhileKeyHeld));
+        }
+
+        if (Input.GetKeyDown(moveCursorDown))
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(moveCursorDown, 0, 1, _delayAfterKeyPressed, _delayWhileKeyHeld));
+        }
+
+        if (Input.GetKeyDown(moveCursorUp))
+        {
+            StopAllCoroutines();
+            StartCoroutine(StartMove(moveCursorUp, 0, -1, _delayAfterKeyPressed, _delayWhileKeyHeld));
+        }
+    }
+
+    private void AxisControlPlacementCursor()
+    {
         if (Input.GetAxisRaw(horizontalString) > -0.2f
             && Input.GetAxisRaw(horizontalString) < 0.2f
             && Input.GetAxisRaw(verticalString) > -0.2f
@@ -94,7 +178,9 @@ public abstract class Player : MonoBehaviour
             TryPlaceUnit();
         }
 
+        /*
         if (!_canMoveTimer.IsFinished()) return;
+        */
 
         if (Input.GetAxisRaw(horizontalString) < -0.2f)
         {
@@ -119,19 +205,19 @@ public abstract class Player : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(StartMove(verticalString, 0, 1, 0.5f, 0.05f));
         }
-
-        
     }
 
     protected abstract void TryPlaceUnit();
+
+    protected abstract bool CanPlaceUnit();
 
     private IEnumerator StartMove(string key, int moveRow, int moveCol,
         float waitAfterFirstMove,
         float waitPastFirstMove)
     {
-        PlayCursorSoundFX();
         bool first = true;
-        tileCursor.Move(moveRow, moveCol);
+        MoveTileCursor(moveRow, moveCol);
+        PlayCursorSoundFX();
         while (Input.GetAxisRaw(key) > 0.2f || Input.GetAxisRaw(key) < -0.2f)
         {
             if (first)
@@ -143,8 +229,38 @@ public abstract class Player : MonoBehaviour
             {
                 yield return new WaitForSeconds(waitPastFirstMove);
             }
+            PlayCursorSoundFX();
+            MoveTileCursor(moveRow, moveCol);
 
-            tileCursor.Move(moveRow, moveCol);
+            yield return null;
+        }
+    }
+
+    private void MoveTileCursor(int moveRow, int moveCol)
+    {
+        tileCursor.Move(moveRow, moveCol);
+    }
+
+    private IEnumerator StartMove(KeyCode key, int moveRow, int moveCol,
+    float waitAfterFirstMove,
+    float waitPastFirstMove)
+    {
+        bool first = true;
+        MoveTileCursor(moveRow, moveCol);
+        PlayCursorSoundFX();
+        while (Input.GetKey(key))
+        {
+            if (first)
+            {
+                yield return new WaitForSeconds(waitAfterFirstMove);
+                first = false;
+            }
+            else
+            {
+                yield return new WaitForSeconds(waitPastFirstMove);
+            }
+            PlayCursorSoundFX();
+            MoveTileCursor(moveRow, moveCol);
             yield return null;
         }
     }

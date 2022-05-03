@@ -7,6 +7,8 @@ public class UIButtonHelper : MonoBehaviour
 {
     private bool paused;
 
+    [SerializeField] private GameObject pauseScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +26,14 @@ public class UIButtonHelper : MonoBehaviour
         {
             paused = false;
             Time.timeScale = 1;
+            if (pauseScreen)
+                pauseScreen.SetActive(false);
         } else
         {
             paused = true;
             Time.timeScale = 0;
+            if (pauseScreen)
+                pauseScreen.SetActive(true);
         }
     }
 

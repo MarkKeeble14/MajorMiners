@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveMiners: []
   Breakable: 0
+  Walkable: 0
   breakableSprite:
   - {fileID: -4952200318764043218, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
   - {fileID: -9184001456575089111, guid: c4cae7d2c38ca8043ad44c6d4b073268, type: 3}
@@ -166,7 +167,8 @@ MonoBehaviour:
   rightDownTile: {fileID: 5535226985061942197, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   leftUpTile: {fileID: 3222003104322823138, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
   leftDownTile: {fileID: 7071104368224478110, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
-  grassTile: {fileID: 8611844643339386859, guid: 8bd2faa950f4fa04cade4a3f1563c7c3, type: 3}
+  grassTile: {fileID: 21300000, guid: 87eaf125a96ec8646a5f8b922fe48afe, type: 3}
   block:
     serializedVersion: 2
     m_Bits: 128
+  minMaxResourceValue: {x: 0, y: 10}

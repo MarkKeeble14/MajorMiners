@@ -1,5 +1,7 @@
 using FMODUnity;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class BaseDefender : BaseUnit
 {
@@ -10,17 +12,41 @@ public class BaseDefender : BaseUnit
     [SerializeField] private float timeBetweenTargetingChecks = 1.0f;
     
     private BaseDefenderShoot baseDefenderShoot;
-    private Timer _targetingCheckTimer;
     private bool _isTargetingEnemy;
     private GameObject _currentTarget;
     private SpriteRenderer _spriteRenderer;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private BetterBarDisplay dismantleBar;
+
+    public void SetDismantleBar(float max)
+    {
+        canvas.SetActive(true);
+        StartCoroutine(ShowDismantleBar(max));
+    }
+
+    private IEnumerator ShowDismantleBar(float max)
+    {
+        float elapsed = 0;
+        while (elapsed <= max)
+        {
+            elapsed += Time.deltaTime;
+            dismantleBar.SetSize(elapsed, max);
+            yield return null;
+        }
+        HideDismantleBar();
+    }
+
+    public void HideDismantleBar()
+    {
+        canvas.SetActive(false);
+    }
 
     public override void Awake()
     {
         base.Awake();
         
         baseDefenderShoot = GetComponent<BaseDefenderShoot>();
-        _targetingCheckTimer = new Timer(timeBetweenTargetingChecks);
+        
         baseDefenderShoot = GetComponent<BaseDefenderShoot>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -30,7 +56,6 @@ public class BaseDefender : BaseUnit
         base.OnDestroy();
         
         RuntimeManager.PlayOneShot("event:/SFX/Tower_Destroy", transform.position);
-
     }
 
     private void Update()
@@ -61,15 +86,7 @@ public class BaseDefender : BaseUnit
      */
     private void UpdateTargetChecks()
     {
-        if (!_targetingCheckTimer.IsFinished())
-        {
-            UpdateTargetedEnemy();
-            _targetingCheckTimer.Reset();
-        }
-        else
-        {
-            _targetingCheckTimer.UpdateTime();
-        }
+        UpdateTargetedEnemy();
     }
 
     /**
