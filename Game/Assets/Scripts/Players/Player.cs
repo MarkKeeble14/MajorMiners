@@ -38,8 +38,6 @@ public abstract class Player : MonoBehaviour
     protected Dictionary<GameObject, Timer> cooldowns = new Dictionary<GameObject, Timer>();
     private UnitDisplay[] unitDisplays;
 
-    public bool playAlienCursorNoise;
-
     protected int currentUnitIndex;
     protected bool placedUnit;
 
@@ -217,7 +215,6 @@ public abstract class Player : MonoBehaviour
     {
         bool first = true;
         MoveTileCursor(moveRow, moveCol);
-        PlayCursorSoundFX();
         while (Input.GetAxisRaw(key) > 0.2f || Input.GetAxisRaw(key) < -0.2f)
         {
             if (first)
@@ -229,7 +226,6 @@ public abstract class Player : MonoBehaviour
             {
                 yield return new WaitForSeconds(waitPastFirstMove);
             }
-            PlayCursorSoundFX();
             MoveTileCursor(moveRow, moveCol);
 
             yield return null;
@@ -247,7 +243,6 @@ public abstract class Player : MonoBehaviour
     {
         bool first = true;
         MoveTileCursor(moveRow, moveCol);
-        PlayCursorSoundFX();
         while (Input.GetKey(key))
         {
             if (first)
@@ -259,7 +254,6 @@ public abstract class Player : MonoBehaviour
             {
                 yield return new WaitForSeconds(waitPastFirstMove);
             }
-            PlayCursorSoundFX();
             MoveTileCursor(moveRow, moveCol);
             yield return null;
         }
@@ -291,17 +285,5 @@ public abstract class Player : MonoBehaviour
         if (money < unit.Cost)
             return;
         OpenPlacementMode();
-    }
-
-    private void PlayCursorSoundFX()
-    {
-        if (playAlienCursorNoise)
-        {
-            RuntimeManager.PlayOneShot("event:/SFX/Alien_Cursor", tileCursor.currentTile.transform.position);
-        }
-        else
-        {
-            RuntimeManager.PlayOneShot("event:/SFX/Human_Cursor", tileCursor.currentTile.transform.position);
-        }
     }
 }

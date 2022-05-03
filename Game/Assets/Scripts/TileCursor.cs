@@ -1,3 +1,4 @@
+using FMODUnity;
 using Grid;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ public class TileCursor : MonoBehaviour
     [SerializeField] private bool invert;
     [SerializeField] private bool startInMiddle;
     private SpriteRenderer sr;
-
+    [SerializeField] private bool alienCursor;
     public bool Enabled
     {
         get { return sr.enabled; }
@@ -59,9 +60,23 @@ public class TileCursor : MonoBehaviour
         if (coordinates.y + colWise > tileManager.Columns - 1
             || coordinates.y + colWise < 0)
             return;
+        PlayCursorSoundFX();
         Vector2Int moveBy = new Vector2Int(rowWise, colWise);
         coordinates += moveBy;
         SetCurrentTile();
+    }
+
+
+    private void PlayCursorSoundFX()
+    {
+        if (alienCursor)
+        {
+            RuntimeManager.PlayOneShot("event:/SFX/Alien_Cursor", currentTile.transform.position);
+        }
+        else
+        {
+            RuntimeManager.PlayOneShot("event:/SFX/Human_Cursor", currentTile.transform.position);
+        }
     }
 
     public void Show()

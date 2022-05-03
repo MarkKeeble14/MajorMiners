@@ -449,7 +449,6 @@ MonoBehaviour:
   _placeUnit: 101
   _delayAfterKeyPressed: 0.25
   _delayWhileKeyHeld: 0.05
-  playAlienCursorNoise: 0
   spawnedUnits: []
   resourceHealth: 10000
   hpDisplay: {fileID: 2006077189}
@@ -792,6 +791,7 @@ MonoBehaviour:
   startAt: {x: 0, y: 0}
   invert: 0
   startInMiddle: 0
+  alienCursor: 1
 --- !u!212 &261586188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1876,8 +1876,9 @@ MonoBehaviour:
   currentTile: {fileID: 0}
   coordinates: {x: 0, y: 0}
   startAt: {x: 0, y: 0}
-  invert: 1
-  startInMiddle: 0
+  invert: 0
+  startInMiddle: 1
+  alienCursor: 0
 --- !u!212 &961842319
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2580,10 +2581,9 @@ MonoBehaviour:
   moveCursorRight: 275
   moveCursorDown: 274
   moveCursorUp: 273
-  _placeUnit: 13
+  _placeUnit: 271
   _delayAfterKeyPressed: 0.25
   _delayWhileKeyHeld: 0.1
-  playAlienCursorNoise: 0
   spawnedUnits: []
   attacker: {fileID: 75052498}
 --- !u!1 &1516003152
