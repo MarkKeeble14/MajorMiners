@@ -9,7 +9,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Player : MonoBehaviour
 {
-    public uint money;
+    public int money;
     public bool placing;
 
     [SerializeField] protected TileManager tileManager;
@@ -17,6 +17,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] protected TileCursor tileCursor;
     [SerializeField] private GameObject buyableUnitDisplay;
     [SerializeField] private Transform buyableUnitDisplayParent;
+    [SerializeField] private LeftOrRight tooltipLeanDirection;
     [SerializeField] private string _placeButtonName;
     [SerializeField] private string[] _buttonNames;
     [SerializeField] private string horizontalString = "Horizontal";
@@ -29,6 +30,7 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private KeyCode moveCursorDown;
     [SerializeField] private KeyCode moveCursorUp;
     [SerializeField] private KeyCode _placeUnit = KeyCode.Return;
+    [SerializeField] private KeyCode openTooltip;
     
     [SerializeField] private float _delayAfterKeyPressed = 0.5f;
     [SerializeField] private float _delayWhileKeyHeld = 0.05f;
@@ -58,6 +60,7 @@ public abstract class Player : MonoBehaviour
             UnitDisplay sUnitDisplay = spawned.GetComponent<UnitDisplay>();
             unitDisplays[i] = sUnitDisplay;
             sUnitDisplay.Set(o);
+            sUnitDisplay.SetLean(tooltipLeanDirection);
             unitDisplayDictionary.Add(o, sUnitDisplay);
             cooldowns.Add(o, new Timer(bUnit.placeCD));
             cooldowns[o].Reset();
@@ -75,20 +78,47 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    private void OpenTooltip(int index)
+    {
+        for (int i = 0; i < unitDisplays.Length; i++)
+        {
+            if (i == index)
+            {
+                unitDisplays[i].ToggleTooltip();
+            } else
+            {
+                unitDisplays[i].CloseTooltip();
+            }
+        }
+    }
+
     protected virtual void Update()
     {
         if (Time.timeScale == 0) return;
+
+        // Update cooldowns
         UpdateCooldowns();
+
+        // Only show placement indicator if the unit can be placed
         selectedIndicator.enabled = CanPlaceUnit();
 
         for (var i = 0; i < _unitKeys.Length; ++i)
         {
             if (!Input.GetKey(_unitKeys[i]) && !Input.GetButton(_buttonNames[i])) continue;
 
+            // Updating current unit index (player has selected a new unit)
             currentUnitIndex = i;
             SelectUnitDisplay(i);
             selectedIndicator.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
+            // Will deselect the current tooltip
+            OpenTooltip(-1);
             break;
+        }
+
+        // Deal with tooltips
+        if (Input.GetKeyDown(openTooltip))
+        {
+            OpenTooltip(currentUnitIndex);
         }
 
         // AxisControlPlacementCursor();

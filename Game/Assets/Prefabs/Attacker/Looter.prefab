@@ -118,6 +118,7 @@ MonoBehaviour:
   <Cost>k__BackingField: 50
   <Damage>k__BackingField: 500
   placeCD: 0.25
+  Description: Requires an open path; Fast!
   <CurrencyDropped>k__BackingField: 25
   <TotalHealth>k__BackingField: 100
   bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}

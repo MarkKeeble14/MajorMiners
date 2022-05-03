@@ -25,10 +25,9 @@ public class MinerMove : UnitMove
             {
                 yield return new WaitForSeconds(timeToMine);
                 WorldTile current = tileManager.GetTile(path[i].gridX, grid.gridSizeY - path[i].gridY - 1);
-                Instantiate(dirtEffect, current.transform);
+                Instantiate(dirtEffect, current.transform.position, Quaternion.identity);
                 RuntimeManager.PlayOneShot("event:/SFX/Digging");
                 current.BreakBreakable();
-                attacker.money += current.resourceValue;
             }
             yield return MoveTo(path[i].worldPosition);
         }

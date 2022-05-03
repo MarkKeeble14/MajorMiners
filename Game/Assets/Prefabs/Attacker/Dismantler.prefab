@@ -118,6 +118,7 @@ MonoBehaviour:
   <Cost>k__BackingField: 250
   <Damage>k__BackingField: 1000
   placeCD: 3
+  Description: Moves to towers & destroys them.
   <CurrencyDropped>k__BackingField: 100
   <TotalHealth>k__BackingField: 300
   bloodEffect: {fileID: 3948203583314561190, guid: f4c1d1f8818694f48b7321313dea3221, type: 3}

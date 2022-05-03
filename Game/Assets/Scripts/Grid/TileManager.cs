@@ -42,6 +42,8 @@ namespace Grid
         [SerializeField] private GameObject worldTile;
         [SerializeField] private GameObject asteroidTile;
         [SerializeField] private GameObject waterTile;
+        // Out of 100
+        [SerializeField] private int baseChanceToSpawnTile;
 
         [SerializeField] private LayerMask land;
 
@@ -87,9 +89,20 @@ namespace Grid
                     }
                     else
                     {
-                        spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
-                        WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
-                        spawnedTile.SetRock();
+                        if (RandomHelper.RandomIntInclusive(0, 100) <= baseChanceToSpawnTile)
+                        {
+                            spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
+                            WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                            spawnedTile.SetRock();
+                        } else
+                        {
+                            // Spawn Regular tile instead
+                            spawned = Instantiate(worldTile, spawnPos, Quaternion.identity);
+                            WorldTile spawnedTile = spawned.GetComponent<WorldTile>();
+                            spawnedTile.SetLockedSprite(aroundAsteroidSprite);
+                            spawnedTile.SetBreakable(false);
+                            spawnedTile.SetWalkable(true);
+                        }
                     }
                     spawned.transform.SetParent(_parent);
                     _tiles[i, j] = spawned.GetComponent<WorldTile>();

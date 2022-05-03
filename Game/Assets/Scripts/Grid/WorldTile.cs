@@ -9,41 +9,59 @@ namespace Grid
 {
     public class WorldTile : MonoBehaviour
     {
-        public List<GameObject> ActiveMiners = new List<GameObject>();
-        public bool Breakable;
-        public bool Walkable;
-        [SerializeField] private Sprite[] breakableSprite;
-        [SerializeField] private Sprite walkableSprite;
-        [SerializeField] private Sprite towerSprite;
+        // public List<GameObject> ActiveMiners = new List<GameObject>();
         private SpriteRenderer sr;
+        private Player attacker;
+        public bool Walkable;
+        public bool Breakable;
         private string breakableLayer = "Breakable";
         private string walkableLayer = "Walkable";
         private string towerLayer = "Tower";
+        [SerializeField] private LayerMask block;
         public GameObject occupyingTower;
 
         public bool spriteLocked;
 
+        [SerializeField] private Sprite[] breakableSprite;
+        [SerializeField] private Sprite walkableSprite;
+        [SerializeField] private Sprite towerSprite;
         [SerializeField] private Sprite rightTile;
         [SerializeField] private Sprite leftTile;
         [SerializeField] private Sprite downTile;
         [SerializeField] private Sprite upTile;
         [SerializeField] private Sprite midTile;
-
         [SerializeField] private Sprite rightUpTile;
         [SerializeField] private Sprite rightDownTile;
         [SerializeField] private Sprite leftUpTile;
         [SerializeField] private Sprite leftDownTile;
-
         [SerializeField] private Sprite grassTile;
-        [SerializeField] private LayerMask block;
 
         [SerializeField] private Vector2 minMaxResourceValue;
-        public uint resourceValue { get; private set; }
+        [SerializeField] private int resourceValue;
+        public int ResourceValue 
+        { 
+            get { return resourceValue; } 
+            set { resourceValue = value; } 
+        }
 
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
-            resourceValue = (uint)RandomHelper.RandomIntInclusive(minMaxResourceValue);
+            attacker = FindObjectOfType<AttackerPlayer>();
+        }
+
+        public void SetResourceValue()
+        {
+            resourceValue = RandomHelper.RandomIntInclusive(minMaxResourceValue);
+            sr.color = new Color(1 - MathHelper.Normalize(resourceValue, minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
+                1 - MathHelper.Normalize(resourceValue,  minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
+                0, 1);
+        }
+
+        private void UnsetResourceValue()
+        {
+            resourceValue = 0;
+            sr.color = new Color(1, 1, 1, 1);
         }
 
         public void RaycastSetSprite()
@@ -175,6 +193,7 @@ namespace Grid
 
         public void BreakBreakable()
         {
+            attacker.money += resourceValue;
             SetBreakable(false);
             SetWalkable(true);
         }
@@ -191,10 +210,12 @@ namespace Grid
             {
                 if (!spriteLocked) sr.sprite = walkableSprite;
                 gameObject.layer = LayerMask.NameToLayer(walkableLayer);
+                UnsetResourceValue();
             } else if (Breakable)
             {
                 if (!spriteLocked) sr.sprite = breakableSprite[RandomHelper.RandomIntInclusive(0, breakableSprite.Length - 1)];
                 gameObject.layer = LayerMask.NameToLayer(breakableLayer);
+                SetResourceValue();
             } else if (occupyingTower != null)
             {
                 if (!spriteLocked) sr.sprite = towerSprite;
