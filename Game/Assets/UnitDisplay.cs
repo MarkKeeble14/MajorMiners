@@ -4,39 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public static class RectTransformExtensions
-{
-    public static void SetLeft(this RectTransform rt, float left)
-    {
-        rt.offsetMin = new Vector2(left, rt.offsetMin.y);
-    }
-
-    public static void SetRight(this RectTransform rt, float right)
-    {
-        rt.offsetMax = new Vector2(-right, rt.offsetMax.y);
-    }
-
-    public static void SetTop(this RectTransform rt, float top)
-    {
-        rt.offsetMax = new Vector2(rt.offsetMax.x, -top);
-    }
-
-    public static void SetBottom(this RectTransform rt, float bottom)
-    {
-        rt.offsetMin = new Vector2(rt.offsetMin.x, bottom);
-    }
-}
-
-public enum LeftOrRight
-{
-    LEFT,
-    RIGHT
-}
-
 public class UnitDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI cost;
-    [SerializeField] private TextMeshProUGUI nameDisplay;
     [SerializeField] private Image sprite;
     [SerializeField] private Image background;
     [SerializeField] private RadialBarDisplay rBar;
@@ -44,15 +14,23 @@ public class UnitDisplay : MonoBehaviour
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color notSelectedColor;
     [SerializeField] private GameObject tooltip;
+    [SerializeField] private TextMeshProUGUI tooltipName;
     [SerializeField] private TextMeshProUGUI tooltipText;
-
-    public void Set(GameObject spawned)
+    [SerializeField] private TextMeshProUGUI selectKey;
+    [SerializeField] private int size = 125;
+    [SerializeField] private bool open;
+    public bool IsOpen
+    {
+        get { return open; }
+    }
+    public void Set(GameObject spawned, int num)
     {
         SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();
         BaseUnit unit = spawned.GetComponent<BaseUnit>();
         cost.text = "$" + unit.Cost.ToString();
+        tooltipName.text = unit.name;
         tooltipText.text = unit.Description;
-        nameDisplay.text = unit.name;
+        selectKey.text = num.ToString();
         sprite.sprite = sr.sprite;
     }
 
@@ -62,10 +40,10 @@ public class UnitDisplay : MonoBehaviour
         switch (lean)
         {
             case LeftOrRight.LEFT:
-                RectTransformExtensions.SetLeft(rt, -120);
+                RectTransformExtensions.SetLeft(rt, -size);
                 break;
             case LeftOrRight.RIGHT:
-                RectTransformExtensions.SetRight(rt, -120);
+                RectTransformExtensions.SetRight(rt, -size);
                 break;
         }
     }
@@ -84,13 +62,14 @@ public class UnitDisplay : MonoBehaviour
 
     public void OpenTooltip()
     {
-        // Can Animate later on
         tooltip.SetActive(true);
+        open = true;
     }
 
     public void CloseTooltip()
     {
         tooltip.SetActive(false);
+        open = false;
     }
 
     public void SetCD(float cur, float max)

@@ -18,7 +18,7 @@ namespace UI
         // Update is called once per frame
         private void Update()
         {
-            _text.text = "$" + player.money.ToString();
+            _text.text = "$" + player.Money.ToString();
         }
     }
 }

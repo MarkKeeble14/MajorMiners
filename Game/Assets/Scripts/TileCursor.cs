@@ -23,11 +23,15 @@ public class TileCursor : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+    }
 
+    public void SnapToGrid()
+    {
         if (startInMiddle)
         {
             SetTo(tileManager.Rows / 2, tileManager.Columns / 2);
-        } else
+        }
+        else
         {
             if (invert)
             {

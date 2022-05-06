@@ -37,25 +37,91 @@ namespace Grid
         [SerializeField] private Sprite grassTile;
 
         [SerializeField] private Vector2 minMaxResourceValue;
-        [SerializeField] private int resourceValue;
+        private int resourceValue;
         public int ResourceValue 
         { 
             get { return resourceValue; } 
             set { resourceValue = value; } 
         }
+        [SerializeField] private GameObject mineBarCanvas;
+        [SerializeField] private BetterBarDisplay mineBar;
+
+        private bool designatedToMine;
+        public bool DesignatedToMine
+        {
+            get { return designatedToMine; }
+            set { designatedToMine = value; }
+        }
+
+        [SerializeField] private float baseTimeToMine;
+        [SerializeField] private float timeToMineResourceFactor;
+        private Timer mineTimer;
+        private List<MinerMove> activeMiners = new List<MinerMove>();
+        public void AddActiveMiner(MinerMove miner)
+        {
+            if (!Breakable) return;
+            activeMiners.Add(miner);
+            if (mineTimer == null)
+            {
+                mineTimer = new Timer(baseTimeToMine + (timeToMineResourceFactor * Mathf.Sqrt(resourceValue * 2) / 2));
+                StartCoroutine(Mine());
+            }
+        }
+        public void RemoveActiveMiner(MinerMove miner)
+        {
+            activeMiners.Remove(miner);
+            if (activeMiners.Count <= 0)
+            {
+                mineBarCanvas.SetActive(false);
+                StopAllCoroutines();
+                mineTimer = null;
+            }
+        }
+        public bool IsMined
+        {
+            get { return mineTimer.IsFinished(); }
+        }
+
+        private IEnumerator Mine()
+        {
+            mineBarCanvas.SetActive(true);
+            while (!mineTimer.IsFinished())
+            {
+                for (int i = 0; i < activeMiners.Count; i++)
+                {
+                    mineTimer.UpdateTime();
+                    mineBar.SetSize(mineTimer.ElapsedTime, mineTimer.TotalTime);
+                }
+                yield return null;
+            }
+            mineBarCanvas.SetActive(false);
+        }
 
         private void Awake()
         {
             sr = GetComponent<SpriteRenderer>();
-            attacker = FindObjectOfType<AttackerPlayer>();
+        }
+
+        public void SetColor()
+        {
+            if (designatedToMine)
+            {
+                sr.color = new Color(1 - MathHelper.Normalize(resourceValue, minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
+                1 - MathHelper.Normalize(resourceValue, minMaxResourceValue.x, minMaxResourceValue.y, .5f, .25f),
+                0, 1);
+            }
+            else
+            {
+                sr.color = new Color(1 - MathHelper.Normalize(resourceValue, minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
+                1 - MathHelper.Normalize(resourceValue, minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
+                0, 1);
+            }
         }
 
         public void SetResourceValue()
         {
             resourceValue = RandomHelper.RandomIntInclusive(minMaxResourceValue);
-            sr.color = new Color(1 - MathHelper.Normalize(resourceValue, minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
-                1 - MathHelper.Normalize(resourceValue,  minMaxResourceValue.x, minMaxResourceValue.y, .25f, 0),
-                0, 1);
+            SetColor();
         }
 
         private void UnsetResourceValue()
@@ -193,7 +259,8 @@ namespace Grid
 
         public void BreakBreakable()
         {
-            attacker.money += resourceValue;
+            AttackerPlayer attacker = FindObjectOfType<AttackerPlayer>();
+            if (attacker) attacker.AlterMoney(resourceValue, transform.position);
             SetBreakable(false);
             SetWalkable(true);
         }

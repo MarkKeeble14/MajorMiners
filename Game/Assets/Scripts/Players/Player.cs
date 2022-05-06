@@ -9,12 +9,37 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Player : MonoBehaviour
 {
-    public int money;
+    [SerializeField] private int money;
+    [SerializeField] private int startMoney;
+    public int Money
+    {
+        get { return money; }
+    }
     public bool placing;
+    private GameObject _numberPopup;
+    public void AlterMoney(int change)
+    {
+        money += change;
+    }
+    public void AlterMoney(int change, Vector3 numberPosition)
+    {
+        if (change == 0) return;
+        money += change;
+        GameObject spawned = Instantiate(_numberPopup, numberPosition, Quaternion.identity);
+        GameObject numberPopup = spawned.transform.GetChild(0).gameObject;
+        if (change > 0)
+        {
+            numberPopup.GetComponent<PopupText>().Set("$" + change.ToString(), Color.green);
+        } else
+        {
+            numberPopup.GetComponent<PopupText>().Set("-$" + (-1 * change).ToString(), Color.red);
+        }
+    }
 
     [SerializeField] protected TileManager tileManager;
-    [SerializeField] private SpriteRenderer selectedIndicator;
+    [SerializeField] protected SpriteRenderer selectedIndicator;
     [SerializeField] protected TileCursor tileCursor;
+    [SerializeField] protected SpriteRenderer tileCursorSpriteRenderer;
     [SerializeField] private GameObject buyableUnitDisplay;
     [SerializeField] private Transform buyableUnitDisplayParent;
     [SerializeField] private LeftOrRight tooltipLeanDirection;
@@ -42,13 +67,54 @@ public abstract class Player : MonoBehaviour
 
     protected int currentUnitIndex;
     protected bool placedUnit;
+    [SerializeField] private bool tooltipOpen = false;
 
     [SerializeField] protected List<GameObject> spawnedUnits = new List<GameObject>();
 
+    [SerializeField] private int moneyPerResourceTick;
+    [SerializeField] private float secondsBetweenResourceTick;
+    private Timer passiveIncomeTimer;
+    private WorldTile centerTile;
+
     private void Awake()
     {
-        selectedIndicator.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
+        _numberPopup = (GameObject)Resources.Load("PopupText/NumberPopupCanvas");
+    }
 
+    private void Start()
+    {
+        tileCursorSpriteRenderer = tileCursor.GetComponent<SpriteRenderer>();
+    }
+
+    public void ResetPlayer()
+    {
+        DestroyAllSpawns();
+        money = startMoney;
+        baseUnitDictionary.Clear();
+        cooldowns.Clear();
+        foreach (KeyValuePair<GameObject, UnitDisplay> kvp in unitDisplayDictionary)
+        {
+            Destroy(kvp.Value.gameObject);
+        }
+        unitDisplayDictionary.Clear();
+        centerTile = null;
+        SetPlayer();
+    }
+
+    public void DestroyAllSpawns()
+    {
+        while (spawnedUnits.Count > 0)
+        {
+            GameObject spawned = spawnedUnits[0];
+            spawnedUnits.RemoveAt(0);
+            Destroy(spawned);
+        }
+    }
+
+    private void SetPlayer()
+    {
+        centerTile = tileManager.GetTile(tileManager.Rows / 2, tileManager.Columns / 2);
+        selectedIndicator.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
         unitDisplays = new UnitDisplay[_unitsToSpawn.Length];
         for (int i = 0; i < _unitsToSpawn.Length; i++)
         {
@@ -59,13 +125,16 @@ public abstract class Player : MonoBehaviour
             GameObject spawned = Instantiate(buyableUnitDisplay, buyableUnitDisplayParent);
             UnitDisplay sUnitDisplay = spawned.GetComponent<UnitDisplay>();
             unitDisplays[i] = sUnitDisplay;
-            sUnitDisplay.Set(o);
+            sUnitDisplay.Set(o, i + 1);
             sUnitDisplay.SetLean(tooltipLeanDirection);
             unitDisplayDictionary.Add(o, sUnitDisplay);
-            cooldowns.Add(o, new Timer(bUnit.placeCD));
-            cooldowns[o].Reset();
+            Timer t = new Timer(bUnit.placeCD);
+            cooldowns.Add(o, t);
+            t.Reset();
         }
         SelectUnitDisplay(0);
+        if (secondsBetweenResourceTick > 0)
+            passiveIncomeTimer = new Timer(secondsBetweenResourceTick);
     }
 
     private void UpdateCooldowns()
@@ -78,23 +147,55 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    private void CloseAllTooltips()
+    {
+        for (int i = 0; i < unitDisplays.Length; i++)
+        {
+            unitDisplays[i].CloseTooltip();
+        }
+        tooltipOpen = false;
+    }
+
+
     private void OpenTooltip(int index)
     {
         for (int i = 0; i < unitDisplays.Length; i++)
         {
             if (i == index)
             {
-                unitDisplays[i].ToggleTooltip();
+                if (unitDisplays[i].IsOpen)
+                {
+                    tooltipOpen = false;
+                    unitDisplays[i].CloseTooltip();
+                } else
+                {
+                    tooltipOpen = true;
+                    unitDisplays[i].OpenTooltip();
+                }
+                return;
             } else
             {
                 unitDisplays[i].CloseTooltip();
             }
         }
+        tooltipOpen = false;
     }
 
-    protected virtual void Update()
+    public virtual void UpdatePlayer()
     {
         if (Time.timeScale == 0) return;
+
+        if (secondsBetweenResourceTick > 0)
+        {
+            if (passiveIncomeTimer.IsFinished())
+            {
+                AlterMoney(moneyPerResourceTick, centerTile.transform.position);
+                passiveIncomeTimer.Reset();
+            } else
+            {
+                passiveIncomeTimer.UpdateTime();
+            }
+        }
 
         // Update cooldowns
         UpdateCooldowns();
@@ -102,16 +203,24 @@ public abstract class Player : MonoBehaviour
         // Only show placement indicator if the unit can be placed
         selectedIndicator.enabled = CanPlaceUnit();
 
+        // Movement
+        // AxisControlPlacementCursor();
+        KeyboardControlPlacementCursor();
+
         for (var i = 0; i < _unitKeys.Length; ++i)
         {
             if (!Input.GetKey(_unitKeys[i]) && !Input.GetButton(_buttonNames[i])) continue;
-
+            
             // Updating current unit index (player has selected a new unit)
             currentUnitIndex = i;
             SelectUnitDisplay(i);
             selectedIndicator.sprite = _unitsToSpawn[currentUnitIndex].GetComponent<SpriteRenderer>().sprite;
-            // Will deselect the current tooltip
-            OpenTooltip(-1);
+            if (tooltipOpen)
+            {
+                CloseAllTooltips();
+                OpenTooltip(currentUnitIndex);
+            }
+
             break;
         }
 
@@ -120,9 +229,6 @@ public abstract class Player : MonoBehaviour
         {
             OpenTooltip(currentUnitIndex);
         }
-
-        // AxisControlPlacementCursor();
-        KeyboardControlPlacementCursor();
     }
 
     private void SelectUnitDisplay(int i)

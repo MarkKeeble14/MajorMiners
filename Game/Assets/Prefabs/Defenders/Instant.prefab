@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6557017148687188672, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
       propertyPath: shootDelay
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6557017148687188672, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
       propertyPath: projectilePrefab
@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7634357814886762474, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
       propertyPath: <Cost>k__BackingField
-      value: 250
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 8891699718534062337, guid: 566ff72bf7232284590b8fdcd1ad5ce3, type: 3}
       propertyPath: m_IsActive

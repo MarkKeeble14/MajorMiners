@@ -20,20 +20,38 @@ public class UIButtonHelper : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void PauseGame()
+    {
+        paused = true;
+        Time.timeScale = 0;
+        if (pauseScreen)
+            pauseScreen.SetActive(true);
+    }
+
+    public void UnpauseGame()
+    {
+        paused = false;
+        Time.timeScale = 1;
+        if (pauseScreen)
+            pauseScreen.SetActive(false);
+    }
+
     public void TogglePauseGame()
     {
         if (paused)
         {
-            paused = false;
-            Time.timeScale = 1;
-            if (pauseScreen)
-                pauseScreen.SetActive(false);
+            UnpauseGame();
         } else
         {
-            paused = true;
-            Time.timeScale = 0;
-            if (pauseScreen)
-                pauseScreen.SetActive(true);
+            PauseGame();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseGame();
         }
     }
 

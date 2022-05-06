@@ -15,10 +15,17 @@ public class NumberOptionSetter : OptionSetter
     [SerializeField] private HasBoundary numMin;
     [SerializeField] private HasBoundary numMax;
 
+    [SerializeField] protected bool oddNumbersOnly;
+
     private void OnEnable()
     {
         Set();
         SceneManager.sceneLoaded += OnSceneChange;
+    }
+
+    private void Start()
+    {
+        Set();
     }
 
     protected override void OnSceneChange(Scene scene, LoadSceneMode mode)
@@ -32,7 +39,7 @@ public class NumberOptionSetter : OptionSetter
         SetNum();
     }
 
-    private void SetLabels()
+    public void SetLabels()
     {
         labelTMP.text = label;
         placeHolderTMP.text = placeHolder;
@@ -52,26 +59,35 @@ public class NumberOptionSetter : OptionSetter
             if (s.Length == 0)
                 return;
             num.text = StringHelper.ToDetailedString(rf.Value);
-
             return;
         }
         if (numMin.Has && number < numMin.Bound)
         {
-            num.text = StringHelper.ToDetailedString(rf.Value);
             InitErrorMessage("Given number: " + StringHelper.ToDetailedString(number)
     + " Too Small, Must be Larger than: " + StringHelper.ToDetailedString(numMin.Bound), errorDuration);
+            num.text = StringHelper.ToDetailedString(rf.Value);
             return;
         }
         if (numMax.Has && number > numMax.Bound)
         {
-            num.text = StringHelper.ToDetailedString(rf.Value);
             InitErrorMessage("Given number: " + StringHelper.ToDetailedString(number)
     + " Too Large, Must be Smaller than: " + StringHelper.ToDetailedString(numMax.Bound), errorDuration);
+            num.text = StringHelper.ToDetailedString(rf.Value);
             return;
         }
-        if (rf is TimerReadFrom)
-            ((TimerReadFrom)rf).Value = number;
-        else
+        if (oddNumbersOnly && number % 2 == 0)
+        {
+            InitErrorMessage("Given number: " + StringHelper.ToDetailedString(number)
+    + " is Even, Converting to Odd due to Game Rules: " + StringHelper.ToDetailedString(++number), errorDuration);
             rf.Value = number;
+            num.text = StringHelper.ToDetailedString(rf.Value);
+            return;
+        } else
+        {
+            if (rf is TimerReadFrom)
+                ((TimerReadFrom)rf).Value = number;
+            else
+                rf.Value = number;
+        }
     }
 }

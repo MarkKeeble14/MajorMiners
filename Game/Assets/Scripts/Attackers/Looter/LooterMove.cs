@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LooterMove : UnitMove
 {
+
     protected override IEnumerator MoveToEachPosition()
     {
         for (int i = 0; i < path.Count; i++)
@@ -17,7 +18,7 @@ public class LooterMove : UnitMove
         Instantiate(resourceEffect, transform.position, Quaternion.identity);
 
         // Add Money and subtract resources
-        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
+        FindObjectOfType<AttackerPlayer>().AlterMoney(GetComponent<BaseUnit>().Cost, transform.position);
         FindObjectOfType<AttackerPlayer>().resourceHealth -= GetComponent<BaseUnit>().Damage;
 
         // Play sounds

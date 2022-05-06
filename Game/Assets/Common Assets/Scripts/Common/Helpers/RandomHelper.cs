@@ -24,6 +24,11 @@ public static class RandomHelper
         return GetKeyCodeFromOptions(options);
     }
 
+    public static Vector3 RandomVector3(float v1, float v2, float v3, float v4, float v5, float v6)
+    {
+        return new Vector3(RandomFloat(v1, v2), RandomFloat(v3, v4), RandomFloat(v5, v6));
+    }
+
     private static readonly Dictionary<char, KeyCode> _keycodeCache = new Dictionary<char, KeyCode>();
 
     public static KeyCode GetKeyCodeFromOptions(List<char> options)

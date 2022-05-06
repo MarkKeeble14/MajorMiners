@@ -3,17 +3,52 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System;
+using Grid;
 
 public class AttackerPlayer : Player
 {
-    public float resourceHealth = 10000;
-    private float startResourceHealth;
+    public float resourceHealth;
+    private float startResourceHealth = 10000;
     [SerializeField] private BetterBarDisplay hpDisplay;
     [SerializeField] private List<UnitPathfind> pathfindingUnits = new List<UnitPathfind>();
+    [SerializeField] private ResultsScreenController resultsScreen;
+    private List<WorldTile> tilesDesignatedToMine = new List<WorldTile>();
+    [SerializeField] private KeyCode designateMine;
 
-    private void Start()
+    public bool HasTilesDesignatedToMine
     {
-        startResourceHealth = resourceHealth;
+        get { return tilesDesignatedToMine.Count > 0; }
+    }
+
+    public void DesignatedTileMined(WorldTile t)
+    {
+        tilesDesignatedToMine.Remove(t);
+    }
+
+    public WorldTile GetClosestDesignatedTile(Transform origin)
+    {
+        WorldTile toReturn = null;
+        foreach (WorldTile t in tilesDesignatedToMine)
+        {
+            if (toReturn == null)
+            {
+                toReturn = t;
+            } else
+            {
+                if (Vector3.Distance(origin.position, t.transform.position) < Vector3.Distance(origin.position, toReturn.transform.position))
+                {
+                    toReturn = t;
+                }
+            }
+        }
+        return toReturn;
+    }
+
+    public new void ResetPlayer()
+    {
+        base.ResetPlayer();
+        pathfindingUnits.Clear();
+        resourceHealth = startResourceHealth;
     }
 
     protected override void TryPlaceUnit()
@@ -28,7 +63,7 @@ public class AttackerPlayer : Player
         BaseAttacker bAttacker = obj.GetComponent<BaseAttacker>();
         UnitPathfind uPF = obj.GetComponent<UnitPathfind>();
         RuntimeManager.PlayOneShot("event:/SFX/Deploy_Human", tileCursor.currentTile.transform.position);
-        money -= unit.Cost;
+        AlterMoney(-unit.Cost, tileCursor.currentTile.transform.position);
 
         // Keeping track of spawned units
         spawnedUnits.Add(obj);
@@ -58,15 +93,15 @@ public class AttackerPlayer : Player
             UpdatePaths();
         }
     }
-
+        
     protected override bool CanPlaceUnit()
     {
         if (tileCursor.currentTile.Breakable) return false;
 
         BaseUnit unit = _unitsToSpawn[currentUnitIndex].GetComponent<BaseUnit>();
-        if (unit.Cost > money) return false;
+        
+        if (unit.Cost > Money) return false;
         if (tileCursor.currentTile.occupyingTower) return false;
-
         if (!cooldowns[unit.gameObject].IsFinished()) return false;
         
         var coords = tileCursor.coordinates;
@@ -79,15 +114,32 @@ public class AttackerPlayer : Player
         return true;
     }
 
-    protected override void Update()
+    public override void UpdatePlayer()
     {
-        base.Update();
+        base.UpdatePlayer();
 
         hpDisplay.SetSize(resourceHealth, startResourceHealth);
 
         if (resourceHealth <= 0)
         {
-            SceneManager.LoadScene("AttackerWinScreen");
+            resultsScreen.AttackerWon(VICTORY_METHOD.ORE_DEPLETED);
+        }
+
+        if (Input.GetKeyDown(designateMine))
+        {
+            if (tileCursor.currentTile.Breakable)
+            {
+                if (tilesDesignatedToMine.Contains(tileCursor.currentTile))
+                {
+                    tilesDesignatedToMine.Remove(tileCursor.currentTile);
+                    tileCursor.currentTile.DesignatedToMine = false;
+                } else
+                {
+                    tilesDesignatedToMine.Add(tileCursor.currentTile);
+                    tileCursor.currentTile.DesignatedToMine = true;
+                }
+                tileCursor.currentTile.SetColor();
+            }
         }
 
         CheckIfGameOver();
@@ -99,13 +151,13 @@ public class AttackerPlayer : Player
         if (spawnedUnits.Count > 0) return;
         foreach (GameObject o in _unitsToSpawn)
         {
-            if (baseUnitDictionary[o].Cost < money)
+            if (baseUnitDictionary[o].Cost < Money)
             {
                 return;
             }
         }
 
         // Games over, player cannot afford anything
-        SceneManager.LoadScene("DefenderWinScreen");
+        resultsScreen.DefenderWon(VICTORY_METHOD.ATTACKER_OUT_OF_RESOURCES);
     }
 }

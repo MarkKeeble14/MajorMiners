@@ -22,6 +22,7 @@ public class TimerReadFrom : NumReadFrom
 
     private void OnEnable()
     {
+        Reset();
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 

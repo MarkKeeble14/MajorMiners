@@ -38,16 +38,13 @@ public class DismantlerMove : UnitMove
                     tower.HideDismantleBar();
 
                     // Successfully broke tower
+                    FindObjectOfType<AttackerPlayer>().AlterMoney(tower.Cost / 4, t.transform.position);
                     t.SetTower(null);
                     t.SetBreakable(true);
-                    FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost * 2;
 
                     if (++currentNumberTowersBroken > numTowersCanBreak - 1)
                     {
                         onRoute = false;
-
-                        // Add Resources
-                        FindObjectOfType<AttackerPlayer>().money += GetComponent<BaseUnit>().Cost;
 
                         // Spawn particles
                         Instantiate(resourceEffect, transform.position, Quaternion.identity);

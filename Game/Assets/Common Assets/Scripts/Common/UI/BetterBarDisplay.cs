@@ -20,7 +20,12 @@ public class BetterBarDisplay : MonoBehaviour
 
     public void SetSize(float value, float max)
     {
-        bar.localScale = new Vector3(value / max, 1f);
+        float num = value / max;
+        if (num < 0)
+        {
+            num = 0;
+        }
+        bar.localScale = new Vector3(num, 1f);
     }
 
     private void Update()

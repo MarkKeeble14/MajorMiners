@@ -15,13 +15,13 @@ namespace UI
         {
             _text = GetComponent<TextMeshProUGUI>();
             _attacker = gameManager.attacker;
-            _text.text = _attacker.money.ToString();
+            _text.text = _attacker.Money.ToString();
         }
 
         // Update is called once per frame
         private void FixedUpdate()
         {
-            _text.text = _attacker.money.ToString();
+            _text.text = _attacker.Money.ToString();
         }
     }
 }

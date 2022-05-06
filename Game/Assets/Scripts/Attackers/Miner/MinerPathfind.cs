@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MinerPathfind : UnitPathfind
 {
+    private AttackerPlayer attacker;
+    private bool targetingAsteroid;
     // (FOR TESTING)
     void Update()
     {
@@ -13,13 +15,29 @@ public class MinerPathfind : UnitPathfind
 
     public override void FindTarget()
     {
-        target = tileManager.GetTile(tileManager.Rows / 2, tileManager.Columns / 2).transform;
+        if (attacker.HasTilesDesignatedToMine)
+        {
+            target = attacker.GetClosestDesignatedTile(transform).transform;
+            targetingAsteroid = false;
+        } else
+        {
+            target = tileManager.GetTile(tileManager.Rows / 2, tileManager.Columns / 2).transform;
+            targetingAsteroid = true;
+        }
+    }
+
+    public bool TargetIsAsteroid
+    {
+        get {
+            return targetingAsteroid;
+        }
     }
 
     // Gets the grid from the MyGrid Script
     protected override void Awake()
     {
         base.Awake();
+        attacker = FindObjectOfType<AttackerPlayer>();
         FindTarget();
     }
 

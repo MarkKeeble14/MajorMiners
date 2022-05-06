@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee8ecac7ffde2b4ab24f98ba01d22f9, type: 3}
+  m_Name: GenericBackgroundTileManager
+  m_EditorClassIdentifier: 
+  rows: {fileID: 11400000, guid: ec465e17dede9814091a1e5113a54381, type: 2}
+  cols: {fileID: 11400000, guid: a3a72efb225cdea49997ad2738093027, type: 2}
+  aroundAsteroid: {fileID: 11400000, guid: 02174cc18d62f2648b8ed6c21f774407, type: 2}
+  aroundCanyon: {fileID: 11400000, guid: 6d6af2a70819c75448a4845d9eda378b, type: 2}
+  waterAroundLand: 5
+  generationMethod: 2
+  baseChanceToSpawnTile: 0
+  noiseScale: {fileID: 11400000, guid: 45f471e286f359e42a501b35b9cf3e82, type: 2}
+  noiseSeverity: {fileID: 11400000, guid: 18eadc0b5f8ec9b4f98d8a3056e875e9, type: 2}
+  land:
+    serializedVersion: 2
+    m_Bits: 1728
+  asteroidSpriteArray:
+  - {fileID: 6678127448765364976, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: 4025555845375943867, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: 8726210612154224644, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: 2351665494828228891, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: 6660500171274906129, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: 3977791418953510944, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: -4862901738488999286, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: -7583263325477471717, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  - {fileID: 4755084460827791951, guid: fd6fa1e672482084c998f0267c8d5126, type: 3}
+  aroundAsteroidSprite: {fileID: 6487672829784957221, guid: caee56d7710b9a24b994588aa29ff745, type: 3}
+  worldTile: {fileID: 8312990029052005097, guid: d17f5187852c0ce4aba8e846793d3007, type: 3}
+  asteroidTile: {fileID: 8312990029052005097, guid: c36b7824629dbe645a421709e1f11cf5, type: 3}
+  waterTile: {fileID: 8312990029052005097, guid: 7cae3657067fa8a42954fd5e70560c42, type: 3}

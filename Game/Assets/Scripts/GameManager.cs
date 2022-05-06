@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
         audioManager.gameStartParam = 1;
     }
 
+    private void Update()
+    {
+        attacker.UpdatePlayer();
+        defender.UpdatePlayer();
+    }
+
     public static void IncreaseUnits()
     {
         ++numberOfUnits;

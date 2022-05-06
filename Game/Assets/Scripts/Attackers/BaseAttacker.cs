@@ -57,6 +57,7 @@ public class BaseAttacker : BaseUnit
     {
         RuntimeManager.PlayOneShot("event:/SFX/Human_Death", transform.position);
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+        FindObjectOfType<DefenderPlayer>().AlterMoney(Mathf.RoundToInt(Cost / 5), transform.position);
         Destroy(gameObject);
     }
 }
