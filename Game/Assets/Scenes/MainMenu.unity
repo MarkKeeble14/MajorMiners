@@ -2661,6 +2661,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5388129487739275849, guid: ee58fc39c8b19af4199a3e4e8c0bc351, type: 3}
+      propertyPath: masterBank
+      value: Master
+      objectReference: {fileID: 0}
     - target: {fileID: 5388129487739275850, guid: ee58fc39c8b19af4199a3e4e8c0bc351, type: 3}
       propertyPath: m_Name
       value: CoolerAudioManager

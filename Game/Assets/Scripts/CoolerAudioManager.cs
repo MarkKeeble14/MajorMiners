@@ -1,4 +1,5 @@
 using FMODUnity;
+using System.Collections;
 using UnityEngine;
 
 public class CoolerAudioManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class CoolerAudioManager : MonoBehaviour
     [SerializeField]
     [FMODUnity.EventRef]
     private string aSound;
+    [SerializeField] private string masterBank;
     public FMOD.Studio.EventInstance mainAudio;
     public int gameStartParam = 0;
     public int intensityLevel = 0;
@@ -24,11 +26,28 @@ public class CoolerAudioManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            StartCoroutine(LoadMusic());
         }
     }
 
-    private void Start()
+    private IEnumerator LoadMusic()
     {
+        Debug.Log("Start Load Music");
+        RuntimeManager.LoadBank(masterBank, true);
+
+        while (!RuntimeManager.HasBankLoaded(masterBank))
+        {
+            Debug.Log("Hasn't Loaded Bank: " + masterBank);
+            yield return null;
+        }
+        Debug.Log("Loaded Bank: " + masterBank);
+
+        StartMusic();
+    }
+
+    private void StartMusic()
+    {
+        Debug.Log("Starting Music");
         mainAudio = RuntimeManager.CreateInstance(aSound);
         mainAudio.start();
     }
