@@ -9,7 +9,6 @@ public class CoolerAudioManager : MonoBehaviour
     [SerializeField]
     [FMODUnity.EventRef]
     private string aSound;
-
     public FMOD.Studio.EventInstance mainAudio;
     public int gameStartParam = 0;
     public int intensityLevel = 0;
@@ -25,9 +24,13 @@ public class CoolerAudioManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            mainAudio = RuntimeManager.CreateInstance(aSound);
-            mainAudio.start();
         }
+    }
+
+    private void Start()
+    {
+        mainAudio = RuntimeManager.CreateInstance(aSound);
+        mainAudio.start();
     }
 
     private void Update()

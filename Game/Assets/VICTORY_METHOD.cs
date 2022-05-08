@@ -1,7 +1,0 @@
-﻿public enum VICTORY_METHOD
-{
-    ATTACKER_OUT_OF_RESOURCES,
-    TIMED_OUT,
-    ORE_DEPLETED,
-    SURRENDER
-}
